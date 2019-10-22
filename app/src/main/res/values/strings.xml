@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">자!놀자</string>
+    <string name="title_home">Home</string>
+    <string name="title_pick">찜목록</string>
+    <string name="title_my">MY</string>
+    <string name="title_logout">로그아웃</string>
+</resources>
