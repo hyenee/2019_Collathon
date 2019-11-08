@@ -21,7 +21,8 @@
   "homepage": "https://github.com/hyenee/2019_Collathon#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "jade": "^1.11.0",
+    "ejs": "*",
+    "body-parser": "^1.19.0",
     "socket.io": "^2.3.0",
     "stylus": "^0.54.7"
   }

@@ -2,7 +2,7 @@
 module.exports = (function() {
 	    return {
 		            host: "oreh.onyah.net",
-		            user: "suyeon",
+		            user: "root",
 		            password: "collathon7",
 		            database: "collathon"
 		        }
