@@ -18,12 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar2"
             android:label="@string/app_name" />
         <activity
-<<<<<<< Updated upstream
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-=======
             android:name="com.collathon.jamukja.LoginActivity"
->>>>>>> Stashed changes
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
