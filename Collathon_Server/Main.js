@@ -47,24 +47,3 @@ function onListening(){
 		: 'port' + addr.port;
 	debug('Listening on '+bind);
 }
-
-/*
-// http 모듈로 서버를 생성(http 요청이 들어오면 function 실행)
-var server = http.createServer(function(request, response){
-	console.log('---log start---');
-	var parsedUrl = url.parse(request.url); // 브라우저에서 요청한 주소를 parsing하여 객체화
-	console.log(parsedUrl);
-	var parsedQuery = querystring.parse(parsedUrl.query, '&','=');
-	console.log(parsedQuery);
-	console.log('---log end---');
-
-	response.writeHead(200, {'Content-Type':'text/html'});
-	response.end('JA MUKJA!');
-});
-
-// listen 함수로 7777 포트를 가진 서버 실행
-// 서버가 실행된 것을 확인하기 위해 log 찍기
-server.listen(7777, function(){
-	console.log('Server is running...');
-});
-*/

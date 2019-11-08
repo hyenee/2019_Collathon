@@ -38,9 +38,9 @@ let getOwnerUser = function(owner_id, password, callback){
 	query_function(sql, callback);
 };
 
-let addOwnerUser = function(owner_id, password, name, phone, callback){
-	let sql =  "insert into Supplier (id, passwd, name, phone) values(\""+owner_id+"\", "+ (password===undefine?"NULL":"\""+ password+"\"")+")";
-        query_fuction(sql, function(){query_function("SELECT LAST_INSERT_ID() as id;", callback)});
+let addOwnerUser = function(name, owner_id, password, phone, callback){
+	let sql =  "insert into Supplier values(\""+name+"\", \""+owner_id+"\", \""+password+"\", \""+phone+"\")";
+	query_function(sql, callback);
 };
 
 let getLikeShop = function(shop_id, client_id, callback){

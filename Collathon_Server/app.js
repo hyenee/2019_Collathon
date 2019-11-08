@@ -3,7 +3,8 @@ let app = express();
 let path = require('path');
 let bodyParser = require('body-parser');
 
-let login_router = require("./router/USER/login");
+let user_login_router = require("./router/USER/login");
+let owner_login_router = require("./router/OWNER/login");
 
 // view 경로 설정
 app.set('views', path.join(__dirname, '/views'));
@@ -17,7 +18,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 // 기본 path를 /public으로 설정(css, javascript 등의 파일 사용을 위해)
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/login', login_router);
+app.use('/userLogin', user_login_router);
+app.use('/ownerLogin', owner_login_router);
 
 /*
 // catch 404 and forward to error handler
