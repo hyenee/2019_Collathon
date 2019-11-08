@@ -1,4 +1,4 @@
-package com.collathon.janolja.ui.logout;
+package com.collathon.jamukja.ui.my;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,17 +12,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.collathon.janolja.R;
 
-public class LogoutFragment extends Fragment {
+public class MyFragment extends Fragment {
 
-    private LogoutViewModel logoutViewModel;
+    private MyViewModel myViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        logoutViewModel =
-                ViewModelProviders.of(this).get(LogoutViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_logout, container, false);
-        final TextView textView = root.findViewById(R.id.text_logout);
-        logoutViewModel.getText().observe(this, new Observer<String>() {
+            ViewGroup container, Bundle savedInstanceState) {
+        myViewModel =
+                ViewModelProviders.of(this).get(MyViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_my, container, false);
+        final TextView textView = root.findViewById(R.id.text_my);
+        myViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

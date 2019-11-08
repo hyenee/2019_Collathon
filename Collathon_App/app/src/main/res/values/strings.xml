@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< Updated upstream
 <string name="app_name">자!놀자</string>
 
     <!-- bottom navigation -->
@@ -21,4 +22,11 @@
 <string name="menu_tools">Tools</string>
 <string name="menu_share">Share</string>
 <string name="menu_send">Send</string>
+=======
+    <string name="app_name">자!먹자</string>
+    <string name="title_home">Home</string>
+    <string name="title_pick">찜목록</string>
+    <string name="title_my">MY</string>
+    <string name="title_logout">로그아웃</string>
+>>>>>>> Stashed changes
 </resources>

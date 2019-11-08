@@ -1,4 +1,4 @@
-package com.collathon.janolja.ui.my;
+package com.collathon.jamukja.ui.pick;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,22 +12,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.collathon.janolja.R;
 
-public class MyFragment extends Fragment {
+public class PickFragment extends Fragment {
 
-    private MyViewModel myViewModel;
+    private PickViewModel pickViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        myViewModel =
-                ViewModelProviders.of(this).get(MyViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_my, container, false);
-        final TextView textView = root.findViewById(R.id.text_my);
-        myViewModel.getText().observe(this, new Observer<String>() {
+        pickViewModel =
+                ViewModelProviders.of(this).get(PickViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_pick, container, false);
+       /*
+        final TextView textView = root.findViewById(R.id.text_pick);
+        pickViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 }

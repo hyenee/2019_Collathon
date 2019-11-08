@@ -1,4 +1,4 @@
-package com.collathon.janolja.ui.pick;
+package com.collathon.jamukja.ui.pick;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

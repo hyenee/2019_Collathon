@@ -6,26 +6,46 @@
     app:startDestination="@+id/bottom_navigation_home">
 
     <fragment
+<<<<<<< Updated upstream:Collathon_App/app/src/main/res/navigation/bottom_navigation.xml
         android:id="@+id/bottom_navigation_home"
         android:name="com.collathon.janolja.ui.home.HomeFragment"
+=======
+        android:id="@+id/navigation_home"
+        android:name="com.collathon.jamukja.ui.home.HomeFragment"
+>>>>>>> Stashed changes:Collathon_App/app/src/main/res/navigation/mobile_navigation.xml
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
+<<<<<<< Updated upstream:Collathon_App/app/src/main/res/navigation/bottom_navigation.xml
         android:id="@+id/bottom_navigation_pick"
         android:name="com.collathon.janolja.ui.pick.PickFragment"
+=======
+        android:id="@+id/navigation_pick"
+        android:name="com.collathon.jamukja.ui.pick.PickFragment"
+>>>>>>> Stashed changes:Collathon_App/app/src/main/res/navigation/mobile_navigation.xml
         android:label="@string/title_pick"
         tools:layout="@layout/fragment_pick" />
 
     <fragment
+<<<<<<< Updated upstream:Collathon_App/app/src/main/res/navigation/bottom_navigation.xml
     android:id="@+id/bottom_navigation_my"
     android:name="com.collathon.janolja.ui.my.MyFragment"
+=======
+    android:id="@+id/navigation_my"
+    android:name="com.collathon.jamukja.ui.my.MyFragment"
+>>>>>>> Stashed changes:Collathon_App/app/src/main/res/navigation/mobile_navigation.xml
     android:label="@string/title_my"
     tools:layout="@layout/fragment_my" />
 
     <fragment
+<<<<<<< Updated upstream:Collathon_App/app/src/main/res/navigation/bottom_navigation.xml
         android:id="@+id/bottom_navigation_logout"
         android:name="com.collathon.janolja.ui.logout.LogoutFragment"
+=======
+        android:id="@+id/navigation_logout"
+        android:name="com.collathon.jamukja.ui.logout.LogoutFragment"
+>>>>>>> Stashed changes:Collathon_App/app/src/main/res/navigation/mobile_navigation.xml
         android:label="@string/title_logout"
         tools:layout="@layout/fragment_logout" />
 </navigation>

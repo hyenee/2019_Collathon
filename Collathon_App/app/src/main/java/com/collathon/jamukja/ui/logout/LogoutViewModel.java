@@ -1,4 +1,4 @@
-package com.collathon.janolja.ui.logout;
+package com.collathon.jamukja.ui.logout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

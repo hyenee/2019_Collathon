@@ -1,4 +1,4 @@
-package com.collathon.janolja.ui.pick;
+package com.collathon.jamukja.ui.logout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,17 +12,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.collathon.janolja.R;
 
-public class PickFragment extends Fragment {
+public class LogoutFragment extends Fragment {
 
-    private PickViewModel pickViewModel;
+    private LogoutViewModel logoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        pickViewModel =
-                ViewModelProviders.of(this).get(PickViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_pick, container, false);
-        final TextView textView = root.findViewById(R.id.text_pick);
-        pickViewModel.getText().observe(this, new Observer<String>() {
+                             ViewGroup container, Bundle savedInstanceState) {
+        logoutViewModel =
+                ViewModelProviders.of(this).get(LogoutViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_logout, container, false);
+        final TextView textView = root.findViewById(R.id.text_logout);
+        logoutViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
