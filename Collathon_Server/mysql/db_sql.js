@@ -58,6 +58,11 @@ let addOwnerShop = function(owner_id, name, tel, addr, category, table, callback
 	query_function(sql, callback);
 };
 
+let getShopDetail = function(shop_id, callback){
+	let sql = "select * from Shop where id="+shop_id;
+	query_function(sql, callback);
+};
+
 let addShopMenu = function(shop_id, name, price, des, count, callback){
 	let sql = "insert into Menu values("+shop_id+",\""+name+"\","+ price+",\""+des+"\","+count+")";
 	query_function(sql, callback);
@@ -93,6 +98,7 @@ module.exports = function() {
 		getOwnerUser: getOwnerUser,
 		addOwnerUser: addOwnerUser,
 		getCategoryShop: getCategoryShop,
+		getShopDetail: getShopDetail,
 		getOwnerShop: getOwnerShop,
 		addOwnerShop: addOwnerShop,
 		addShopMenu: addShopMenu,
