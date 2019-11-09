@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
 	console.log("LOGIN:POST -> phone : ", req.query.phone);
 	sql.addOwnerUser(req.query.name, req.query.id, req.query.passwd, req.query.phone, function(err){
 		if(err){
-			console.error("SIGN UP:GET FAILD: ",err);
+			console.error("SIGN UP:GET FAILED: ",err);
 		}
 		else{
 			res.send([{"result":"OK"}]);
