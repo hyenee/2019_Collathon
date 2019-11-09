@@ -87,6 +87,17 @@ let getOwnerUserDetail = function(owner_id, callback){
 	let sql = "select * from Supplier where id=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
+
+let updateClientUser = function(client_id, new_passwd, callback){
+	let sql = "update Client set passwd=\""+new_passwd+"\" where id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let updateOwnerUser = function(owner_id, new_passwd, callback){
+	let sql = "update Supplier set passwd=\""+new_passwd+"\" where id=\""+owner_id+"\"";
+	query_function(sql, callback);
+};
+
 /*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
@@ -120,6 +131,8 @@ module.exports = function() {
 		deleteShopMenu: deleteShopMenu,
 		getClientUserDetail: getClientUserDetail,
 		getOwnerUserDetail: getOwnerUserDetail,
+		updateClientUser: updateClientUser,
+		updateOwnerUser: updateOwnerUser,
 /*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
