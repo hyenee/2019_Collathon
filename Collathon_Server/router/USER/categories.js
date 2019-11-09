@@ -11,7 +11,7 @@ router.get('/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/categories?category={category}
+}); // http://oreh.onyah.net:7080/categories?category={category}
 
 /* GET a shop info */
 router.get('/shop/', function(req, res, next){
@@ -21,7 +21,7 @@ router.get('/shop/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/categories/shop?id={shop_id}
+}); // http://oreh.onyah.net:7080/categories/shop?id={shop_id}
 
 /* GET a menu info about a certain shop */
 router.get('/menu/', function(req, res, next){
@@ -31,6 +31,6 @@ router.get('/menu/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/categories/menu?id={shop_id}
+}); // http://oreh.onyah.net:7080/categories/menu?id={shop_id}
 
 module.exports = router;

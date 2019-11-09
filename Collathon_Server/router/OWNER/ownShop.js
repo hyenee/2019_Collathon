@@ -11,7 +11,7 @@ router.get('/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownShop?id={owner_id}
+}); // http://oreh.onyah.net:7080/ownShop?id={owner_id}
 
 /* POST new shop. */
 router.post('/', function(req, res, next){
@@ -31,6 +31,6 @@ router.post('/', function(req, res, next){
 		}
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownShop?id={owner_id}&name={shop_name}&tel={tel}&addr={address}&category={category}&table={Y/N}
+}); // http://oreh.onyah.net:7080/ownShop?id={owner_id}&name={shop_name}&tel={tel}&addr={address}&category={category}&table={Y/N}
 
 module.exports = router;
