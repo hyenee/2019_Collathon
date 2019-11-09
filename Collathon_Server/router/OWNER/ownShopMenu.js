@@ -19,7 +19,7 @@ router.post('/del/', function(req, res, next){
 	});
 	
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownMenu/del?id={shop_id}&name={menu_name}
+}); // http://oreh.onyah.net:7080/ownMenu/del?id={shop_id}&name={menu_name}
 
 router.post('/add/', function(req, res, next){
 	console.log("---log start(OWN MENU:POST)---");
@@ -38,6 +38,6 @@ router.post('/add/', function(req, res, next){
 		}
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownMenu/add?id={shop_id}&name={menu_name}&price={price}&des={description}&count={number of menu}
+}); // http://oreh.onyah.net:7080/ownMenu/add?id={shop_id}&name={menu_name}&price={price}&des={description}&count={number of menu}
 
 module.exports = router;

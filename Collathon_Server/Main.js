@@ -3,7 +3,7 @@ let http = require('http');
 
 let app = require('./app');
 
-let port = 7777;
+let port = 7080;
 let server;
 
 app.set('port', port);
@@ -13,6 +13,12 @@ server.listen(app.get('port'), function(){
 });
 server.on('error', onError);
 server.on('listening', onListening);
+
+// process 강제 종료 되었을 때 처리
+let sigint_func = function(){
+	process.exit();
+};
+process.on("SIGINT", sigint_func);
 
 function onError(error){
 	if(error.syscall !== 'listen'){
