@@ -44,9 +44,10 @@ let addOwnerUser = function(name, owner_id, password, phone, callback){
 };
 
 let getCategoryShop = function(category, callback){
-	let sql = "select name from Shop where category=\""+category+"\"";
+	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\"";
 	query_function(sql, callback);
 };
+
 /*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
