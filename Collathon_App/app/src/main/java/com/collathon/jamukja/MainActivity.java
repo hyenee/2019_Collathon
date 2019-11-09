@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.collathon.jamukja.store.category.StoreList.StoreListActivity;
+import com.collathon.jamukja.store.category.list.StoreListActivity;
 import com.collathon.jamukja.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
 import androidx.appcompat.app.AppCompatActivity;

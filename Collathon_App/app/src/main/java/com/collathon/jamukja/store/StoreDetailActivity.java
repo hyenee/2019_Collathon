@@ -14,7 +14,7 @@ public class StoreDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_detail);
+        setContentView(R.layout.activity_store_detail_menu_recycler);
         final Button menuButton = (Button)findViewById(R.id.menuButton); //상세 메뉴
         final Button infoButton = (Button)findViewById(R.id.store_informationButton); //가게 정보
         final Button reservationButton = (Button)findViewById(R.id.reservationButton); //예약하기
