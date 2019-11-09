@@ -43,6 +43,26 @@ let addOwnerUser = function(name, owner_id, password, phone, callback){
 	query_function(sql, callback);
 };
 
+let getCategoryShop = function(category, callback){
+	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\"";
+	query_function(sql, callback);
+};
+
+let getOwnerShop = function(owner_id, callback){
+	let sql = "select name from Shop where master=\""+owner_id+"\"";
+	query_function(sql, callback);
+};
+
+let addShopMenu = function(shop_id, name, price, des, count, callback){
+	let sql = "insert into Menu values("+shop_id+",\""+name+"\","+ price+",\""+des+"\","+count+")";
+	query_function(sql, callback);
+}
+
+let deleteShopMenu = function(shop_id, name, callback){
+	let sql = "delete from Menu where shop_id="+shop_id+" and name=\""+name+"\"";
+	query_function(sql, callback);
+}
+/*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
 	query_function(sql, callback);
@@ -57,11 +77,7 @@ let getBlackList = function(client_id, shop_id, callback){
 	let sql = "select * from BlackList where client_id=\""+client_id+"\" And shop_id =\""+shop_id+"\"";
 	query_function(sql, callback);
 };
-
-let getShopNameList = function(shop_id, owner_id, callback){
-        let sql  = "select name from Shop where id=\""+shop_id+"\" And master =\""+owner_id+"\"";
-        query_function(sql, callback);
-};
+*/
 
 
 module.exports = function() {
@@ -70,10 +86,15 @@ module.exports = function() {
 		addClientUser: addClientUser,
 		getOwnerUser: getOwnerUser,
 		addOwnerUser: addOwnerUser,
-		getShopNameList: getShopNameList,
+		getCategoryShop: getCategoryShop,
+		getOwnerShop: getOwnerShop,
+		addShopMenu: addShopMenu,
+		deleteShopMenu: deleteShopMenu,
+/*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
 		getBlackList: getBlackList,
+*/
 		pool: pool
 	}
 };

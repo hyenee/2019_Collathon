@@ -12,7 +12,7 @@ router.get('/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/userLogin?id={id}&passwd={passwd}
+}); // http://oreh.onyah.net:7777/user/login?id={id}&passwd={passwd}
 
 /* POST new User */
 router.post('/', function(req, res, next){
@@ -31,6 +31,6 @@ router.post('/', function(req, res, next){
 		}
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/userLogin?id={id}&passwd={passwd}&name={name}&phone={phone}&email={email}
+}); // http://oreh.onyah.net:7777/user/login?id={id}&passwd={passwd}&name={name}&phone={phone}&email={email}
 
 module.exports = router;
