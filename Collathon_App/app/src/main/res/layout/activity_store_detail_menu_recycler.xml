@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:fillViewport="true"
-    tools:context="com.collathon.jamukja.store.category.detail.StoreDetailListActivity">
+    tools:context="com.collathon.jamukja.customer.store.category.detail.StoreDetailListActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"

@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NetworkManager {
     private static final String TAG = "NetworkManager";
 
-    public static String url = "http://oreh.onyah.net:7777"; //서버 주소 192.168.1.52:7777
+    public static String url = "http://oreh.onyah.net:7080"; //서버 주소 192.168.1.52:7777
     public static boolean isEnd = false;
 
     private static InnerThread thread = new InnerThread();
