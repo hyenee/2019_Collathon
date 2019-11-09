@@ -48,6 +48,11 @@ let getCategoryShop = function(category, callback){
 	query_function(sql, callback);
 };
 
+let getOwnerShop = function(owner_id, callback){
+	let sql = "select name from Shop where master=\""+owner_id+"\"";
+	query_function(sql, callback);
+};
+
 /*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
@@ -73,6 +78,7 @@ module.exports = function() {
 		getOwnerUser: getOwnerUser,
 		addOwnerUser: addOwnerUser,
 		getCategoryShop: getCategoryShop,
+		getOwnerShop: getOwnerShop,
 /*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
