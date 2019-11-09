@@ -11,6 +11,26 @@ router.get('/', function(req, res, next){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownShop?id={id}
+}); // http://oreh.onyah.net:7777/ownShop?id={owner_id}
+
+/* POST new shop. */
+router.post('/', function(req, res, next){
+	console.log('---log start(OWN SHOP:POST)---');
+	console.log("OWN SHOP:POST -> owner id : ", req.query.id);
+	console.log("OWN SHOP:POST -> shop name : ", req.query.name);
+	console.log("OWN SHOP:POST -> tel : ", req.query.tel);
+	console.log("OWN SHOP:POST -> address : ", req.query.addr);
+	console.log("OWN SHOP:POST -> category : ", req.query.category);
+	console.log("OWN SHOP:POST -> table : ", req.query.table);
+	sql.addOwnerShop(req.query.id, req.query.name, req.query.tel, req.query.addr, req.query.category, req.query.table, function(err){
+		if(err){
+			console.error("ADD SHOP:GET FAILED: ", err);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7777/ownShop?id={owner_id}&name={shop_name}&tel={tel}&addr={address}&category={category}&table={Y/N}
 
 module.exports = router;
