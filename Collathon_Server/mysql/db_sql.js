@@ -71,13 +71,22 @@ let getMenuDetail = function(shop_id, callback){
 let addShopMenu = function(shop_id, name, price, des, count, callback){
 	let sql = "insert into Menu values("+shop_id+",\""+name+"\","+ price+",\""+des+"\","+count+")";
 	query_function(sql, callback);
-}
+};
 
 let deleteShopMenu = function(shop_id, name, callback){
 	let sql = "delete from Menu where shop_id="+shop_id+" and name=\""+name+"\"";
 	query_function(sql, callback);
-}
+};
 
+let getClientUserDetail = function(client_id, callback){
+	let sql = "select * from Client where id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getOwnerUserDetail = function(owner_id, callback){
+	let sql = "select * from Supplier where id=\""+owner_id+"\"";
+	query_function(sql, callback);
+};
 /*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
@@ -109,6 +118,8 @@ module.exports = function() {
 		addOwnerShop: addOwnerShop,
 		addShopMenu: addShopMenu,
 		deleteShopMenu: deleteShopMenu,
+		getClientUserDetail: getClientUserDetail,
+		getOwnerUserDetail: getOwnerUserDetail,
 /*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
