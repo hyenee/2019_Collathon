@@ -98,6 +98,16 @@ let updateOwnerUser = function(owner_id, new_passwd, callback){
 	query_function(sql, callback);
 };
 
+let getReservationTable = function(client_id, callback){
+	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getReservationInfo = function(client_id, callback){
+	let sql = "select Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
 /*
 let getLikeShop = function(shop_id, client_id, callback){
 	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
@@ -133,6 +143,8 @@ module.exports = function() {
 		getOwnerUserDetail: getOwnerUserDetail,
 		updateClientUser: updateClientUser,
 		updateOwnerUser: updateOwnerUser,
+		getReservationTable: getReservationTable,
+		getReservationInfo: getReservationInfo,
 /*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
