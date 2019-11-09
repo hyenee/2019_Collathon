@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.collathon.jamukja.RegisterCustomerActivity;
-import com.collathon.jamukja.store.category.rice_1.StoreDetailReserActivity;
+import com.collathon.jamukja.reservation.ReservationSeatConfirmActivity;
+import com.collathon.jamukja.reservation.ReservationTicketConrifmActivity;
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
@@ -18,8 +18,10 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_mymenu);
 
         TextView customer_info = (TextView)findViewById(R.id.customer_info);
-        TextView reservation_comrirm = (TextView)findViewById(R.id.reservation_confirm);
+        TextView reservation_seat_comrirm = (TextView)findViewById(R.id.reservation_seat_confirm);
+        TextView reservation_ticket_comrirm = (TextView)findViewById(R.id.reservation_ticket_confirm);
 
+        //회원정보
         customer_info.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -31,14 +33,26 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             }
         });
 
-
-        reservation_comrirm.setOnClickListener(new View.OnClickListener() {
+        //자리 예약 확인
+        reservation_seat_comrirm.setOnClickListener(new View.OnClickListener() {
 
             @Override
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
-                Intent reservationIntent = new Intent(CustomerMyMenuActivity.this, StoreDetailReserActivity.class);
-                CustomerMyMenuActivity.this.startActivity(reservationIntent);
+                Intent seatIntent = new Intent(CustomerMyMenuActivity.this, ReservationSeatConfirmActivity.class);
+                CustomerMyMenuActivity.this.startActivity(seatIntent);
+
+            }
+        });
+
+        //번호표 확인
+        reservation_ticket_comrirm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
+            public void onClick(View view) {
+                Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationTicketConrifmActivity.class);
+                CustomerMyMenuActivity.this.startActivity(ticketIntent);
 
             }
         });

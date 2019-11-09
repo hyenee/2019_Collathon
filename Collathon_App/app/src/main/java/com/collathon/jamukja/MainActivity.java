@@ -6,12 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.collathon.jamukja.store.category.chicken_3.ChickenActivity;
-import com.collathon.jamukja.store.category.desert_5.DesertActivity;
-import com.collathon.jamukja.store.category.meat_4.MeatActivity;
-import com.collathon.jamukja.store.category.noodle_2.NoodleActivity;
-import com.collathon.jamukja.store.category.rice_1.RiceActivity;
-import com.collathon.jamukja.store.category.sushi_6.SushiActivity;
+import com.collathon.jamukja.store.category.StoreList.StoreListActivity;
 import com.collathon.jamukja.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,68 +18,66 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //카테고리 버튼 클릭하면 이동, 순서대로 버튼 1~6
-        ImageButton riceButton = findViewById(R.id.category_button_rice);
-        ImageButton noodleButton = findViewById(R.id.category_button_noodle);
-        ImageButton chickenButton = findViewById(R.id.category_button_chicken);
-        ImageButton meatButton = findViewById(R.id.category_button_meat);
-        ImageButton desertButton = findViewById(R.id.category_button_desert);
-        ImageButton sushiButton = findViewById(R.id.category_button_sushi);
+        ImageButton rice = findViewById(R.id.category_button_rice); //한식
+        ImageButton noodle = findViewById(R.id.category_button_noodle); //국수
+        ImageButton chicken = findViewById(R.id.category_button_chicken); //치킨
+        ImageButton meat = findViewById(R.id.category_button_meat); //고기
+        ImageButton desert = findViewById(R.id.category_button_desert); //디저트
+        ImageButton sushi = findViewById(R.id.category_button_sushi); //스시
 
-        riceButton.setOnClickListener(new View.OnClickListener() {
+        rice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent riceIntent = new Intent(MainActivity.this, RiceActivity.class);
+                Intent riceIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(riceIntent);
             }
         });
 
-        noodleButton.setOnClickListener(new View.OnClickListener() {
+        noodle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent noodleIntent = new Intent(MainActivity.this, NoodleActivity.class);
+                Intent noodleIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(noodleIntent);
             }
         });
 
-        chickenButton.setOnClickListener(new View.OnClickListener() {
+        chicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent chickenIntent = new Intent(MainActivity.this, ChickenActivity.class);
+                Intent chickenIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(chickenIntent);
             }
         });
 
-        meatButton.setOnClickListener(new View.OnClickListener() {
+        meat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent meatIntent = new Intent(MainActivity.this, MeatActivity.class);
+                Intent meatIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(meatIntent);
             }
         });
 
-        desertButton.setOnClickListener(new View.OnClickListener() {
+        desert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent desertIntent = new Intent(MainActivity.this, DesertActivity.class);
+                Intent desertIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(desertIntent);
             }
         });
 
-        sushiButton.setOnClickListener(new View.OnClickListener() {
+        sushi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sushiIntent = new Intent(MainActivity.this, SushiActivity.class);
+                Intent sushiIntent = new Intent(MainActivity.this, StoreListActivity.class);
                 MainActivity.this.startActivity(sushiIntent);
             }
         });
 
-
-
         //하단 메뉴바
-        final Button homeButton = (Button)findViewById(R.id.homeButton);
-        final Button pickButton = (Button) findViewById(R.id.pickButton);
-        final Button myButton = (Button)findViewById(R.id.myButton);
-        final Button logoutButton = (Button) findViewById(R.id.loginButton);
+        final Button homeButton = (Button)findViewById(R.id.homeButton); //홈
+        final Button pickButton = (Button) findViewById(R.id.pickButton); //찜 목록
+        final Button myButton = (Button)findViewById(R.id.myButton); //내 정보
+        final Button logoutButton = (Button) findViewById(R.id.loginButton); //로그아웃
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 

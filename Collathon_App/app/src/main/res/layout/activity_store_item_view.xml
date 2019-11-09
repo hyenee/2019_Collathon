@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_Lists"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/store_item_view_rice_title"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nanumsquare"
+        android:text="TITLE"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/store_item_view_rice_content"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/store_item_view_rice_content"
+        android:layout_width="240dp"
+        android:layout_height="34dp"
+        android:fontFamily="@font/nanumsquare"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="content"
+        android:textColor="#49575f"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="17dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

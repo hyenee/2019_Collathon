@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
+        <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
             android:name="com.collathon.jamukja.SelectUserActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,67 +29,38 @@
             android:theme="@style/AppTheme.NoActionBar2"
             android:label="@string/app_name" />
 
+        <!-- 로그인 -->
         <activity android:name="com.collathon.jamukja.LoginCustomerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity android:name="com.collathon.jamukja.LoginOwnerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
 
+        <!-- 회원가입 -->
         <activity android:name="com.collathon.jamukja.RegisterCustomerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity android:name="com.collathon.jamukja.RegisterOwnerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
 
+        <!-- 마이 메뉴 -->
         <activity android:name="com.collathon.jamukja.user_info.customer.CustomerMyMenuActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
         <activity android:name="com.collathon.jamukja.user_info.customer.CustomerInfoActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceActivity"
+        <!-- 가게 리스트 -->
+        <activity android:name="com.collathon.jamukja.store.category.StoreList.StoreListActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceStoreItemViewActivity"
+        <activity android:name="com.collathon.jamukja.store.category.StoreList.StoreItemViewActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceStoreListActivity"
+        <activity android:name="com.collathon.jamukja.store.StoreDetailActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailReserActivity"
+        <activity android:name="com.collathon.jamukja.store.StoreDetailInfoActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 
-        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleActivity"
+        <!-- 예약 카테고리 -->
+        <activity android:name="com.collathon.jamukja.reservation.ReservationSeatConfirmActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleStoreItemViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleStoreListActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenStoreItemViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenStoreListActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatStoreItemViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatStoreListActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertStoreItemViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertStoreListActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiStoreItemViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiStoreListActivity"
+        <activity android:name="com.collathon.jamukja.reservation.ReservationTicketConrifmActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
     </application>
 
