@@ -7,7 +7,7 @@ let user_login_router = require("./router/USER/login");
 let owner_login_router = require("./router/OWNER/login");
 let categories_router = require("./router/USER/categories");
 let own_shop_router = require("./router/OWNER/ownShop");
-//let own_menu_router = require("./router/OWNER/ownShopMenu");
+let own_menu_router = require("./router/OWNER/ownShopMenu");
 
 // view 경로 설정
 app.set('views', path.join(__dirname, '/views'));
@@ -25,7 +25,7 @@ app.use('/user/login', user_login_router);
 app.use('/owner/login', owner_login_router);
 app.use('/categories', categories_router);
 app.use('/ownShop', own_shop_router);
-//app.use('/ownMenu', own_menu_router);
+app.use('/ownMenu', own_menu_router);
 
 /*
 // catch 404 and forward to error handler
