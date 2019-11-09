@@ -12,6 +12,7 @@ router.post('/del/', function(req, res, next){
 	sql.deleteShopMenu(req.query.id, req.query.name, function(err){
 		if(err){
 			console.error("DELETE MENU:GET FAILED: ", err);
+			res.send([{"result":"ERROR"}]);
 		}
 		else{
 			res.send([{"result":"OK"}]);
@@ -32,6 +33,7 @@ router.post('/add/', function(req, res, next){
 	sql.addShopMenu(req.query.id, req.query.name, req.query.price, req.query.des, req.query.count, function(err){
 		if(err){
 			console.error("ADD MENU:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
 		}
 		else{
 		res.send([{"result":"OK"}]);
