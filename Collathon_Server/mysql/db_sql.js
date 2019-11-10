@@ -108,10 +108,13 @@ let getReservationInfo = function(client_id, callback){
 	query_function(sql, callback);
 };
 
-
-
 let getBlackList = function(callback){
 	let sql = "select client_id, count(*) as count from BlackList group by client_id"; 
+	query_function(sql, callback);
+};
+
+let addBlackList = function(client_id, shop_id, comment, callback){
+	let sql = "insert into BlackList values(\""+client_id+"\", "+shop_id+", \""+comment+"\")";
 	query_function(sql, callback);
 };
 
@@ -148,6 +151,7 @@ module.exports = function() {
 		getReservationTable: getReservationTable,
 		getReservationInfo: getReservationInfo,
 		getBlackList: getBlackList,
+		addBlackList: addBlackList,
 /*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
