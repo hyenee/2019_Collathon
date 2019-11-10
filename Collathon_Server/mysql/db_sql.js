@@ -64,7 +64,7 @@ let getShopDetail = function(shop_id, callback){
 };
 
 let getMenuDetail = function(shop_id, callback){
-	let sql = "select name, price, description from Menu where shop_id="+shop_id;
+	let sql = "select name, price, description, count from Menu where shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
