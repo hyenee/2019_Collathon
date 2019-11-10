@@ -31,6 +31,7 @@ router.post('/user/', function(req, res, next){
 	sql.updateClientUser(req.query.id, req.query.new, function(err){
 		if(err){
 			console.error("UPDATE:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
 		}
 		else{
 			res.send([{"result":"OK"}]);
@@ -47,6 +48,7 @@ router.post('/owner/', function(req, res, next){
 	sql.updateOwnerUser(req.query.id, req.query.new, function(err){
 		if(err){
 			console.error("UPDATE:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
 		}
 		else{
 			res.send([{"result":"OK"}]);

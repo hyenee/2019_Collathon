@@ -9,6 +9,9 @@ let mypage_router = require("./router/COMMON/mypage");
 let categories_router = require("./router/USER/categories");
 let own_shop_router = require("./router/OWNER/ownShop");
 let own_menu_router = require("./router/OWNER/ownShopMenu");
+let reservation_router = require("./router/COMMON/reservation");
+let blacklist_router = require("./router/OWNER/blacklist");
+let like_router = require("./router/USER/likes");
 
 // view 경로 설정
 app.set('views', path.join(__dirname, '/views'));
@@ -28,6 +31,9 @@ app.use('/mypage', mypage_router);
 app.use('/categories', categories_router);
 app.use('/ownShop', own_shop_router);
 app.use('/ownMenu', own_menu_router);
+app.use('/reservation',reservation_router);
+app.use('/blacklist', blacklist_router);
+app.use('/like', like_router);
 
 /*
 // catch 404 and forward to error handler

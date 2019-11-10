@@ -98,23 +98,25 @@ let updateOwnerUser = function(owner_id, new_passwd, callback){
 	query_function(sql, callback);
 };
 
-/*
-let getLikeShop = function(shop_id, client_id, callback){
-	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
+let getBlackList = function(callback){
+	let sql = "select client_id, count(*) as count from BlackList group by client_id"; 
 	query_function(sql, callback);
 };
 
-let addLikeShop = function(shop_id, client_id, callback){
-	let sql = "insert into Likes (shop_id, name) values(\""+shop_id+"\", "+client_id +")";
+let addBlackList = function(client_id, shop_id, comment, callback){
+	let sql = "insert into BlackList values(\""+client_id+"\", "+shop_id+", \""+comment+"\")";
 	query_function(sql, callback);
 };
 
-let getBlackList = function(client_id, shop_id, callback){
-	let sql = "select * from BlackList where client_id=\""+client_id+"\" And shop_id =\""+shop_id+"\"";
+let getLikeShop = function(client_id, callback){
+	let sql = "select * from Likes where name =\""+client_id+"\"";  
 	query_function(sql, callback);
 };
-*/
 
+let addLikeShop = function(shop_id, name, callback){
+	let sql = "insert into Likes values("+shop_id+", \""+name+"\")";
+	query_function(sql, callback);
+};
 
 module.exports = function() {
 	return {
@@ -133,11 +135,10 @@ module.exports = function() {
 		getOwnerUserDetail: getOwnerUserDetail,
 		updateClientUser: updateClientUser,
 		updateOwnerUser: updateOwnerUser,
-/*
+		getBlackList: getBlackList,
+		addBlackList: addBlackList,
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
-		getBlackList: getBlackList,
-*/
 		pool: pool
 	}
 };

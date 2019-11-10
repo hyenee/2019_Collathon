@@ -25,6 +25,7 @@ router.post('/', function(req, res, next){
 	sql.addOwnerShop(req.query.id, req.query.name, req.query.tel, req.query.addr, req.query.category, req.query.table, function(err){
 		if(err){
 			console.error("ADD SHOP:GET FAILED: ", err);
+			res.send([{"result":"ERROR"}]);
 		}
 		else{
 			res.send([{"result":"OK"}]);
