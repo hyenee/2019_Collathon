@@ -118,18 +118,15 @@ let addBlackList = function(client_id, shop_id, comment, callback){
 	query_function(sql, callback);
 };
 
-/*
-let getLikeShop = function(shop_id, client_id, callback){
-	let sql = "select * from Likes where shop_id=\""+shop_id+"\" And name =\""+client_id+"\"";  
+let getLikeShop = function(client_id, callback){
+	let sql = "select * from Likes where name =\""+client_id+"\"";  
 	query_function(sql, callback);
 };
 
-let addLikeShop = function(shop_id, client_id, callback){
-	let sql = "insert into Likes (shop_id, name) values(\""+shop_id+"\", "+client_id +")";
+let addLikeShop = function(shop_id, name, callback){
+	let sql = "insert into Likes values("+shop_id+", \""+name+"\")";
 	query_function(sql, callback);
 };
-*/
-
 
 module.exports = function() {
 	return {
@@ -152,10 +149,8 @@ module.exports = function() {
 		getReservationInfo: getReservationInfo,
 		getBlackList: getBlackList,
 		addBlackList: addBlackList,
-/*
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
-*/
 		pool: pool
 	}
 };
