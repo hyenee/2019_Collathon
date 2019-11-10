@@ -1,4 +1,4 @@
-package com.collathon.jamukja.store.category.list;
+package com.collathon.jamukja.customer.store.category.list;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

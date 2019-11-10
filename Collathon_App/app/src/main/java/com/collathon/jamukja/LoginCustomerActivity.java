@@ -65,8 +65,19 @@ public class LoginCustomerActivity extends AppCompatActivity {
             @Override
             // 클릭 시 loginIntent 를 통해서 MainActivity를 실행
             public void onClick(View view) {
-                userID = idText.getText().toString(); // 유저가 입력한 id
-                userPasswd = passwordText.getText().toString(); // 유저가 입력한 password
+                userID = idText.getText().toString();
+                userPasswd = passwordText.getText().toString();
+                Log.i("LOGIN:USERID", userID);
+                Log.i("LOGIN:PASSWORD", userPasswd);
+
+                //아이디, 비번 입력 안 한 경우 확인 메세지 나오게 함
+                if(idText.getText().toString().equals("") || passwordText.getText().toString().equals("")){
+                    Log.i("LOGIN", "아이디 비번 빈칸");
+                    builder.setMessage(" 아이디 및 비밀번호를 확인해주세요. ")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
+                }
 
                 try {
                     NetworkManager.add(new Runnable() {
@@ -86,7 +97,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                                         Log.i("LOGIN", "서버 연결됨");
 
-                                        // 스트림 추출
+                                        // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                         InputStream is = connection.getInputStream();
                                         InputStreamReader isr = new InputStreamReader(is, "utf-8");
                                         BufferedReader br = new BufferedReader(isr);
@@ -126,7 +137,9 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                             } else {
                                                 Log.i(TAG, "비밀번호가 틀렸습니다.");
                                             }
+
                                         }
+
                                     }
                                 }
                             } catch (MalformedURLException e) {

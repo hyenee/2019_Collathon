@@ -1,8 +1,6 @@
-package com.collathon.jamukja.user_info.customer;
+package com.collathon.jamukja.customer.user_info.customer;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;

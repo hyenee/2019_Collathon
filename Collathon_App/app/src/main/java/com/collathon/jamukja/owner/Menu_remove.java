@@ -1,4 +1,4 @@
-package com.collathon.jamukja.reservation;
+package com.collathon.jamukja.owner;
 
 import android.os.Bundle;
 
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.collathon.janolja.R;
 
-public class ReservationSeatConfirmActivity extends AppCompatActivity {
+public class Menu_remove extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation_seat_confirm);
-
+        setContentView(R.layout.owner_menu_remove);
     }
 }

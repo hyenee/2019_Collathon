@@ -4,28 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.collathon.jamukja.customer.store.category.list.StoreListActivity">
-
+    tools:context="com.collathon.jamukja.owner.MainOwnerActivity">
 
     <TextView
-        android:id="@+id/category_name"
-        android:layout_width="match_parent"
+        android:id="@+id/user_name"
+        android:layout_width="81dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="176dp"
         android:layout_height="38dp"
         android:layout_marginTop="60dp"
-        android:fontFamily="@font/nanumsquare"
-        android:text="카테고리명"
-        android:gravity="center"
+        android:text="님, 환영합니다!"
         android:textSize="25dp"
+        app:layout_constraintStart_toEndOf="@+id/user_name"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/store_list_recycler"
+        android:id="@+id/recycler_store"
         android:layout_width="409dp"
         android:layout_height="604dp"
         android:layout_marginTop="60dp"
-        android:fontFamily="@font/nanumsquare"
-        app:layout_constraintTop_toBottomOf="@+id/category_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
