@@ -79,11 +79,12 @@ public class NetworkManager {
                         if(connection != null){
                             //전달방식 -> POST
                             connection.setRequestMethod(method);
-                            connection.setConnectTimeout(2000);
+                            connection.setConnectTimeout(10000);
                             //서버로부터 메시지를 받을 수 있도록 함.
                             connection.setDoInput(true);
                             //서버로 데이터를 전송할 수 있도록 함.
                             connection.setDoOutput(true);
+                            connection.setUseCaches (false);
 
                             if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                                 Log.i(TAG,"서버 연결 성공");

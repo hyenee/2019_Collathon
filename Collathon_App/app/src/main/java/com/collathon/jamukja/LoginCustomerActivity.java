@@ -60,11 +60,10 @@ public class LoginCustomerActivity extends AppCompatActivity {
             }
         });
 
-
         //로그인 버튼 클릭하면 메인화면으로 넘어감
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
+            // 클릭 시 loginIntent 를 통해서 MainActivity를 실행
             public void onClick(View view) {
                 userID = idText.getText().toString();
                 userPasswd = passwordText.getText().toString();
@@ -79,7 +78,6 @@ public class LoginCustomerActivity extends AppCompatActivity {
                             .create()
                             .show();
                 }
-
 
                 try {
                     NetworkManager.add(new Runnable() {
