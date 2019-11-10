@@ -14,16 +14,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="com.collathon.jamukja.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar2"
-            android:label="@string/app_name" />
-        <activity
-<<<<<<< Updated upstream
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-=======
-            android:name="com.collathon.jamukja.LoginActivity"
->>>>>>> Stashed changes
+            android:name="com.collathon.jamukja.SelectUserActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +22,74 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.collathon.jamukja.RegisterActivity"
+
+        <activity
+            android:name="com.collathon.jamukja.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar2"
+            android:label="@string/app_name" />
+
+        <activity android:name="com.collathon.jamukja.LoginCustomerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
+        <activity android:name="com.collathon.jamukja.LoginOwnerActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
+
+        <activity android:name="com.collathon.jamukja.RegisterCustomerActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
+        <activity android:name="com.collathon.jamukja.RegisterOwnerActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
+
+        <activity android:name="com.collathon.jamukja.user_info.customer.CustomerMyMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.user_info.customer.CustomerInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.RiceStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.rice_1.StoreDetailReserActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.noodle_2.NoodleStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.chicken_3.ChickenStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.meat_4.MeatStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.desert_5.DesertStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
+        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiStoreItemViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.store.category.sushi_6.SushiStoreListActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
     </application>
 
 </manifest>

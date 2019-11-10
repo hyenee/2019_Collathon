@@ -1,185 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#ffffff"
+    android:fillViewport="true">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            app:contentInsetStart="0dp">
-
-            <TextView
-                android:id="@+id/txv_toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/nanumsquare2"
-                android:text="상가정보"
-                android:textColor="#45555f"
-                android:textSize="20sp" />
-
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal"></LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginTop="11dp"
+        <LinearLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:padding="0dip">
+
+            <Button
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
+                android:background="#ffffff "
+                android:text="메뉴"
+                app:layout_constraintEnd_toStartOf="@+id/menuButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
+
+            <Button
+                android:id="@+id/store_informationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
                 android:background="#ffffff"
-                android:orientation="horizontal">
+                android:text="정보"
+                app:layout_constraintEnd_toStartOf="@+id/store_informationButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
 
-                <ImageView
-                    android:id="@+id/imgView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ececec"></LinearLayout>
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/reservationButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/shop_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:text="상점이름"
-                        android:textColor="#45555f"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/shop_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:text="카테고리"
-                        android:textColor="#686868"
-                        android:textSize="14dp" />
-                </LinearLayout>
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:background="#ececec"></LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="90dp"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:text="위치"
-                                android:textColor="#45555f"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/shop_location"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:layout_marginLeft="51dp"
-                                android:text="대전"
-                                android:textColor="#58585a"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:text="전화번호"
-                                android:textColor="#45555f"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/shop_phone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:layout_marginLeft="20dp"
-                                android:text="000-1111-2222"
-                                android:textColor="#58585a"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </FrameLayout>
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
+                android:background="#ffffff"
+                android:text="예약"
+                app:layout_constraintEnd_toStartOf="@+id/reservationButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/mainLayout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#EE7764"
+                android:fontFamily="@font/typo"
+                android:textSize="30dp"
+                android:text="가게이름" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</ScrollView>
