@@ -3,6 +3,16 @@ let express = require('express');
 let router = express.Router();
 let sql = require('../../mysql/db_sql')();
 
+/* GET menu information */
+router.get('/', function(req, res, next){
+	console.log("---log start(OWN MENU:GET)---");
+ 	console.log("OWN MENU:GET -> shop_id : ", req.query.id);
+	sql.getMenuDetail(req.query.id, function(err, result){
+		res.send(result);
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/ownMenu?id={shop_id}
+
 /* POST add new Menu. / delete new Menu */
 router.post('/del/', function(req, res, next){
 	console.log("---log start(OWN MENU:POST)---");
@@ -19,7 +29,7 @@ router.post('/del/', function(req, res, next){
 	});
 	
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownMenu/del?id={shop_id}&name={menu_name}
+}); // http://oreh.onyah.net:7080/ownMenu/del?id={shop_id}&name={menu_name}
 
 router.post('/add/', function(req, res, next){
 	console.log("---log start(OWN MENU:POST)---");
@@ -38,6 +48,6 @@ router.post('/add/', function(req, res, next){
 		}
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7777/ownMenu/add?id={shop_id}&name={menu_name}&price={price}&des={description}&count={number of menu}
+}); // http://oreh.onyah.net:7080/ownMenu/add?id={shop_id}&name={menu_name}&price={price}&des={description}&count={number of menu}
 
 module.exports = router;
