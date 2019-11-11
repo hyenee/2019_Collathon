@@ -49,7 +49,7 @@ let getCategoryShop = function(category, callback){
 };
 
 let getOwnerShop = function(owner_id, callback){
-	let sql = "select name from Shop where master=\""+owner_id+"\"";
+	let sql = "select id, name from Shop where master=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
 
