@@ -133,6 +133,21 @@ let getReservationTable = function(shop_id, time, callback){
 	query_function(sql, callback);
 };
 
+let addReservation = function(classification, client_id, time, shop_id, callback){
+	let sql = "insert into Reservation (classification, client_id, time, shop_id) values(\""+classification+"\", \""+client_id+"\", \""+time+"\", "+shop_id+")";
+	query_function(sql, callback);
+};
+
+let addReservationMenu = function(classification, client_id, shop_id, name, count, callback){
+	let sql = "insert into ReservationMenu values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", \""+name+"\", "+count+")";
+	query_function(sql,  callback);
+};
+
+let addReservationTable = function(classification, client_id, shop_id, number, count, callback){
+	let sql = "insert into ReservationTable values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", "+number+", "+count+")";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -157,6 +172,9 @@ module.exports = function() {
 		getReservationTable, getReservationTable,
 		getReservationInfo, getReservationInfo,
 		getUserReservationTable, getUserReservationTable,
+		addReservation: addReservation,
+		addReservationMenu: addReservationMenu,
+		addReservationTable: addReservationTable,
 		pool: pool
 	}
 };

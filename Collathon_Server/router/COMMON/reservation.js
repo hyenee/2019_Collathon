@@ -34,4 +34,63 @@ router.get('/table/remain/', function(req, res, next){
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/table/remain?id={shop_id}&time={reservation_time}
 
+/* POST new Reservation information */
+router.post('/add/', function(req, res, next){
+	console.log("---log start(RESERVATION:POST)---");
+	console.log("NEW RESERVATION:POST -> current time(YYMMDDHHmmss) : ", req.query.current);
+	console.log("NEW RESERVATION:POST -> client_id : ", req.query.user);
+	console.log("NEW RESERVATION:POST -> time : ", req.query.time);
+	console.log("NEW RESERVATION:POST -> shop_id : ", req.query.shop);
+	sql.addReservation(req.query.current, req.query.user, req.query.time, req.query.shop, function(err){
+		if(err){
+			console.error("ADD BASIC:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/add?current={current_time}&user={client_id}&time={reservation_time}&shop={shop_id}
+
+/* POST new Reservation Menu information */
+router.post('/add/menu/', function(req, res, next){
+	console.log("---log start(RESERVATION:POST)---");
+	console.log("NEW RESERVATION:POST -> current time : ", req.query.current);
+	console.log("NEW RESERVATION:POST -> client_id : ", req.query.user);
+	console.log("NEW RESERVATION:POST -> shop_id : ", req.query.shop);
+	console.log("NEW RESERVATION:POST -> menu name : ", req.query.menu);
+	console.log("NEW RESERVATION:POST -> count : ", req.query.count);
+	sql.addReservationMenu(req.query.current, req.query.user, req.query.shop, req.query.menu, req.query.count, function(err){
+		if(err){
+			console.error("ADD MENU:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/add/menu?current={current_time}&user={client_id}&shop={shop_id}&menu={menu_name}&count={menu_count}
+
+/* POST new Reservation Table information */
+router.post('/add/table/', function(req, res, next){
+	console.log("---log start(RESERVATION:POST)---");
+	console.log("NEW RESERVATION:POST -> current time : ", req.query.current);
+	console.log("NEW RESERVATION:POST -> client_id : ", req.query.user);
+	console.log("NEW RESERVATION:POST -> shop_id : ", req.query.shop);
+	console.log("NEW RESERVATION:POST -> table name : ", req.query.table);
+	console.log("NEW RESERVATION:POST -> count : ", req.query.count);
+	sql.addReservationTable(req.query.current, req.query.user, req.query.shop, req.query.table, req.query.count, function(err){
+		if(err){
+			console.error("ADD TABLE:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/add/table?current={current_time}&user={client_id}&shop={shop_id}&table={number_of_table}&count={table_count}
+
 module.exports = router;
