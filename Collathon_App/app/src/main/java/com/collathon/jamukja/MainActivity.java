@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.category_button_dessert).setOnClickListener(onClickListener); //디저트
         findViewById(R.id.category_button_sushi).setOnClickListener(onClickListener); //스시
 
-        //하단 메뉴바
+        //하단 메뉴바 버튼 클릭하면 이동
         findViewById(R.id.homeButton).setOnClickListener(onClickListener); //홈
         findViewById(R.id.pickButton).setOnClickListener(onClickListener); //찜 목록
         findViewById(R.id.myButton).setOnClickListener(onClickListener); //내 정보

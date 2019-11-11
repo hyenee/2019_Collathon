@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
-                        android:text="상점이름"
+                        android:text=""
                         android:textColor="#45555f"
                         android:textSize="25dp"
                         android:textStyle="bold" />
@@ -66,7 +66,7 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/nanumsquare"
-                        android:text="카테고리"
+                        android:text=""
                         android:textColor="#686868"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -118,7 +118,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:layout_marginLeft="51dp"
                                 android:fontFamily="@font/nanumsquare"
-                                android:text="대전"
+                                android:text=""
                                 android:textColor="#58585a"
                                 android:textSize="17dp"
                                 android:textStyle="bold" />
@@ -146,7 +146,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:layout_marginLeft="20dp"
                                 android:fontFamily="@font/nanumsquare"
-                                android:text="000-1111-2222"
+                                android:text=""
                                 android:textColor="#58585a"
                                 android:textSize="17dp"
                                 android:textStyle="bold" />

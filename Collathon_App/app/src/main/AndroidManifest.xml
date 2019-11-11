@@ -64,16 +64,16 @@
         <!-- 가게 리스트 -->
         <activity android:name="com.collathon.jamukja.customer.store.category.list.StoreListActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.store.category.list.StoreItemViewActivity"
+        <activity android:name="com.collathon.jamukja.customer.store.category.list.StoreListViewActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 
         <!-- 가게 상세정보 -->
+        <!-- 가게 별 메뉴 리스트 -->
+        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
         <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailListActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
+        <!-- 가게 상세정보 -> 정보 -->
         <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailInfoActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 

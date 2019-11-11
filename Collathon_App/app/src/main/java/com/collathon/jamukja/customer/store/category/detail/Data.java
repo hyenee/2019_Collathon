@@ -2,22 +2,22 @@ package com.collathon.jamukja.customer.store.category.detail;
 
 public class Data {
     private String name;
-    private int price;
+    private String price;
     private String description;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String title) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
