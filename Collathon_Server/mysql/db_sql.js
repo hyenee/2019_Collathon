@@ -19,6 +19,20 @@ let query_function = function(sql, callback){
 	});
 };
 
+let query_function_no_callback = function(sql){
+	console.log("DB_SQL : ", sql);
+	pool.getConnection(function(err, con){
+		if(err){
+			console.error(err);
+			return;
+		}
+		con.query(sql, function (err, result, fields){
+			con.release();
+			if (err) return callback(err);
+		});
+	});
+};
+
 let testselect = function(sql, callback){
 	query_function(sql, callback);
 };
@@ -49,7 +63,7 @@ let getCategoryShop = function(category, callback){
 };
 
 let getOwnerShop = function(owner_id, callback){
-	let sql = "select name from Shop where master=\""+owner_id+"\"";
+	let sql = "select id, name from Shop where master=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -133,6 +147,30 @@ let getReservationTable = function(shop_id, time, callback){
 	query_function(sql, callback);
 };
 
+let addReservation = function(classification, client_id, time, shop_id, callback){
+	let sql = "insert into Reservation (classification, client_id, time, shop_id) values(\""+classification+"\", \""+client_id+"\", \""+time+"\", "+shop_id+")";
+	query_function(sql, callback);
+};
+
+let addReservationMenu = function(classification, client_id, shop_id, name, count, callback){
+	let sql = "insert into ReservationMenu values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", \""+name+"\", "+count+")";
+	query_function(sql,  callback);
+};
+
+let addReservationTable = function(classification, client_id, shop_id, number, count, callback){
+	let sql = "insert into ReservationTable values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", "+number+", "+count+")";
+	query_function(sql, callback);
+};
+
+let deleteReservationAll = function(classification, client_id, callback){
+	let sql = "delete from ReservationTable where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from ReservationMenu where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -157,6 +195,10 @@ module.exports = function() {
 		getReservationTable, getReservationTable,
 		getReservationInfo, getReservationInfo,
 		getUserReservationTable, getUserReservationTable,
+		addReservation: addReservation,
+		addReservationMenu: addReservationMenu,
+		addReservationTable: addReservationTable,
+		deleteReservationAll: deleteReservationAll,
 		pool: pool
 	}
 };
