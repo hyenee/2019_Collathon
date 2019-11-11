@@ -28,26 +28,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreListActivity extends AppCompatActivity {
+    private static final String TAG = "StoreListActivity";
     private RecyclerAdapter adapter;
-    Handler handler;
+   // Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list_recycler);
-        handler = new Handler();
+
         init();
 
         getData();
     }
 
     private void init() {
-        RecyclerView recyclerView = findViewById(R.id.store_list_recycler);
+        final RecyclerView recyclerView = findViewById(R.id.store_list_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new RecyclerAdapter();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setAdapter(adapter);
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 
@@ -65,7 +72,6 @@ public class StoreListActivity extends AppCompatActivity {
                         String site = NetworkManager.url + "/categories";
                         site += "?category=rice";
                         Log.i("STORE", site);
-
 
                         URL url = new URL(site);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -115,9 +121,13 @@ public class StoreListActivity extends AppCompatActivity {
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-
-                                // adapter의 값이 변경되었다는 것을 알려줍니다.
-                                adapter.notifyDataSetChanged();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // adapter의 값이 변경되었다는 것을 알려줍니다.
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
                             }
                             connection.disconnect(); // 연결 끊기
                         }
@@ -137,4 +147,5 @@ public class StoreListActivity extends AppCompatActivity {
         }
         Log.i("STORE", "여기까지5");
     }
+
 }

@@ -1,6 +1,10 @@
 package com.collathon.jamukja;
 
+<<<<<<< HEAD
 import android.app.Activity;
+=======
+import android.content.DialogInterface;
+>>>>>>> 8fd042643ba2f483f2affc25aebc945d5546a736
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +16,8 @@ import android.widget.Toast;
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
         rice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("category", "rice");
+
                 Intent riceIntent = new Intent(MainActivity.this, StoreListActivity.class);
+                riceIntent.putExtras(bundle);
                 MainActivity.this.startActivity(riceIntent);
             }
         });
@@ -116,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
 
                 Intent intent = new Intent(MainActivity.this, LoginCustomerActivity.class);
                 startActivity(intent);
@@ -129,6 +140,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+=======
+                new AlertDialog.Builder(MainActivity.this)
+                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Intent logoutIntent = new Intent(MainActivity.this, LoginCustomerActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        logoutIntent.putExtra( "KILL", true );
+                        startActivity(logoutIntent);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                })
+                .show();
+
+            }
+        });
+
+>>>>>>> 8fd042643ba2f483f2affc25aebc945d5546a736
     }
 
 }
