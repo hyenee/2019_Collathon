@@ -26,7 +26,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_store_detail_menu_view, parent, false);
-        Log.i("MENU", "여기까지11");
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
@@ -54,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
-    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ItemViewHolder extends RecyclerView.ViewHolder{
 
         private TextView name;
         private TextView price;
@@ -67,7 +66,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name = (TextView)itemView.findViewById(R.id.menu_name);
             price = (TextView)itemView.findViewById(R.id.menu_price);
             description = (TextView)itemView.findViewById(R.id.menu_description);
-            Log.i("MENU", "여기까지");
         }
 
         void onBind(Data data) {
@@ -76,37 +74,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name.setText(data.getName());
             price.setText(data.getPrice());
             description.setText(data.getDescription());
-
-            itemView.setOnClickListener(this);
-            name.setOnClickListener(this);
-            price.setOnClickListener(this);
-            description.setOnClickListener(this);
-            Log.i("MENU", "여기까지2");
         }
 
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
 
-                case R.id.menu_name:
-                    Toast.makeText(context, data.getName(), Toast.LENGTH_SHORT).show();
-                    Intent nameIntent = new Intent(v.getContext(), StoreDetailInfoActivity.class);
-                    v.getContext().startActivity(nameIntent);
-                    break;
-                case R.id.menu_price:
-                    Toast.makeText(context, data.getPrice(), Toast.LENGTH_SHORT).show();
-                    Intent priceIntent = new Intent(v.getContext(), StoreDetailInfoActivity.class);
-                    v.getContext().startActivity(priceIntent);
-                    break;
-                case R.id.menu_description:
-                    Toast.makeText(context, data.getPrice(), Toast.LENGTH_SHORT).show();
-                    Intent descriptionIntent = new Intent(v.getContext(), StoreDetailInfoActivity.class);
-                    v.getContext().startActivity(descriptionIntent);
-                    break;
-
-
-            }
-
-        }
     }
 }

@@ -138,14 +138,12 @@ public class StoreListActivity extends AppCompatActivity {
                     }catch(JSONException e){
                         e.printStackTrace();
                     }
-                    Log.i("STORE", "여기까지3");
                 }
-            });Log.i("STORE", "여기까지4");
+            });
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i("STORE", "여기까지5");
     }
 
 }

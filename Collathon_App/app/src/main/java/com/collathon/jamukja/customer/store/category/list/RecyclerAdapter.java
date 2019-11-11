@@ -86,6 +86,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 case R.id.store_item_view_title:
                     Toast.makeText(context, data.getShop_name(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), StoreDetailListActivity.class);
+                    //intent.putExtra("shopname", data.getShop_name());
                     v.getContext().startActivity(intent);
                     break;
                 case R.id.store_item_view_content:

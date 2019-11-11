@@ -2,7 +2,7 @@ package com.collathon.jamukja.customer.store.category.detail;
 
 public class Data {
     private String name;
-    private int price;
+    private String price;
     private String description;
 
     public String getName() {
@@ -13,11 +13,11 @@ public class Data {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

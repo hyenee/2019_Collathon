@@ -31,6 +31,7 @@ import java.util.List;
 
 public class StoreDetailListActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
+    private String menuname;
     Handler handler;
 
     @Override
@@ -41,10 +42,11 @@ public class StoreDetailListActivity extends AppCompatActivity {
         final Button infoButton = (Button)findViewById(R.id.store_informationButton); //가게 정보
         final Button reservationButton = (Button)findViewById(R.id.reservationButton); //예약하기
         handler = new Handler();
+        Intent intent = getIntent();
+        //String name = intent.getExtras().getString("shopname");
+        //menuname="1";
         init();
-        Log.i("MENU", "init후");
         getData();
-
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,19 +66,25 @@ public class StoreDetailListActivity extends AppCompatActivity {
     }
 
     private void init() {
-        RecyclerView recyclerView = findViewById(R.id.store_menu_recycler);
+        final RecyclerView recyclerView = findViewById(R.id.store_menu_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new RecyclerAdapter();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setAdapter(adapter);
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 
     private void getData() {
         //카테고리에 따른 가게 출력
         final List<String> name_list = new ArrayList<>();
-        final List<Integer> price_list = new ArrayList<>();
+        final List<String> price_list = new ArrayList<>();
         final List<String> description_list = new ArrayList<>();
 
         //서버 디비 값 파싱
@@ -120,7 +128,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String name = jsonObject.getString("name");
-                                    int price = jsonObject.getInt("price");
+                                    String price = jsonObject.getString("price");
                                     String description = jsonObject.getString("description");
                                     name_list.add(name);
                                     price_list.add(price);
@@ -132,7 +140,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
-                                    Data data = new Data();
+                                    com.collathon.jamukja.customer.store.category.detail.Data data = new com.collathon.jamukja.customer.store.category.detail.Data();
                                     data.setName(name_list.get(i));
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));
@@ -140,9 +148,15 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+                                //adapter.notifyDataSetChanged();
 
-                                // adapter의 값이 변경되었다는 것을 알려줍니다.
-                                adapter.notifyDataSetChanged();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // adapter의 값이 변경되었다는 것을 알려줍니다.
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
                             }
                             connection.disconnect(); // 연결 끊기
                         }
