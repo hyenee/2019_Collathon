@@ -44,7 +44,7 @@ let addOwnerUser = function(name, owner_id, password, phone, callback){
 };
 
 let getCategoryShop = function(category, callback){
-	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\"";
+	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\" group by s.name";
 	query_function(sql, callback);
 };
 
@@ -118,6 +118,21 @@ let addLikeShop = function(shop_id, name, callback){
 	query_function(sql, callback);
 };
 
+let getUserReservationTable = function(client_id, callback){
+	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getReservationInfo = function(client_id, callback){
+	let sql = "select Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getReservationTable = function(shop_id, time, callback){
+	let sql = "select r.shop_id, rt.number, (s.count-rt.count) as remain_table from Reservation as r natural join(ReservationTable as rt) inner join(ShopTable as s) on r.shop_id = s.shop_id and rt.number = s.number where r.shop_id="+shop_id+" and time=\""+time+"\"";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -139,6 +154,9 @@ module.exports = function() {
 		addBlackList: addBlackList,
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
+		getReservationTable, getReservationTable,
+		getReservationInfo, getReservationInfo,
+		getUserReservationTable, getUserReservationTable,
 		pool: pool
 	}
 };
