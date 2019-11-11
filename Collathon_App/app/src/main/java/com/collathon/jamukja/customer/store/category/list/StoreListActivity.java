@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.store.category.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,12 +34,16 @@ import java.util.List;
 public class StoreListActivity extends AppCompatActivity {
     private static final String TAG = "StoreListActivity";
     private RecyclerAdapter adapter;
+    private String category;
    // Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list_recycler);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        category = intent.getExtras().getString("category"); /*String형*/
 
         init();
         getData();
@@ -72,7 +77,7 @@ public class StoreListActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories";
-                        site += "?category=rice";
+                        site += "?category="+category;
                         Log.i("STORE", site);
 
                         URL url = new URL(site);

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.os.Looper;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +49,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
         //여기까지 네트워크 소스
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        passwordText.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
 
@@ -128,18 +132,24 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                             if (getUserPasswd.equals(userPasswd)) {
                                                 Log.i(TAG, "로그인에 성공하셨습니다.");
                                                 Intent loginIntent = new Intent(LoginCustomerActivity.this, MainActivity.class);
-
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("Client_id", userID);
                                                 loginIntent.putExtras(bundle);
-
                                                 LoginCustomerActivity.this.startActivity(loginIntent);
                                             } else {
                                                 Log.i(TAG, "비밀번호가 틀렸습니다.");
+                                                Handler mHandler = new Handler(Looper.getMainLooper());
+                                                mHandler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        builder.setMessage("로그인에 실패했습니다.")
+                                                                .setNegativeButton("확인", null)
+                                                                .create()
+                                                                .show();
+                                                    }
+                                                }, 0);
                                             }
-
                                         }
-
                                     }
                                 }
                             } catch (MalformedURLException e) {

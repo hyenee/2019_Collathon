@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
@@ -15,130 +16,125 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private long backKeyPressedTime  = 0;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //카테고리 버튼 클릭하면 이동, 순서대로 버튼 1~6
-        ImageButton rice = findViewById(R.id.category_button_rice); //한식
-        ImageButton noodle = findViewById(R.id.category_button_noodle); //국수
-        ImageButton chicken = findViewById(R.id.category_button_chicken); //치킨
-        ImageButton meat = findViewById(R.id.category_button_meat); //고기
-        ImageButton desert = findViewById(R.id.category_button_desert); //디저트
-        ImageButton sushi = findViewById(R.id.category_button_sushi); //스시
-
-        rice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("category", "rice");
-
-                Intent riceIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                riceIntent.putExtras(bundle);
-                MainActivity.this.startActivity(riceIntent);
-            }
-        });
-
-        noodle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent noodleIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                MainActivity.this.startActivity(noodleIntent);
-            }
-        });
-
-        chicken.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent chickenIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                MainActivity.this.startActivity(chickenIntent);
-            }
-        });
-
-        meat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent meatIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                MainActivity.this.startActivity(meatIntent);
-            }
-        });
-
-        desert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent desertIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                MainActivity.this.startActivity(desertIntent);
-            }
-        });
-
-        sushi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sushiIntent = new Intent(MainActivity.this, StoreListActivity.class);
-                MainActivity.this.startActivity(sushiIntent);
-            }
-        });
+        findViewById(R.id.category_button_rice).setOnClickListener(onClickListener); //한식
+        findViewById(R.id.category_button_noodle).setOnClickListener(onClickListener); //국수
+        findViewById(R.id.category_button_chicken).setOnClickListener(onClickListener); //치킨
+        findViewById(R.id.category_button_meat).setOnClickListener(onClickListener); //고기
+        findViewById(R.id.category_button_dessert).setOnClickListener(onClickListener); //디저트
+        findViewById(R.id.category_button_sushi).setOnClickListener(onClickListener); //스시
 
         //하단 메뉴바
-        final Button homeButton = (Button)findViewById(R.id.homeButton); //홈
-        final Button pickButton = (Button) findViewById(R.id.pickButton); //찜 목록
-        final Button myButton = (Button)findViewById(R.id.myButton); //내 정보
-        final Button logoutButton = (Button) findViewById(R.id.logoutButton); //로그아웃
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent homeIntent = new Intent(MainActivity.this, MainActivity.class);
-                MainActivity.this.startActivity(homeIntent);
-
-            }
-        });
-/*
-        pickButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent pickIntent = new Intent(MainActivity.this, MainActivity.class);
-                MainActivity.this.startActivity(pickIntent);
-
-            }
-        });*/
-
-        myButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, CustomerMyMenuActivity.class);
-                MainActivity.this.startActivity(myIntent);
-
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(MainActivity.this)
-                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
-                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent logoutIntent = new Intent(MainActivity.this, LoginCustomerActivity.class);
-                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        logoutIntent.putExtra( "KILL", true );
-                        startActivity(logoutIntent);
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                    }
-                })
-                .show();
-
-            }
-        });
+        findViewById(R.id.homeButton).setOnClickListener(onClickListener); //홈
+        findViewById(R.id.pickButton).setOnClickListener(onClickListener); //찜 목록
+        findViewById(R.id.myButton).setOnClickListener(onClickListener); //내 정보
+        findViewById(R.id.logoutButton).setOnClickListener(onClickListener); //로그아웃
 
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.category_button_rice:
+                    startActivityWithCategory(StoreListActivity.class, "rice");
+                    break;
+
+                case R.id.category_button_noodle:
+                    startActivityWithCategory(StoreListActivity.class, "noodle");
+                    break;
+
+                case R.id.category_button_chicken:
+                    startActivityWithCategory(StoreListActivity.class, "chicken");
+                    break;
+
+                case R.id.category_button_meat:
+                    startActivityWithCategory(StoreListActivity.class, "meat");
+                    break;
+
+                case R.id.category_button_dessert:
+                    startActivityWithCategory(StoreListActivity.class, "dessert");
+                    break;
+
+                case R.id.category_button_sushi:
+                    startActivityWithCategory(StoreListActivity.class, "sushi");
+                    break;
+
+                    // 하단 메뉴바 이동
+                case R.id.homeButton:
+                    startActivity(MainActivity.class);
+                    break;
+
+//                case R.id.pickButton:
+//                    Intent noodleIntent = new Intent(MainActivity.this, StoreListActivity.class);
+//                    MainActivity.this.startActivity(noodleIntent);
+//                    break;
+
+                case R.id.myButton:
+                    startActivity(CustomerMyMenuActivity.class);
+                    break;
+
+                case R.id.logoutButton:
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                            .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Intent logoutIntent = new Intent(MainActivity.this, LoginCustomerActivity.class);
+                                    logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    logoutIntent.putExtra( "KILL", true );
+                                    startActivity(logoutIntent);
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            })
+                            .show();
+
+                    break;
+            }
+        }
+    };
+
+    private void startActivity(Class c){
+        Intent intent = new Intent(MainActivity.this, c);
+        startActivity(intent);
+    }
+
+    private void startActivityWithCategory(Class c, String id) {
+        Intent intent = new Intent(MainActivity.this, c);
+        intent.putExtra("category", id);
+        startActivity(intent);
+    }
+
+    private void showGuide() {
+        toast = Toast.makeText(MainActivity.this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            this.finishAffinity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.runFinalization();
+            System.exit(0);
+            toast.cancel();
+        }
+    }
+
 
 }
