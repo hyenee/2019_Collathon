@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.collathon.janolja" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
@@ -70,11 +72,9 @@
             android:theme="@style/AppTheme.NoActionBar2"/>
         <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <!-- 가게 상세정보 -->
-        <activity android:name="com.collathon.jamukja.customer.store.StoreDetailActivity"
+        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.store.StoreDetailInfoActivity"
+        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailInfoActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 
         <!-- 예약 확인 : 자리예약, 모바일 번호표 -->

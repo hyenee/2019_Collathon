@@ -1,4 +1,4 @@
-package com.collathon.jamukja.customer.store;
+package com.collathon.jamukja.customer.store.category.detail;
 
 import android.content.Intent;
 import android.os.Bundle;

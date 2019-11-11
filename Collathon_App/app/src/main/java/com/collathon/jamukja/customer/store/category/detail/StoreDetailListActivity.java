@@ -8,24 +8,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.collathon.jamukja.NetworkManager;
 import com.collathon.janolja.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
 public class StoreDetailListActivity extends AppCompatActivity {
-    private Button btn_info;
     private RecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_detail_menu_recycler);
-        Log.v("tag", "init 전");
         init();
-        Log.v("tag", "init 후");
         getData();
-        Log.v("tag", "getData는 됨");
     }
 
     private void init() {

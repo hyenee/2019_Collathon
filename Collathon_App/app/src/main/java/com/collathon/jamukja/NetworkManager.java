@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NetworkManager {
     private static final String TAG = "NetworkManager";
 
-    public static String url = "http://oreh.onyah.net:7080"; //서버 주소 192.168.1.52:7777
+    public static String url = "http://oreh.onyah.net:7080"; //서버 주소 192.168.1.52:7080
     public static boolean isEnd = false;
 
     private static InnerThread thread = new InnerThread();
@@ -47,7 +47,7 @@ public class NetworkManager {
                 try{
                     //queue안에 아무 것도 들어있지 않을 경우
                     if(concurrentLinkedQueue.peek() == null){
-                        sleep(500); //0.5초 슬립
+                        sleep(1000); //0.5초 슬립
                     }
                     else{
                         tempRunnable = concurrentLinkedQueue.poll();

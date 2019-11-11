@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.customer.store.StoreDetailInfoActivity; //나중에 삭제
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;

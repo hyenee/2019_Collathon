@@ -2,6 +2,7 @@ package com.collathon.jamukja.customer.store.category.list;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.customer.store.StoreDetailActivity;
+import com.collathon.jamukja.customer.store.category.detail.StoreDetailActivity;
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
     private Context context;
-    Handler handler;
 
     @NonNull
     @Override
@@ -49,6 +49,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
+        for(int i=0; i<listData.size(); i++){
+            Log.i("STORE", "addItem :"+ listData.get(i).getShop_name()+", "+ listData.get(i).getMenu_name());
+        }
     }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
@@ -69,8 +72,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         void onBind(Data data) {
             this.data = data;
 
-            textView1.setText(data.getTitle());
-            textView2.setText(data.getContent());
+            textView1.setText(data.getShop_name());
+            textView2.setText(data.getMenu_name());
 
             itemView.setOnClickListener(this);
             textView1.setOnClickListener(this);
@@ -82,12 +85,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             switch (v.getId()) {
 
                 case R.id.store_item_view_title:
-                    Toast.makeText(context, data.getTitle(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, data.getShop_name(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), StoreDetailActivity.class);
                     v.getContext().startActivity(intent);
                     break;
                 case R.id.store_item_view_content:
-                    Toast.makeText(context, data.getContent(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, data.getMenu_name(), Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(v.getContext(), StoreDetailActivity.class);
                     v.getContext().startActivity(intent1);
                     break;
@@ -96,58 +99,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             }
 
         }
-/*
-        public void pasing( ) {
-            handler = new Handler();
-           // userID = idText.getText().toString();
-          //  userPasswd = passwordText.getText().toString();
-
-            try {
-                NetworkManager.add(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            String site = NetworkManager.url + "/categories";
-                            site += "?category=rice";
-                            Log.i("CATEGORY", site);
-
-                            URL url = new URL(site);
-                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-                            if (connection != null) {
-                                connection.setConnectTimeout(2000);
-                                connection.setUseCaches(false);
-                                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                    Log.i("CATEGORY", "서버 연결됨");
-                                    // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
-                                    InputStream is = connection.getInputStream();
-                                    InputStreamReader isr = new InputStreamReader(is, "utf-8");
-                                    BufferedReader br = new BufferedReader(isr);
-                                    String str = null;
-                                    StringBuffer buf = new StringBuffer();
-
-                                    // 읽어온다.
-                                    do {
-                                        str = br.readLine();
-                                        if (str != null) {
-                                            buf.append(str);
-                                        }
-                                    } while (str != null);
-                                    br.close(); // 스트림 해제
-                                }
-                            }
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
-        }*/
     }
 }

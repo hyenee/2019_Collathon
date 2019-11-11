@@ -1,22 +1,22 @@
 package com.collathon.jamukja.customer.store.category.list;
 
 public class Data {
-    private String title;
-    private String content;
+    private String shop_name;
+    private String menu_name;
 
-    public String getTitle() {
-        return title;
+    public String getShop_name() {
+        return shop_name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
     }
 
-    public String getContent() {
-        return content;
+    public String getMenu_name() {
+        return menu_name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMenu_name(String menu_name) {
+        this.menu_name = menu_name;
     }
 }
