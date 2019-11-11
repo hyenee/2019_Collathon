@@ -1,5 +1,6 @@
 package com.collathon.jamukja;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageButton;
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         rice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("category", "rice");
+
                 Intent riceIntent = new Intent(MainActivity.this, StoreListActivity.class);
+                riceIntent.putExtras(bundle);
                 MainActivity.this.startActivity(riceIntent);
             }
         });
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         final Button homeButton = (Button)findViewById(R.id.homeButton); //홈
         final Button pickButton = (Button) findViewById(R.id.pickButton); //찜 목록
         final Button myButton = (Button)findViewById(R.id.myButton); //내 정보
-        final Button logoutButton = (Button) findViewById(R.id.loginButton); //로그아웃
+        final Button logoutButton = (Button) findViewById(R.id.logoutButton); //로그아웃
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 
@@ -108,16 +115,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-/*
-        logoutButton.setOnClickListener(new View.OnClickListener() {
 
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent logoutIntent = new Intent(MainActivity.this, MainActivity.class);
-                MainActivity.this.startActivity(logoutIntent);
+                new AlertDialog.Builder(MainActivity.this)
+                .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Intent logoutIntent = new Intent(MainActivity.this, LoginCustomerActivity.class);
+                        logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        logoutIntent.putExtra( "KILL", true );
+                        startActivity(logoutIntent);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                })
+                .show();
 
             }
-        });*/
+        });
+
     }
 
 }

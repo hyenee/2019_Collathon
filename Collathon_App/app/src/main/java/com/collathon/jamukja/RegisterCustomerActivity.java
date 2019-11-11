@@ -87,8 +87,9 @@ public class RegisterCustomerActivity extends AppCompatActivity {
                             .setPositiveButton("확인", null)
                             .create()
                             .show();
-                    //Intent intent = new Intent(RegisterCustomerActivity.this, LoginCustomerActivity.class);
-                    //startActivity(intent);
+
+                    Intent intent = new Intent(RegisterCustomerActivity.this, LoginCustomerActivity.class);
+                    startActivity(intent);
                 }
             } else {
                 startToast("입력하지 않은 정보가 존재합니다.");
@@ -96,7 +97,6 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 

@@ -47,7 +47,7 @@ public class NetworkManager {
                 try{
                     //queue안에 아무 것도 들어있지 않을 경우
                     if(concurrentLinkedQueue.peek() == null){
-                        sleep(500); //0.5초 슬립
+                        sleep(1000); //0.5초 슬립
                     }
                     else{
                         tempRunnable = concurrentLinkedQueue.poll();
