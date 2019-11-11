@@ -1,12 +1,7 @@
 package com.collathon.jamukja;
 
-<<<<<<< HEAD
-import android.app.Activity;
-=======
 import android.content.DialogInterface;
->>>>>>> 8fd042643ba2f483f2affc25aebc945d5546a736
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -126,21 +121,6 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-
-                Intent intent = new Intent(MainActivity.this, LoginCustomerActivity.class);
-                startActivity(intent);
-                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
-                editor.clear();
-                editor.commit();
-                Toast.makeText(MainActivity.this, "로그아웃 하였습니다", Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
-=======
                 new AlertDialog.Builder(MainActivity.this)
                 .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
                 .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
@@ -160,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
->>>>>>> 8fd042643ba2f483f2affc25aebc945d5546a736
-    }
+ }
 
 }
