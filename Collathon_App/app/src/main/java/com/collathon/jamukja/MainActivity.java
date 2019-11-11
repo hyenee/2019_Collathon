@@ -1,10 +1,13 @@
 package com.collathon.jamukja;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
@@ -18,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //카테고리 버튼 클릭하면 이동, 순서대로 버튼 1~6
-        ImageButton rice = findViewById(R.id.category_button_rice); //한식
+        final ImageButton rice = findViewById(R.id.category_button_rice); //한식
         ImageButton noodle = findViewById(R.id.category_button_noodle); //국수
         ImageButton chicken = findViewById(R.id.category_button_chicken); //치킨
         ImageButton meat = findViewById(R.id.category_button_meat); //고기
         ImageButton desert = findViewById(R.id.category_button_desert); //디저트
         ImageButton sushi = findViewById(R.id.category_button_sushi); //스시
 
+        //이미지 버튼 클릭하면 각 카테고리로 이동, 카테고리명 전달
         rice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         final Button homeButton = (Button)findViewById(R.id.homeButton); //홈
         final Button pickButton = (Button) findViewById(R.id.pickButton); //찜 목록
         final Button myButton = (Button)findViewById(R.id.myButton); //내 정보
-        final Button logoutButton = (Button) findViewById(R.id.loginButton); //로그아웃
+        final Button logoutButton = (Button) findViewById(R.id.logoutButton); //로그아웃
 
         homeButton.setOnClickListener(new View.OnClickListener() {
 
@@ -108,16 +112,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-/*
-        logoutButton.setOnClickListener(new View.OnClickListener() {
 
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent logoutIntent = new Intent(MainActivity.this, MainActivity.class);
-                MainActivity.this.startActivity(logoutIntent);
+
+                Intent intent = new Intent(MainActivity.this, LoginCustomerActivity.class);
+                startActivity(intent);
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
+                Toast.makeText(MainActivity.this, "로그아웃 하였습니다", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
-        });*/
+        });
     }
 
 }

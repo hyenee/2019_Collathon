@@ -2,6 +2,7 @@ package com.collathon.jamukja.customer.store.category.detail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.janolja.R;
-
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>{
@@ -26,6 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_store_detail_menu_view, parent, false);
+        Log.i("MENU", "여기까지11");
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
@@ -46,6 +47,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
+        for(int i=0; i<listData.size(); i++){
+            Log.i("MENU", "addItem :"+ listData.get(i).getName()+", "+ listData.get(i).getPrice()+", "+ listData.get(i).getDescription());
+        }
     }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
@@ -60,9 +64,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.menu_name);
-            price = itemView.findViewById(R.id.menu_price);
-            description = itemView.findViewById(R.id.menu_description);
+            name = (TextView)itemView.findViewById(R.id.menu_name);
+            price = (TextView)itemView.findViewById(R.id.menu_price);
+            description = (TextView)itemView.findViewById(R.id.menu_description);
+            Log.i("MENU", "여기까지");
         }
 
         void onBind(Data data) {
@@ -76,6 +81,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name.setOnClickListener(this);
             price.setOnClickListener(this);
             description.setOnClickListener(this);
+            Log.i("MENU", "여기까지2");
         }
 
         @Override

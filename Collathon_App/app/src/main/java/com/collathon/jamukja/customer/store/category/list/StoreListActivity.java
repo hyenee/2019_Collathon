@@ -1,10 +1,9 @@
 package com.collathon.jamukja.customer.store.category.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
-import android.app.ProgressDialog;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +21,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class StoreListActivity extends AppCompatActivity {
@@ -40,6 +37,7 @@ public class StoreListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_list_recycler);
         handler = new Handler();
         init();
+
         getData();
     }
 

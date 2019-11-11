@@ -12,11 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.customer.store.category.detail.StoreDetailActivity;
+import com.collathon.jamukja.customer.store.category.detail.StoreDetailListActivity;
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list
@@ -86,12 +85,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
                 case R.id.store_item_view_title:
                     Toast.makeText(context, data.getShop_name(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(v.getContext(), StoreDetailActivity.class);
+                    Intent intent = new Intent(v.getContext(), StoreDetailListActivity.class);
                     v.getContext().startActivity(intent);
                     break;
                 case R.id.store_item_view_content:
                     Toast.makeText(context, data.getMenu_name(), Toast.LENGTH_SHORT).show();
-                    Intent intent1 = new Intent(v.getContext(), StoreDetailActivity.class);
+                    Intent intent1 = new Intent(v.getContext(), StoreDetailListActivity.class);
                     v.getContext().startActivity(intent1);
                     break;
 

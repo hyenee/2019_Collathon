@@ -1,15 +1,13 @@
-package com.collathon.jamukja.customer.store.category.detail;
+package com.collathon.jamukja.customer.store.category.list;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.collathon.janolja.R;
 
-public class StoreDetailMenuActivity extends AppCompatActivity {
+public class StoreListViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_detail_menu_view);
+        setContentView(R.layout.activity_store_list_view);
     }
 }
