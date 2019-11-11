@@ -72,15 +72,26 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
 
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                String name = jsonObject.getString("name");
-                                String tel = jsonObject.getString("tel");
-                                String address = jsonObject.getString("address");
-                                String category = jsonObject.getString("category");
+                                final String name = jsonObject.getString("name");
+                                final String tel = jsonObject.getString("tel");
+                                final String address = jsonObject.getString("address");
+                                final String category = jsonObject.getString("category");
                                 Log.i("STORE", "추출 결과 :  " + name+", "+tel+", "+address+", "+category);
-                                tx_name.setText(name);
-                                tx_category.setText(category);
-                                tx_tel.setText(tel);
-                                tx_address.setText(address);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tx_name.setText(name);
+                                        tx_category.setText(category);
+                                        tx_tel.setText(tel);
+                                        tx_address.setText(address);
+                                    }
+                                });
+
+                                //tx_name.setText(name);
+                                //tx_category.setText(category);
+                                //tx_tel.setText(tel);
+                                //tx_address.setText(address);
 
                             }
                             connection.disconnect(); // 연결 끊기
