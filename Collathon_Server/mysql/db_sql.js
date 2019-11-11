@@ -19,6 +19,20 @@ let query_function = function(sql, callback){
 	});
 };
 
+let query_function_no_callback = function(sql){
+	console.log("DB_SQL : ", sql);
+	pool.getConnection(function(err, con){
+		if(err){
+			console.error(err);
+			return;
+		}
+		con.query(sql, function (err, result, fields){
+			con.release();
+			if (err) return callback(err);
+		});
+	});
+};
+
 let testselect = function(sql, callback){
 	query_function(sql, callback);
 };
@@ -148,6 +162,15 @@ let addReservationTable = function(classification, client_id, shop_id, number, c
 	query_function(sql, callback);
 };
 
+let deleteReservationAll = function(classification, client_id, callback){
+	let sql = "delete from ReservationTable where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from ReservationMenu where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -175,6 +198,7 @@ module.exports = function() {
 		addReservation: addReservation,
 		addReservationMenu: addReservationMenu,
 		addReservationTable: addReservationTable,
+		deleteReservationAll: deleteReservationAll,
 		pool: pool
 	}
 };

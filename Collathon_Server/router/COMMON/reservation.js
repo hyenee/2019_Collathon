@@ -93,4 +93,21 @@ router.post('/add/table/', function(req, res, next){
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/add/table?current={current_time}&user={client_id}&shop={shop_id}&table={number_of_table}&count={table_count}
 
+/* POST delete all Reservation information */
+router.post('/delete/', function(req, res, next){
+	console.log("---log start(RESERVATION:POST)---");
+	console.log("DELETE:POST -> current time : ", req.query.current);
+	console.log("DELETE:POST -> client_id : ", req.query.user);
+	sql.deleteReservationAll(req.query.current, req.query.user, function(err){
+		if(err){
+			console.error("DELETE:GET FAILED: ",err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/delete?current={current_time}&user={client_id}
+
 module.exports = router;
