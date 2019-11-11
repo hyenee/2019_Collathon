@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.customer.reservation.ReservationActivity;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -61,6 +62,14 @@ public class StoreDetailListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent infoIntent = new Intent(StoreDetailListActivity.this, StoreDetailInfoActivity.class);
                 StoreDetailListActivity.this.startActivity(infoIntent);
+            }
+        });
+
+        reservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
+                StoreDetailListActivity.this.startActivity(reservIntent);
             }
         });
     }

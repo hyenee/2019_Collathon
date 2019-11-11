@@ -83,6 +83,12 @@
         <activity android:name="com.collathon.jamukja.customer.reservation.ReservationTicketConrifmActivity"
             android:theme="@style/AppTheme.NoActionBar2"/>
 
+        <!-- 예약 -->
+        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2"/>
+
 
 
 

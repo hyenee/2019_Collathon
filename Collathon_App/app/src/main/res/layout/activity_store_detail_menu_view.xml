@@ -10,6 +10,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textSize="17sp"
         android:fontFamily="@font/nanumsquare"
         android:text="메뉴 이름"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
@@ -36,6 +37,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/nanumsquare"
+        android:textSize="17sp"
         android:text="메뉴 가격"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
