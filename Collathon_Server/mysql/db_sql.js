@@ -58,7 +58,7 @@ let addOwnerUser = function(name, owner_id, password, phone, callback){
 };
 
 let getCategoryShop = function(category, callback){
-	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\" group by s.name";
+	let sql = "select s.id, s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\" group by s.name";
 	query_function(sql, callback);
 };
 
