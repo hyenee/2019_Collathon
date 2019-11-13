@@ -48,17 +48,16 @@
         <activity
             android:name="com.collathon.jamukja.RegisterOwnerActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 고객 관점 -->
-        <!-- (고객) 마이 메뉴 -->
-        <activity
-            android:name="com.collathon.jamukja.TimeSaleActivity"
-            android:theme="@style/AppTheme.NoActionBar2" />
 
+        <!-- (고객) 마이 메뉴 -->
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 리스트 -->
+            android:theme="@style/AppTheme.NoActionBar2" />
+
+        <!-- 가게 리스트 -->
         <activity
             android:name="com.collathon.jamukja.customer.store.category.list.StoreListActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
@@ -66,7 +65,7 @@
             android:name="com.collathon.jamukja.customer.store.category.list.StoreListViewActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 상세정보 -->
         <!-- 가게 별 메뉴 리스트 -->
-<<<<<<< HEAD
+
         <activity
             android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuViewActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
@@ -100,20 +99,6 @@
         <activity
             android:name="com.collathon.jamukja.owner.Menu_remove"
             android:theme="@style/AppTheme.NoActionBar2" />
-=======
-        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailListActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <!-- 가게 상세정보 -> 정보 -->
-        <activity android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-        <!-- 예약 확인 : 자리예약, 모바일 번호표 -->
-        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationSeatConfirmActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationTicketConrifmActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
 
         <!-- 예약 -->
         <activity android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
@@ -122,23 +107,6 @@
             android:theme="@style/AppTheme.NoActionBar2"/>
 
 
-
-
-        <!-- 자영업자 관점 -->
-        <activity android:name="com.collathon.jamukja.owner.MainOwnerActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.owner.Store_info"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.owner.item_view_menu"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.owner.item_view_store"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.owner.Menu_Register"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.owner.Menu_remove"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
->>>>>>> c053e235af3e8d1c08907da6bae888368a68f4d1
     </application>
 
 </manifest>
