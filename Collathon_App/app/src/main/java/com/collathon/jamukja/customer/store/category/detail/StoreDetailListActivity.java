@@ -19,8 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.collathon.jamukja.LoginCustomerActivity;
 import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.NetworkManager;
+<<<<<<< HEAD
 import com.collathon.jamukja.RegisterCustomerActivity;
 import com.collathon.jamukja.RegisterOwnerActivity;
+=======
+import com.collathon.jamukja.customer.reservation.ReservationActivity;
+>>>>>>> c053e235af3e8d1c08907da6bae888368a68f4d1
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -77,6 +81,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         final CheckBox checkBox = (CheckBox) findViewById(R.id.heartCheckBox);
 
         // Init
@@ -100,6 +105,15 @@ public class StoreDetailListActivity extends AppCompatActivity {
                 }
             }
         }) ;
+=======
+        reservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
+                StoreDetailListActivity.this.startActivity(reservIntent);
+            }
+        });
+>>>>>>> c053e235af3e8d1c08907da6bae888368a68f4d1
     }
 
     private void init() {

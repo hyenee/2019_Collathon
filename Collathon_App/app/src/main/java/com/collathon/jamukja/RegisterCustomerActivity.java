@@ -32,7 +32,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_customer);
         handler = new Handler();
 
-        findViewById(R.id.registerButton).setOnClickListener(onClickListener);
+        findViewById(R.id.register).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -40,7 +40,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 //회원가입 버튼 누르면 고객 회원가입으로 넘어감
-                case R.id.registerButton:
+                case R.id.register:
                     registerCustomer();
                     break;
             }

@@ -53,7 +53,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text="이름>"
                         android:textColor="#45555f"
@@ -64,7 +63,6 @@
                         android:id="@+id/customer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginLeft="51dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text=""
@@ -82,7 +80,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text="전화번호>"
                         android:textColor="#45555f"
@@ -93,7 +90,6 @@
                         android:id="@+id/customer_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text=""
@@ -111,7 +107,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text="이메일>"
                         android:textColor="#45555f"
@@ -122,7 +117,6 @@
                         android:id="@+id/customer_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text=""
@@ -140,9 +134,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
-                        android:text="ID>"
+                        android:text="아이디>"
                         android:textColor="#45555f"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -151,7 +144,6 @@
                         android:id="@+id/customer_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text=""
@@ -169,24 +161,33 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:fontFamily="@font/nanumsquare"
-                        android:text="PASSWORD>"
+                        android:text="패스워드>"
                         android:textColor="#45555f"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/customer_passwd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
                         android:layout_marginLeft="20dp"
                         android:fontFamily="@font/nanumsquare"
                         android:text=""
                         android:textColor="#58585a"
                         android:textSize="20dp"
                         android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/changeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#EE7764"
+                        android:fontFamily="@font/nanumsquare"
+                        android:text="수정"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16dp" />
+
                 </LinearLayout>
 
             </LinearLayout>
