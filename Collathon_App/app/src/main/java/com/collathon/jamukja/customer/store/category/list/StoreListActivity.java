@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +33,7 @@ import java.util.List;
 public class StoreListActivity extends AppCompatActivity {
     private static final String TAG = "StoreListActivity";
     private RecyclerAdapter adapter;
-    private String category;
+    private String userID, category;
    // Handler handler;
 
     @Override
@@ -39,11 +42,34 @@ public class StoreListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_list_recycler);
 
         Intent intent = getIntent(); /*데이터 수신*/
+        userID = intent.getExtras().getString("userID"); /*String형*/
         category = intent.getExtras().getString("category"); /*String형*/
 
-        init();
+        final TextView categoryTextView = findViewById(R.id.category_name);
+        switch (category) {
+            case "rice":
+                categoryTextView.setText("한식");
+                break;
+            case "noodle":
+                categoryTextView.setText("국수");
+                break;
+            case "chicken":
+                categoryTextView.setText("치킨");
+                break;
+            case "meat":
+                categoryTextView.setText("고기");
+                break;
+            case "dessert":
+                categoryTextView.setText("디저트");
+                break;
+            case "sushi":
+                categoryTextView.setText("일식");
+                break;
+        }
 
+        init();
         getData();
+
     }
 
     private void init() {
@@ -65,6 +91,7 @@ public class StoreListActivity extends AppCompatActivity {
     private void getData() {
         //카테고리에 따른 가게 출력
         final List<String> shop_name_list = new ArrayList<>();
+        final List<String> shop_id_list = new ArrayList<>();
         final List<String> menu_name_list = new ArrayList<>();
 
         //서버 디비 값 파싱
@@ -107,21 +134,27 @@ public class StoreListActivity extends AppCompatActivity {
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String shop_id = jsonObject.getString("id");
                                     String shop_name = jsonObject.getString("shop_name");
                                     String menu_name = jsonObject.getString("menu_name");
+
+                                    shop_id_list.add(shop_id);
                                     shop_name_list.add(shop_name);
                                     menu_name_list.add(menu_name);
-                                    Log.i("STORE", "추출 결과 :  " + shop_name+", "+menu_name);
+                                    Log.i("STORE", "추출 결과 :  "+ shop_id + shop_name+", "+menu_name);
                                 }
                                 for(int i=0; i<shop_name_list.size(); i++){
-                                    Log.i("STORE", "리스트 값 :  " + shop_name_list.get(i)+", "+menu_name_list.get(i));
+                                    Log.i("STORE", "리스트 값 :  " + shop_id_list.get(i) + ","
+                                            + shop_name_list.get(i)+", "+menu_name_list.get(i));
                                 }
                                 for (int i = 0; i < shop_name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
+                                    data.setShop_id(shop_id_list.get(i));
                                     data.setShop_name(shop_name_list.get(i));
                                     data.setMenu_name(menu_name_list.get(i));
 
+                                    adapter.userID = userID;
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }

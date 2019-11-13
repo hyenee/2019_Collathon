@@ -25,8 +25,7 @@ public class RegisterOwnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_owner);
 
-        Button registerButton = (Button) findViewById(R.id.registerButton);
-
+        findViewById(R.id.registerButton).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {

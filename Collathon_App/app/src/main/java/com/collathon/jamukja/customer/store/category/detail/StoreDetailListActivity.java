@@ -1,17 +1,26 @@
 package com.collathon.jamukja.customer.store.category.detail;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.collathon.jamukja.LoginCustomerActivity;
+import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.RegisterCustomerActivity;
+import com.collathon.jamukja.RegisterOwnerActivity;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -30,8 +39,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StoreDetailListActivity extends AppCompatActivity {
+    private static final String TAG = "StoreDetailListActivity";
     private RecyclerAdapter adapter;
-    private String menuname;
+    private String userID, shopName, shopID;
     Handler handler;
 
     @Override
@@ -42,9 +52,12 @@ public class StoreDetailListActivity extends AppCompatActivity {
         final Button infoButton = (Button)findViewById(R.id.store_informationButton); //가게 정보
         final Button reservationButton = (Button)findViewById(R.id.reservationButton); //예약하기
         handler = new Handler();
+
         Intent intent = getIntent();
-        //String name = intent.getExtras().getString("shopname");
-        //menuname="1";
+        userID = intent.getExtras().getString("userID");
+        shopName = intent.getExtras().getString("shopName");
+        shopID = intent.getExtras().getString("shopID");
+
         init();
         getData();
 
@@ -63,6 +76,30 @@ public class StoreDetailListActivity extends AppCompatActivity {
                 StoreDetailListActivity.this.startActivity(infoIntent);
             }
         });
+
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.heartCheckBox);
+
+        // Init
+        SharedPreferences settings = getSharedPreferences("mysettings", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        // Save
+        boolean checkBoxValue = checkBox.isChecked();
+        editor.putBoolean("heartCheck", checkBoxValue);
+        editor.commit();;
+        // Load
+        checkBox.setChecked(settings.getBoolean("heartCheck", false));
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    checkBox.setChecked(true);
+                    likeShop();
+                } else {
+                    checkBox.setChecked(false);
+                }
+            }
+        }) ;
     }
 
     private void init() {
@@ -175,4 +212,57 @@ public class StoreDetailListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void likeShop() {
+        try {
+            NetworkManager nm = new NetworkManager();
+            if (userID.length() > 0 && shopID.length() > 0) {
+                String site = "/like/add?shop=" + shopID + "&user=" + userID;
+                Log.i(TAG, "SITE= "+ site);
+                nm.postInfo(site, "POST"); //받은 placeId에 따른 장소 세부 정보
+
+                while(true){ // thread 작업이 끝날 때까지 대기
+                    if(nm.isEnd){
+                        break;
+                    }
+                    Log.i(TAG, "아직 작업 안끝남.");
+                }
+
+                JSONObject jsonObject = nm.getResult();
+                String success = jsonObject.getString("result");
+                Log.i(TAG, "서버에서 받아온 result = " + success);
+
+                if (success.equals("ERROR")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(StoreDetailListActivity.this);
+                    builder.setMessage("찜 목록 등록 실패. 푸하하")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
+
+                }
+                else if (success.equals("OK")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(StoreDetailListActivity.this);
+                    builder.setMessage("회원 가입에 성공하셨습니다.")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }
+            } else {
+                Log.i(TAG,"입력하지 않은 정보가 존재합니다.");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent storeListIntent = new Intent();
+        storeListIntent.putExtra("userID",userID);
+        storeListIntent.putExtra("shopName",shopName);
+        storeListIntent.putExtra("shopID",shopID);
+        setResult(1234, storeListIntent);
+        finish();
+    }
+
 }
