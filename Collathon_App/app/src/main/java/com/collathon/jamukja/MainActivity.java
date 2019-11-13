@@ -18,11 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime  = 0;
     private Toast toast;
-
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        userID = intent.getExtras().getString("userID"); /*String형*/
 
         //카테고리 버튼 클릭하면 이동, 순서대로 버튼 1~6
         findViewById(R.id.category_button_rice).setOnClickListener(onClickListener); //한식
@@ -45,27 +48,27 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.category_button_rice:
-                    startActivityWithCategory(StoreListActivity.class, "rice");
+                    startActivityWithCategory(StoreListActivity.class, userID,"rice");
                     break;
 
                 case R.id.category_button_noodle:
-                    startActivityWithCategory(StoreListActivity.class, "noodle");
+                    startActivityWithCategory(StoreListActivity.class, userID,"noodle");
                     break;
 
                 case R.id.category_button_chicken:
-                    startActivityWithCategory(StoreListActivity.class, "chicken");
+                    startActivityWithCategory(StoreListActivity.class, userID,"chicken");
                     break;
 
                 case R.id.category_button_meat:
-                    startActivityWithCategory(StoreListActivity.class, "meat");
+                    startActivityWithCategory(StoreListActivity.class, userID,"meat");
                     break;
 
                 case R.id.category_button_dessert:
-                    startActivityWithCategory(StoreListActivity.class, "dessert");
+                    startActivityWithCategory(StoreListActivity.class, userID,"dessert");
                     break;
 
                 case R.id.category_button_sushi:
-                    startActivityWithCategory(StoreListActivity.class, "sushi");
+                    startActivityWithCategory(StoreListActivity.class, userID,"sushi");
                     break;
 
                     // 하단 메뉴바 이동
@@ -110,9 +113,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void startActivityWithCategory(Class c, String id) {
+    private void startActivityWithCategory(Class c, String id, String category) {
         Intent intent = new Intent(MainActivity.this, c);
-        intent.putExtra("category", id);
+        intent.putExtra("userID", id);
+        intent.putExtra("category", category);
         startActivity(intent);
     }
 

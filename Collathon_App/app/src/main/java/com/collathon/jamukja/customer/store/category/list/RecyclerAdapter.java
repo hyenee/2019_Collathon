@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
     private Context context;
+    public String userID;
 
     @NonNull
     @Override
@@ -60,12 +63,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView textView1;
         private TextView textView2;
         private Data data;
+        private CheckBox checkBox;
+
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
             textView1 = itemView.findViewById(R.id.store_item_view_title);
             textView2 = itemView.findViewById(R.id.store_item_view_content);
+
         }
 
         void onBind(Data data) {
@@ -82,22 +88,34 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-
                 case R.id.store_item_view_title:
                     Toast.makeText(context, data.getShop_name(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), StoreDetailListActivity.class);
-                    //intent.putExtra("shopname", data.getShop_name());
+                    intent.putExtra("userID", userID);
+                    intent.putExtra("shopName", data.getShop_name());
+                    intent.putExtra("shopID", data.getShop_id());
                     v.getContext().startActivity(intent);
                     break;
+
                 case R.id.store_item_view_content:
                     Toast.makeText(context, data.getMenu_name(), Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(v.getContext(), StoreDetailListActivity.class);
                     v.getContext().startActivity(intent1);
                     break;
 
-
             }
 
         }
+
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if(requestCode==1111){
+                if(resultCode==1234) {
+                    Log.v("RecyclerAdapter", "StoreDetailListActivity result : "
+                            + data.getExtras().getString("userID"));
+                }
+            }
+        }
+
+
     }
 }

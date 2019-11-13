@@ -131,11 +131,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
 
                                             if (getUserPasswd.equals(userPasswd)) {
                                                 Log.i(TAG, "로그인에 성공하셨습니다.");
-                                                Intent loginIntent = new Intent(LoginCustomerActivity.this, MainActivity.class);
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("Client_id", userID);
-                                                loginIntent.putExtras(bundle);
-                                                LoginCustomerActivity.this.startActivity(loginIntent);
+                                                startActivityWithID(MainActivity.class, userID);
                                             } else {
                                                 Log.i(TAG, "비밀번호가 틀렸습니다.");
                                                 Handler mHandler = new Handler(Looper.getMainLooper());
@@ -169,6 +165,11 @@ public class LoginCustomerActivity extends AppCompatActivity {
         });
     }
 
+    private void startActivityWithID(Class c, String s) {
+        Intent intent = new Intent(LoginCustomerActivity.this, c);
+        intent.putExtra("userID", s);
+        startActivity(intent);
+    }
 
 
 }

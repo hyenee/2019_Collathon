@@ -79,13 +79,36 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <LinearLayout
+        android:id="@+id/check_box_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_name"
+        tools:ignore="MissingConstraints">
+
+        <CheckBox
+            android:id="@+id/heartCheckBox"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/heart_check_box"
+            android:button="@null"
+            android:checked="false"
+            android:includeFontPadding="false"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/store_menu_recycler"
         android:layout_width="409dp"
         android:layout_height="604dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/nanumsquare"
-        app:layout_constraintTop_toBottomOf="@+id/store_name"
+        app:layout_constraintTop_toBottomOf="@+id/check_box_layout"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

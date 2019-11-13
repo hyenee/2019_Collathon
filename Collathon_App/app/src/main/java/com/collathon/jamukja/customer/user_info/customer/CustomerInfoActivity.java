@@ -34,7 +34,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
     Handler handler;
     TextView customer_name, customer_phone, customer_email, customer_id;
     EditText customer_passwd;
-    String passwd;
+    //String passwd;
     Button changeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,34 +47,60 @@ public class CustomerInfoActivity extends AppCompatActivity {
         customer_email = (TextView)findViewById(R.id.customer_email); //사용자 이메일
         customer_id = (TextView)findViewById(R.id.customer_id); //사용자 아이디
         customer_passwd = (EditText)findViewById(R.id.customer_passwd); //사용자 비밀번호
-        passwd = ((EditText)findViewById(R.id.customer_passwd)).getText().toString(); //비밀번호만 변경 가능
+        //passwd = ((EditText)findViewById(R.id.customer_passwd)).getText().toString(); //비밀번호만 변경 가능
         changeButton = (Button)findViewById(R.id.changeButton); //비밀번호 변경 버튼
 
-        customer_passwd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //입력하기 전
-                Log.i("MY", "1");
-            }
+//        customer_passwd.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                //입력하기 전
+//                Log.i("MY", "1");
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                //입력되는 텍스트에 변화가 있을 때
+//                Log.i("MY", "2");
+//                String passwd = charSequence.toString();
+//                if(passwd.length() > 0){
+//                    changeInfo();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                //입력이 끝났을 때
+//
+//            }
+//        });
 
+        getCustomInfo();
+        Log.i("MY", "0");
+/*
+        findViewById(R.id.changeButton).setOnClickListener(onClickListner);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //입력되는 텍스트에 변화가 있을 때
-                Log.i("MY", "2");
-                String passwd = charSequence.toString();
-                if(passwd.length() > 0){
-                    changeInfo();
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.changeButton:
+                        changeInfo();
+                        break;
                 }
             }
+        };*/
 
+        //회원정보
+        changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void afterTextChanged(Editable editable) {
-                //입력이 끝났을 때
-
+            public void onClick(View view) {
+                changeInfo();
+                getCustomInfo();
             }
         });
+    }
 
-
+    private void getCustomInfo(){
         //서버에서 회원 정보 GET
         try {
             NetworkManager.add(new Runnable() {
@@ -149,42 +175,21 @@ public class CustomerInfoActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i("MY", "0");
-/*
-        findViewById(R.id.changeButton).setOnClickListener(onClickListner);
-
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.changeButton:
-                        changeInfo();
-                        break;
-                }
-            }
-        };*/
-
-        //회원정보
-        changeButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                changeInfo();
-            }
-        });
     }
 
     private void changeInfo(){
+        String newPasswd = customer_passwd.getText().toString();
+
         Log.i("MY", "INFO안");
         //비밀번호 변경 POST
-        int passwdlen = passwd.length();
-        Log.i("MY", "PASSWD : "+ passwdlen+", "+passwd);
+        int passwdlen = customer_passwd.length();
+        Log.i("MY", "PASSWD : "+ passwdlen+", "+newPasswd);
         try {
             NetworkManager nm = new NetworkManager();
-            if (passwd.length()>0) {
-                String client_site = "/mypage/user?id=" + 1 + "%new=" + passwd;
+            if (customer_passwd.length()>0) {
+                String client_site = "/mypage/user?id=1"+ "&new=" + newPasswd;
                 Log.i("MY", "SITE= "+client_site);
-                nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보
+                nm.postInfo(client_site, "PATCH"); //받은 placeId에 따른 장소 세부 정보
 
                 while(true){ // thread 작업이 끝날 때까지 대기
                     if(nm.isEnd){
@@ -192,7 +197,6 @@ public class CustomerInfoActivity extends AppCompatActivity {
                     }
                     Log.i("MY", "아직 작업 안끝남.");
                 }
-
                 JSONObject jsonObject = nm.getResult();
                 String success = jsonObject.getString("result");
                 Log.i("MY", "서버에서 받아온 result = " + success);
