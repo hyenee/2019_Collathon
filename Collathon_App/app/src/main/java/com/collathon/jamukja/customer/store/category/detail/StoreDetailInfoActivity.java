@@ -88,11 +88,6 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                //tx_name.setText(name);
-                                //tx_category.setText(category);
-                                //tx_tel.setText(tel);
-                                //tx_address.setText(address);
-
                             }
                             connection.disconnect(); // 연결 끊기
                         }
@@ -110,10 +105,5 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //getData();
-    }
-
-    public void getData(){
-
     }
 }

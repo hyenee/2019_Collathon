@@ -1,11 +1,18 @@
 package com.collathon.jamukja.customer.reservation;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,11 +38,18 @@ public class ReservationActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     //private String menuname;
     Handler handler;
+    Button calButton, timeButton, reserveButton;
+    TextView textView;
+    int choiceIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_recycler);
+
+        calButton = (Button)findViewById(R.id.calculationButton);
+        timeButton = (Button)findViewById(R.id.timeButton);
+        reserveButton = (Button)findViewById(R.id.reserveButton);
 
         handler = new Handler();
         //Intent intent = getIntent();
@@ -43,6 +57,13 @@ public class ReservationActivity extends AppCompatActivity {
         //menuname="1";
         init();
         getData();
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSingleChoiceDialog();
+            }
+        });
 
     }
 
@@ -152,4 +173,42 @@ public class ReservationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void showSingleChoiceDialog(){
+        final int backup = choiceIndex; //이전 선택 상태 값 백업하는 변수
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+        builder.setTitle("예약 시간 선택");
+
+        final String[] time = {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00",
+                "17:00", "18:00", "19:00", "20:00", "21:00"};
+
+        builder.setSingleChoiceItems(time, choiceIndex, new DialogInterface.OnClickListener() {
+            //버튼의 선택 상태가 변경된 경우 처리하는 위치
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //which값이 선택 항목의 index
+                choiceIndex = which;
+                Toast.makeText(ReservationActivity.this, time[which], Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                textView.setText(time[choiceIndex]);
+            }
+        });
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                choiceIndex = backup;
+            }
+        });
+
+        builder.create();
+        builder.show();
+    }
+
+
+
 }

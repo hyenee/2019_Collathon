@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:fontFamily="@font/nanumsquare"
-        app:layout_constraintTop_toBottomOf="@+id/caculationButton"
+        app:layout_constraintTop_toBottomOf="@+id/calculationButton"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
 
     <Button
-        android:id="@+id/caculationButton"
+        android:id="@+id/calculationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -101,7 +101,7 @@
             android:padding="16dp"
             android:text="잔여"
             android:fontFamily="@font/nanumsquare"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:gravity="center"/>
 
         <TextView
@@ -217,7 +217,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/registrationButton"
+        android:id="@+id/reserveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
