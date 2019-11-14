@@ -2,6 +2,7 @@ package com.collathon.jamukja.owner;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.janolja.R;
@@ -22,16 +24,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private ArrayList<Data> listData = new ArrayList<>();
     private TextView textView1;
     private TextView textView2;
+    private TextView textView3;
     private ImageView imageView;
-    private Data data;
+    private MenuData data;
     private Context context;
+
+
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_item_view_store, parent, false);
+        View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_main,parent,false);
+        textView3 = view1.findViewById(R.id.user_name);
+        Log.i("STORE", textView3.getText().toString());
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
@@ -60,24 +69,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         private TextView textView1;
         private TextView textView2;
+        private TextView textView3;
+
         private Data data;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
             textView1 = itemView.findViewById(R.id.user_title);
-            textView2 = itemView.findViewById(R.id.user_content);
+
         }
 
         void onBind(Data data) {
             this.data = data;
 
             textView1.setText(data.getTitle());
-            textView2.setText(data.getContent());
 
             itemView.setOnClickListener(this);
             textView1.setOnClickListener(this);
-            textView2.setOnClickListener(this);
         }
 
         @Override
@@ -88,13 +97,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                     Toast.makeText(context, data.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), Store_info.class);
                     intent.putExtra("title",data.getTitle().toString());
+                    intent.putExtra("owner_ID",data.getOwner().toString());
+                    intent.putExtra("shop_id",data.getId().toString());
                     v.getContext().startActivity(intent);
-                    break;
-                case R.id.user_content:
-                    Toast.makeText(context, data.getContent(), Toast.LENGTH_SHORT).show();
-                    Intent intent1 = new Intent(v.getContext(), Store_info.class);
-                    intent1.putExtra("title",data.getTitle().toString());
-                    v.getContext().startActivity(intent1);
                     break;
             }
         }
