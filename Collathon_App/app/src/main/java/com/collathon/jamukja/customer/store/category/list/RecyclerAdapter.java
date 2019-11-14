@@ -100,6 +100,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 case R.id.store_item_view_content:
                     Toast.makeText(context, data.getMenu_name(), Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(v.getContext(), StoreDetailListActivity.class);
+                    intent1.putExtra("userID", userID);
+                    intent1.putExtra("shopName", data.getShop_name());
+                    intent1.putExtra("shopID", data.getShop_id());
                     v.getContext().startActivity(intent1);
                     break;
 
@@ -107,14 +110,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         }
 
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if(requestCode==1111){
-                if(resultCode==1234) {
-                    Log.v("RecyclerAdapter", "StoreDetailListActivity result : "
-                            + data.getExtras().getString("userID"));
-                }
-            }
-        }
+//        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//            if(requestCode==1111){
+//                if(resultCode==1234) {
+//                    Log.v("RecyclerAdapter", "StoreDetailListActivity result : "
+//                            + data.getExtras().getString("userID"));
+//                }
+//            }
+//        }
 
 
     }

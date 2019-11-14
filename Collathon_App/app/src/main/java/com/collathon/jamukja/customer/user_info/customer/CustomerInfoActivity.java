@@ -50,45 +50,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         //passwd = ((EditText)findViewById(R.id.customer_passwd)).getText().toString(); //비밀번호만 변경 가능
         changeButton = (Button)findViewById(R.id.changeButton); //비밀번호 변경 버튼
 
-//        customer_passwd.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                //입력하기 전
-//                Log.i("MY", "1");
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                //입력되는 텍스트에 변화가 있을 때
-//                Log.i("MY", "2");
-//                String passwd = charSequence.toString();
-//                if(passwd.length() > 0){
-//                    changeInfo();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                //입력이 끝났을 때
-//
-//            }
-//        });
-
         getCustomInfo();
-        Log.i("MY", "0");
-/*
-        findViewById(R.id.changeButton).setOnClickListener(onClickListner);
-
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.changeButton:
-                        changeInfo();
-                        break;
-                }
-            }
-        };*/
 
         //회원정보
         changeButton.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,76 +40,78 @@ public class StoreDetailListActivity extends AppCompatActivity {
     private static final String TAG = "StoreDetailListActivity";
     private RecyclerAdapter adapter;
     private String userID, shopName, shopID;
+    private boolean userCheck;
+    CheckBox checkBox;
     Handler handler;
+    List<String> shop_id_list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_detail_menu_recycler);
-        final Button menuButton = (Button)findViewById(R.id.menuButton); //상세 메뉴
-        final Button infoButton = (Button)findViewById(R.id.store_informationButton); //가게 정보
-        final Button reservationButton = (Button)findViewById(R.id.reservationButton); //예약하기
-        handler = new Handler();
 
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");
         shopName = intent.getExtras().getString("shopName");
         shopID = intent.getExtras().getString("shopID");
 
-        init();
+//        final Button menuButton = (Button) findViewById(R.id.menuButton); //상세 메뉴
+//        final Button infoButton = (Button) findViewById(R.id.store_informationButton); //가게 정보
+//        final Button reservationButton = (Button) findViewById(R.id.reservationButton); //예약하기
+//        final TextView shopNameTextView = (TextView) findViewById(R.id.store_name); //사용자 이름
+
+        findViewById(R.id.menuButton).setOnClickListener(onClickListener); //상세 메뉴
+        findViewById(R.id.store_informationButton).setOnClickListener(onClickListener); //가게 정보
+        findViewById(R.id.reservationButton).setOnClickListener(onClickListener); //예약하기
+        final TextView shopNameTextView = (TextView) findViewById(R.id.store_name); //사용자 이름
+
+
+        checkBox = (CheckBox) findViewById(R.id.heartCheckBox);
+        checkBox.setOnClickListener(onClickListener);
+        handler = new Handler();
+
+        shopNameTextView.setText(shopName);
+        setRecyclerView();
         getData();
+        getLikeShopList();
 
-        menuButton.setOnClickListener(new View.OnClickListener() {
+        checkBox.setOnClickListener(new CheckBox.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent menuIntent = new Intent(StoreDetailListActivity.this, StoreDetailListActivity.class);
-                StoreDetailListActivity.this.startActivity(menuIntent);
-            }
-        });
-
-        infoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent infoIntent = new Intent(StoreDetailListActivity.this, StoreDetailInfoActivity.class);
-                StoreDetailListActivity.this.startActivity(infoIntent);
-            }
-        });
-
-        final CheckBox checkBox = (CheckBox) findViewById(R.id.heartCheckBox);
-
-        // Init
-        SharedPreferences settings = getSharedPreferences("mysettings", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        // Save
-        boolean checkBoxValue = checkBox.isChecked();
-        editor.putBoolean("heartCheck", checkBoxValue);
-        editor.commit();;
-        // Load
-        checkBox.setChecked(settings.getBoolean("heartCheck", false));
-
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkBox.setChecked(true);
-                    likeShop();
-                } else {
-                    checkBox.setChecked(false);
-                }
+                public void onClick(View v) {
+                    if (((CheckBox)v).isChecked()) {
+                        Log.i(TAG, "등록중입니다.");
+                        postLikeShop();
+                        checkBox.setChecked(true);
+                    } else {
+                        Log.i(TAG, "삭제중입니다.");
+                        deleteLikeShop();
+                        checkBox.setChecked(false);
+                    }
             }
         }) ;
-
-        reservationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
-                StoreDetailListActivity.this.startActivity(reservIntent);
-            }
-        });
-
     }
 
-    private void init() {
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.menuButton:
+                    Intent menuIntent = new Intent(StoreDetailListActivity.this, StoreDetailListActivity.class);
+                    StoreDetailListActivity.this.startActivity(menuIntent);
+                    break;
+                case R.id.store_informationButton:
+                    Intent infoIntent = new Intent(StoreDetailListActivity.this, StoreDetailInfoActivity.class);
+                    StoreDetailListActivity.this.startActivity(infoIntent);
+                    break;
+                case R.id.reservationButton:
+                    Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
+                    StoreDetailListActivity.this.startActivity(reservIntent);
+                    break;
+            }
+        }
+    };
+
+    private void setRecyclerView() {
         final RecyclerView recyclerView = findViewById(R.id.store_menu_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -137,7 +140,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/menu";
-                        site += "?id=1";
+                        site += "?id="+shopID;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
@@ -188,6 +191,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));
 
+                                    //adapter.shopName = shopName;
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
@@ -219,7 +223,81 @@ public class StoreDetailListActivity extends AppCompatActivity {
         }
     }
 
-    private void likeShop() {
+    private void getLikeShopList() {
+        try {
+            NetworkManager.add(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String site = NetworkManager.url + "/like";
+                        site += "?id="+userID;
+                        Log.i("MENU", site);
+
+                        URL url = new URL(site);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                        if (connection != null) {
+                            connection.setConnectTimeout(2000);
+                            connection.setUseCaches(false);
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                Log.i("MENU", "서버 연결됨");
+                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                InputStream is = connection.getInputStream();
+                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                BufferedReader br = new BufferedReader(isr);
+                                String str = null;
+                                StringBuffer buf = new StringBuffer();
+
+                                // 읽어온다.
+                                do {
+                                    str = br.readLine();
+                                    if (str != null) {
+                                        buf.append(str);
+                                    }
+                                } while (str != null);
+                                br.close(); // 스트림 해제
+
+                                String rec_data = buf.toString();
+                                Log.i("MENU, ", "서버: " + rec_data);
+
+                                JSONArray jsonArray = new JSONArray(rec_data);
+                                for(int i=0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String get_shop_id = jsonObject.getString("shop_id");
+                                    shop_id_list.add(get_shop_id);
+                                }
+                                for(int i=0; i<shop_id_list.size(); i++){
+                                    String get_shop_id = shop_id_list.get(i);
+                                    if (get_shop_id.equals(shopID)){
+                                        Log.i(TAG, "현재 가게 추출 결과 :  " + shopID);
+                                        Log.i(TAG, "등록 가게 추출 결과 :  " + get_shop_id);
+                                        userCheck = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            connection.disconnect(); // 연결 끊기
+                            checkBox.setChecked(userCheck);
+                            Log.i(TAG, "현재 찜가게 등록 여부 :  " + userCheck);
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void postLikeShop() {
         try {
             NetworkManager nm = new NetworkManager();
             if (userID.length() > 0 && shopID.length() > 0) {
@@ -238,17 +316,43 @@ public class StoreDetailListActivity extends AppCompatActivity {
                 String success = jsonObject.getString("result");
                 Log.i(TAG, "서버에서 받아온 result = " + success);
 
-                if (success.equals("ERROR")){
+                if (success.equals("OK")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(StoreDetailListActivity.this);
-                    builder.setMessage("찜 목록 등록 실패. 푸하하")
-                            .setNegativeButton("확인", null)
+                    builder.setMessage("꽃게 찜목록에 등록되었습니다.")
+                            .setPositiveButton("확인", null)
                             .create()
                             .show();
-
                 }
-                else if (success.equals("OK")){
+            } else {
+                Log.i(TAG,"입력하지 않은 정보가 존재합니다.");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteLikeShop() {
+        try {
+            NetworkManager nm = new NetworkManager();
+            if (userID.length() > 0 && shopID.length() > 0) {
+                String site = "/like/delete?shop=" + shopID + "&user=" + userID;
+                Log.i(TAG, "SITE= "+ site);
+                nm.postInfo(site, "POST"); //받은 placeId에 따른 장소 세부 정보
+
+                while(true){ // thread 작업이 끝날 때까지 대기
+                    if(nm.isEnd){
+                        break;
+                    }
+                    Log.i(TAG, "아직 작업 안끝남.");
+                }
+
+                JSONObject jsonObject = nm.getResult();
+                String success = jsonObject.getString("result");
+                Log.i(TAG, "서버에서 받아온 result = " + success);
+
+                if (success.equals("OK")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(StoreDetailListActivity.this);
-                    builder.setMessage("회원 가입에 성공하셨습니다.")
+                    builder.setMessage("꽃게 찜목록에서 해제되었습니다. 안녕ㅠ")
                             .setPositiveButton("확인", null)
                             .create()
                             .show();
