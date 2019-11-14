@@ -59,9 +59,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="92dp"
+            android:layout_marginLeft="70dp"
             android:textSize="16dp"
             android:text="시간"/>
+
+
+        <TextView
+            android:id="@+id/time_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:textSize="16dp"
+            android:text=""/>
 
         <Button
             android:id="@+id/timeButton"
@@ -71,8 +80,9 @@
             android:textColor="#FFFFFF"
             android:text="시간"
             android:fontFamily="@font/nanumsquare"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="50dp"
             android:textSize="16dp" />
+
 
     </LinearLayout>
 

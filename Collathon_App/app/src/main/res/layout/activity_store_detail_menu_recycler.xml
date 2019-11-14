@@ -73,7 +73,7 @@
         android:layout_marginTop="60dp"
         android:fontFamily="@font/typo"
         android:textColor="#EE7764"
-        android:text="가게명"
+        android:hint="가게명"
         android:gravity="center"
         android:textSize="25dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +96,6 @@
             android:layout_margin="3dp"
             android:background="@drawable/heart_check_box"
             android:button="@null"
-            android:checked="false"
             android:includeFontPadding="false"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
