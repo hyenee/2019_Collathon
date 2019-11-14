@@ -1,10 +1,24 @@
-"use strict";
 let pool = require('./db_connect');
 const fs = require('fs');
 const childprocess = require("child_process");
 require("date-utils");
 console.log("sql starts on "+(new Date(Date.now())).toISOString());
 let query_function = function(sql, callback){
+		console.log("DB_SQL : ", sql);
+		pool.getConnection(function(err, con){
+			if(err){
+				console.error(err);
+				return;
+			}
+			con.query(sql, function (err, result, fields){
+				con.release();
+				if (err) return callback(err);
+				callback(null, result);
+			});
+		});
+};
+
+let query_function_no_callback = function(sql){
 	console.log("DB_SQL : ", sql);
 	pool.getConnection(function(err, con){
 		if(err){
@@ -14,7 +28,6 @@ let query_function = function(sql, callback){
 		con.query(sql, function (err, result, fields){
 			con.release();
 			if (err) return callback(err);
-			callback(null, result);
 		});
 	});
 };
@@ -44,12 +57,12 @@ let addOwnerUser = function(name, owner_id, password, phone, callback){
 };
 
 let getCategoryShop = function(category, callback){
-	let sql = "select s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\"";
+	let sql = "select s.id, s.name as shop_name, m.name as menu_name from Shop s, Menu m  where s.id=m.shop_id and s.category=\""+category+"\" group by s.name";
 	query_function(sql, callback);
 };
 
 let getOwnerShop = function(owner_id, callback){
-	let sql = "select name from Shop where master=\""+owner_id+"\"";
+	let sql = "select id, name from Shop where master=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -98,16 +111,6 @@ let updateOwnerUser = function(owner_id, new_passwd, callback){
 	query_function(sql, callback);
 };
 
-let getReservationTable = function(client_id, callback){
-	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
-	query_function(sql, callback);
-};
-
-let getReservationInfo = function(client_id, callback){
-	let sql = "select Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
-	query_function(sql, callback);
-};
-
 let getBlackList = function(callback){
 	let sql = "select client_id, count(*) as count from BlackList group by client_id"; 
 	query_function(sql, callback);
@@ -128,6 +131,50 @@ let addLikeShop = function(shop_id, name, callback){
 	query_function(sql, callback);
 };
 
+let deleteLikeShop = function(shop_id, name, callback){
+	let sql = "delete from Likes where shop_id="+shop_id+" and name=\""+name+"\"";
+	query_function(sql, callback);
+};
+
+let getUserReservationTable = function(client_id, callback){
+	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getReservationInfo = function(client_id, callback){
+	let sql = "select Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
+let getReservationTable = function(shop_id, time, callback){
+	let sql = "select r.shop_id, rt.number, (s.count-rt.count) as remain_table from Reservation as r natural join(ReservationTable as rt) inner join(ShopTable as s) on r.shop_id = s.shop_id and rt.number = s.number where r.shop_id="+shop_id+" and time=\""+time+"\"";
+	query_function(sql, callback);
+};
+
+let addReservation = function(classification, client_id, time, shop_id, callback){
+	let sql = "insert into Reservation (classification, client_id, time, shop_id) values(\""+classification+"\", \""+client_id+"\", \""+time+"\", "+shop_id+")";
+	query_function(sql, callback);
+};
+
+let addReservationMenu = function(classification, client_id, shop_id, name, count, callback){
+	let sql = "insert into ReservationMenu values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", \""+name+"\", "+count+")";
+	query_function(sql,  callback);
+};
+
+let addReservationTable = function(classification, client_id, shop_id, number, count, callback){
+	let sql = "insert into ReservationTable values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", "+number+", "+count+")";
+	query_function(sql, callback);
+};
+
+let deleteReservationAll = function(classification, client_id, callback){
+	let sql = "delete from ReservationTable where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from ReservationMenu where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	query_function_no_callback(sql);
+	sql = "delete from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -145,13 +192,18 @@ module.exports = function() {
 		getOwnerUserDetail: getOwnerUserDetail,
 		updateClientUser: updateClientUser,
 		updateOwnerUser: updateOwnerUser,
-		getReservationTable: getReservationTable,
-		getReservationInfo: getReservationInfo,
 		getBlackList: getBlackList,
 		addBlackList: addBlackList,
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
+		deleteLikeShop: deleteLikeShop,
+		getReservationTable, getReservationTable,
+		getReservationInfo, getReservationInfo,
+		getUserReservationTable, getUserReservationTable,
+		addReservation: addReservation,
+		addReservationMenu: addReservationMenu,
+		addReservationTable: addReservationTable,
+		deleteReservationAll: deleteReservationAll,
 		pool: pool
 	}
 };
-
