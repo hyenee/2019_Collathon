@@ -96,6 +96,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                     break;
                 case R.id.store_informationButton:
                     Intent infoIntent = new Intent(StoreDetailListActivity.this, StoreDetailInfoActivity.class);
+                    infoIntent.putExtra("shopID", shopID);
                     StoreDetailListActivity.this.startActivity(infoIntent);
                     break;
                 case R.id.reservationButton:

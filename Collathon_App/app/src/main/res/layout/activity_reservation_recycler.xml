@@ -7,6 +7,43 @@
     android:orientation="vertical"
     tools:context="com.collathon.jamukja.customer.reservation.ReservationActivity">
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            android:fontFamily="@font/nanumsquare"
+            android:text="메뉴이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="메뉴가격" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="남은 수량" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="345dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="수량" />
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reservation_recycler"
         android:layout_width="match_parent"
@@ -15,6 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/decisionMenuButton"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
+
 
     <Button
         android:id="@+id/decisionMenuButton"
@@ -141,7 +179,7 @@
                 android:id="@+id/table_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -150,7 +188,7 @@
                 android:id="@+id/number_table_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
@@ -174,7 +212,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -183,7 +221,7 @@
                 android:id="@+id/number_table_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
@@ -207,7 +245,7 @@
                 android:id="@+id/table_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -216,7 +254,7 @@
                 android:id="@+id/number_table_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"

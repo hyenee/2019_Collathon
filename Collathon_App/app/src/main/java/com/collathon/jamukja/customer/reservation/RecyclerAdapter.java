@@ -33,7 +33,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         return new ItemViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
@@ -50,7 +49,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for(int i=0; i<listData.size(); i++){
-            Log.i("RESERVATION", "addItem :"+ listData.get(i).getName()+", "+ listData.get(i).getPrice());
+            Log.i("RESERVATION", "addItem :"+ listData.get(i).getName()+", "+ listData.get(i).getPrice()+", " +listData.get(i).getCount());
         }
     }
 
@@ -60,6 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         private TextView name;
         private TextView price;
+        private TextView remain_count;
         private Data data;
 
         ItemViewHolder(View itemView) {
@@ -67,6 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
             name = (TextView)itemView.findViewById(R.id.reservation_menu_name);
             price = (TextView)itemView.findViewById(R.id.reservation_menu_price);
+            remain_count = (TextView)itemView.findViewById(R.id.reservation_remaining_count);
         }
 
         void onBind(Data data) {
@@ -74,8 +75,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
             name.setText(data.getName());
             price.setText(data.getPrice());
-
+            remain_count.setText(data.getCount());
         }
-
     }
 }

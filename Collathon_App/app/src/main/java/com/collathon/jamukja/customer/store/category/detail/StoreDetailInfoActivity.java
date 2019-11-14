@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.store.category.detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class StoreDetailInfoActivity extends AppCompatActivity {
+    private String shop_id; //가게 id 받아옴
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,10 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
         final TextView tx_tel = findViewById(R.id.store_phone);
         final TextView tx_address = findViewById(R.id.store_location);
 
+        //사용자, 가게 id 받아옴
+        Intent intent = getIntent();
+        shop_id = intent.getExtras().getString("shopID");
+
         //서버 디비 값 파싱
         try {
             NetworkManager.add(new Runnable() {
@@ -40,7 +46,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/shop";
-                        site += "?id=1";
+                        site += "?id="+shop_id;
                         Log.i("STORE", site);
 
                         URL url = new URL(site);
