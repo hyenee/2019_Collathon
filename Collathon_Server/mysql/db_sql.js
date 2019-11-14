@@ -159,7 +159,9 @@ let addReservation = function(classification, client_id, time, shop_id, callback
 
 let addReservationMenu = function(classification, client_id, shop_id, name, count, callback){
 	let sql = "insert into ReservationMenu values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", \""+name+"\", "+count+")";
-	query_function(sql,  callback);
+	query_function_no_callback(sql);
+	sql = "update Menu set count = count-"+count+" where shop_id="+shop_id+" and name=\""+name+"\"";
+	query_function(sql, callback);
 };
 
 let addReservationTable = function(classification, client_id, shop_id, number, count, callback){
