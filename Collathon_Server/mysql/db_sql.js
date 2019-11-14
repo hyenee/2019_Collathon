@@ -3,6 +3,7 @@ const fs = require('fs');
 const childprocess = require("child_process");
 require("date-utils");
 console.log("sql starts on "+(new Date(Date.now())).toISOString());
+
 let query_function = function(sql, callback){
 		console.log("DB_SQL : ", sql);
 		pool.getConnection(function(err, con){
@@ -16,20 +17,6 @@ let query_function = function(sql, callback){
 				callback(null, result);
 			});
 		});
-};
-
-let query_function_no_callback = function(sql){
-	console.log("DB_SQL : ", sql);
-	pool.getConnection(function(err, con){
-		if(err){
-			console.error(err);
-			return;
-		}
-		con.query(sql, function (err, result, fields){
-			con.release();
-			if (err) return callback(err);
-		});
-	});
 };
 
 let query_function_no_callback = function(sql){
@@ -189,6 +176,11 @@ let deleteReservationAll = function(classification, client_id, callback){
 	query_function(sql, callback);
 };
 
+let getTimeSale = function(shop_id, callback){
+	let sql = "select * from TimeSale natural join(Menu) where shop_id="+shop_id+" and count >0";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -218,6 +210,7 @@ module.exports = function() {
 		addReservationMenu: addReservationMenu,
 		addReservationTable: addReservationTable,
 		deleteReservationAll: deleteReservationAll,
+		getTimeSale: getTimeSale,
 		pool: pool
 	}
 };
