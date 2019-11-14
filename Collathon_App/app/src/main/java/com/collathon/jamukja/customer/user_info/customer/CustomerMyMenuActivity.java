@@ -12,10 +12,15 @@ import com.collathon.jamukja.customer.reservation.ticket_confirm.ReservationTick
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_mymenu);
+
+        Intent intent = getIntent();
+        userID = intent.getExtras().getString("userID");
 
         TextView customer_info = (TextView)findViewById(R.id.customer_info);
         TextView reservation_seat_comfirm = (TextView)findViewById(R.id.reservation_seat_confirm);
@@ -28,6 +33,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
                 Intent customerInfoIntent = new Intent(CustomerMyMenuActivity.this, CustomerInfoActivity.class);
+                customerInfoIntent.putExtra("userID", userID);
                 CustomerMyMenuActivity.this.startActivity(customerInfoIntent);
 
             }
@@ -40,6 +46,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
                 Intent seatIntent = new Intent(CustomerMyMenuActivity.this, ReservationSeatConfirmActivity.class);
+                seatIntent.putExtra("userID", userID);
                 CustomerMyMenuActivity.this.startActivity(seatIntent);
 
             }
@@ -52,6 +59,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
                 Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationTicketConfirmActivity.class);
+                ticketIntent.putExtra("userID", userID);
                 CustomerMyMenuActivity.this.startActivity(ticketIntent);
 
             }

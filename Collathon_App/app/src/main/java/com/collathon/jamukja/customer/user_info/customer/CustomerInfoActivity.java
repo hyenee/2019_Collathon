@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.user_info.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -32,11 +33,16 @@ public class CustomerInfoActivity extends AppCompatActivity {
     TextView customer_name, customer_phone, customer_email, customer_id;
     EditText customer_passwd;
     Button changeButton;
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_info_change);
         handler = new Handler();
+
+        Intent intent = getIntent();
+        userID = intent.getExtras().getString("userID");
 
         customer_name = (TextView)findViewById(R.id.customer_name); //사용자 이름
         customer_phone = (TextView)findViewById(R.id.customer_phone); //사용자 핸드폰
@@ -65,7 +71,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/mypage/user";
-                        site += "?id=1";
+                        site += "?id="+userID;
                         Log.i("MY", site);
 
                         URL url = new URL(site);

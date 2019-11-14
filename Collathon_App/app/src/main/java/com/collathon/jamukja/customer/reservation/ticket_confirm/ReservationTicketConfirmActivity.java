@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.reservation.ticket_confirm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -28,6 +29,7 @@ import java.util.List;
 public class ReservationTicketConfirmActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
+    private String userID;
 
     List<String> shop_list, menu_list, count_list, time_list;
 
@@ -37,6 +39,8 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_ticket_confirm_recycler);
 
+        Intent intent = getIntent();
+        userID = intent.getExtras().getString("userID");
         handler = new Handler();
 
         init();
@@ -74,7 +78,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/reservation/detail";
-                        site += "?id="+1;
+                        site += "?id="+userID;
                         Log.i("TICKET CONFIRM", site);
 
                         URL url = new URL(site);
