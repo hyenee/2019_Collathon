@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:fontFamily="@font/nanumsquare"
-        app:layout_constraintTop_toBottomOf="@+id/calculationButton"
+        app:layout_constraintTop_toBottomOf="@+id/decisionMenuButton"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
 
     <Button
-        android:id="@+id/calculationButton"
+        android:id="@+id/decisionMenuButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -25,7 +25,7 @@
         android:fontFamily="@font/nanumsquare"
         android:background="#EE7764"
         android:textColor="#FFFFFF"
-        android:text="금액 계산하기" />
+        android:text="메뉴 확정" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -38,16 +38,16 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:fontFamily="@font/nanumsquare"
-            android:text="주문금액"/>
+            android:text="주문내역"/>
 
         <TextView
-            android:id="@+id/order_amount"
+            android:id="@+id/order_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dip"
             android:fontFamily="@font/nanumsquare"
             android:textSize="16dp"
-            android:text="0원" />
+            android:text="" />
     </RelativeLayout>
 
     <!-- 시간 -->

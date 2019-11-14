@@ -51,9 +51,9 @@ public class StoreDetailListActivity extends AppCompatActivity {
         handler = new Handler();
 
         Intent intent = getIntent();
-        userID = intent.getExtras().getString("userID");
-        shopName = intent.getExtras().getString("shopName");
-        shopID = intent.getExtras().getString("shopID");
+       // userID = intent.getExtras().getString("userID");
+       // shopName = intent.getExtras().getString("shopName");
+       // shopID = intent.getExtras().getString("shopID");
 
         init();
         getData();
@@ -183,7 +183,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
-                                    com.collathon.jamukja.customer.store.category.detail.Data data = new com.collathon.jamukja.customer.store.category.detail.Data();
+                                    Data data = new Data();
                                     data.setName(name_list.get(i));
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));

@@ -1,10 +1,7 @@
 package com.collathon.jamukja.customer.user_info.customer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +31,6 @@ public class CustomerInfoActivity extends AppCompatActivity {
     Handler handler;
     TextView customer_name, customer_phone, customer_email, customer_id;
     EditText customer_passwd;
-    //String passwd;
     Button changeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,50 +43,11 @@ public class CustomerInfoActivity extends AppCompatActivity {
         customer_email = (TextView)findViewById(R.id.customer_email); //사용자 이메일
         customer_id = (TextView)findViewById(R.id.customer_id); //사용자 아이디
         customer_passwd = (EditText)findViewById(R.id.customer_passwd); //사용자 비밀번호
-        //passwd = ((EditText)findViewById(R.id.customer_passwd)).getText().toString(); //비밀번호만 변경 가능
         changeButton = (Button)findViewById(R.id.changeButton); //비밀번호 변경 버튼
 
-//        customer_passwd.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                //입력하기 전
-//                Log.i("MY", "1");
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                //입력되는 텍스트에 변화가 있을 때
-//                Log.i("MY", "2");
-//                String passwd = charSequence.toString();
-//                if(passwd.length() > 0){
-//                    changeInfo();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                //입력이 끝났을 때
-//
-//            }
-//        });
-
         getCustomInfo();
-        Log.i("MY", "0");
-/*
-        findViewById(R.id.changeButton).setOnClickListener(onClickListner);
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.changeButton:
-                        changeInfo();
-                        break;
-                }
-            }
-        };*/
-
-        //회원정보
+        //비밀번호 수정
         changeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,10 +134,10 @@ public class CustomerInfoActivity extends AppCompatActivity {
         }
     }
 
+
     private void changeInfo(){
         String newPasswd = customer_passwd.getText().toString();
 
-        Log.i("MY", "INFO안");
         //비밀번호 변경 POST
         int passwdlen = customer_passwd.length();
         Log.i("MY", "PASSWD : "+ passwdlen+", "+newPasswd);
