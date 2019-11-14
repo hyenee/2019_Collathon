@@ -138,12 +138,12 @@ let deleteLikeShop = function(shop_id, name, callback){
 };
 
 let getUserReservationTable = function(client_id, callback){
-	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	let sql = "select id as reservation_id, name as shop, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
-let getReservationInfo = function(client_id, callback){
-	let sql = "select Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
+let getReservationMenu = function(client_id, callback){
+	let sql = "select Reservation.id as reservation_id, Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -160,7 +160,7 @@ let addReservation = function(classification, client_id, time, shop_id, callback
 let addReservationMenu = function(classification, client_id, shop_id, name, count, callback){
 	let sql = "insert into ReservationMenu values((select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"), "+shop_id+", \""+name+"\", "+count+")";
 	query_function_no_callback(sql);
-	sql = "update Menu set count = count-"+count+" where shop_id="+shop_id+" and name=\""+name+"\"";
+	sql = "update Menu set count = count-"+count+" where shop_id="+shop_id+" and name=\""+name+"\""; //menu count 감소
 	query_function(sql, callback);
 };
 
@@ -169,12 +169,14 @@ let addReservationTable = function(classification, client_id, shop_id, number, c
 	query_function(sql, callback);
 };
 
-let deleteReservationAll = function(classification, client_id, callback){
-	let sql = "delete from ReservationTable where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+let deleteReservationAll = function(reservation_id, shop_id, callback){
+	let sql = "update Menu as m, ReservationMenu as r set m.count=m.count+r.count where m.shop_id=r.shop_id and m.name=r.name and id="+reservation_id; //menu count 되돌리기
+	query_function_no_callback(sql);	
+	sql = "delete from ReservationTable where id="+reservation_id;
 	query_function_no_callback(sql);
-	sql = "delete from ReservationMenu where id=(select id from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\")";
+	sql = "delete from ReservationMenu where id="+reservation_id;
 	query_function_no_callback(sql);
-	sql = "delete from Reservation where classification=\""+classification+"\" and client_id=\""+client_id+"\"";
+	sql = "delete from Reservation where id="+reservation_id;
 	query_function(sql, callback);
 };
 
@@ -206,7 +208,7 @@ module.exports = function() {
 		addLikeShop: addLikeShop,
 		deleteLikeShop: deleteLikeShop,
 		getReservationTable, getReservationTable,
-		getReservationInfo, getReservationInfo,
+		getReservationMenu, getReservationMenu,
 		getUserReservationTable, getUserReservationTable,
 		addReservation: addReservation,
 		addReservationMenu: addReservationMenu,
