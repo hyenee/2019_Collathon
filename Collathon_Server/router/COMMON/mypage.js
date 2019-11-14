@@ -24,7 +24,7 @@ router.get('/owner/', function(req, res, next){
 }); // http://oreh.onyah.net:7080/mypage/owner?id={id}
 
 /* POST update user's new passwd */
-router.post('/user/', function(req, res, next){
+router.patch('/user/', function(req, res, next){
 	console.log("---log start(MYPAGE:POST)---");
 	console.log("USER:POST -> id : ", req.query.id);
 	console.log("USER:POST -> new passwd : ", req.query.new);

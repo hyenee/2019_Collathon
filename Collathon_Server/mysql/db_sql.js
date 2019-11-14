@@ -1,10 +1,24 @@
-"use strict";
 let pool = require('./db_connect');
 const fs = require('fs');
 const childprocess = require("child_process");
 require("date-utils");
 console.log("sql starts on "+(new Date(Date.now())).toISOString());
 let query_function = function(sql, callback){
+		console.log("DB_SQL : ", sql);
+		pool.getConnection(function(err, con){
+			if(err){
+				console.error(err);
+				return;
+			}
+			con.query(sql, function (err, result, fields){
+				con.release();
+				if (err) return callback(err);
+				callback(null, result);
+			});
+		});
+};
+
+let query_function_no_callback = function(sql){
 	console.log("DB_SQL : ", sql);
 	pool.getConnection(function(err, con){
 		if(err){
@@ -14,7 +28,6 @@ let query_function = function(sql, callback){
 		con.query(sql, function (err, result, fields){
 			con.release();
 			if (err) return callback(err);
-			callback(null, result);
 		});
 	});
 };
@@ -132,6 +145,11 @@ let addLikeShop = function(shop_id, name, callback){
 	query_function(sql, callback);
 };
 
+let deleteLikeShop = function(shop_id, name, callback){
+	let sql = "delete from Likes where shop_id="+shop_id+" and name=\""+name+"\"";
+	query_function(sql, callback);
+};
+
 let getUserReservationTable = function(client_id, callback){
 	let sql = "select name, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
 	query_function(sql, callback);
@@ -192,6 +210,7 @@ module.exports = function() {
 		addBlackList: addBlackList,
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
+		deleteLikeShop: deleteLikeShop,
 		getReservationTable, getReservationTable,
 		getReservationInfo, getReservationInfo,
 		getUserReservationTable, getUserReservationTable,
@@ -202,4 +221,3 @@ module.exports = function() {
 		pool: pool
 	}
 };
-

@@ -13,7 +13,7 @@ router.get('/', function(req, res, next){
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/like?id={client_id}
 
-/* POST new User */
+/* POST new Likeshop */
 router.post('/add/', function(req, res, next){
 	console.log("---log start(LIKESHOP:POST)---");
 	console.log("LIKESHOP:POST -> client id : ", req.query.user);
@@ -29,5 +29,22 @@ router.post('/add/', function(req, res, next){
 	});
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/like/add?shop={shop_id}&user={client_id}
+
+/* POST delete likeShop */
+router.post('/delete/', function(req, res, next){
+	console.log("---log start(LIKESHOP:POST)---");
+	console.log("LIKESHOP:POST -> client id : ", req.query.user);
+	console.log("LIKESHOP:POST -> shop id: ", req.query.shop);
+	sql.deleteLikeShop(req.query.shop, req.query.user, function(err){
+		if(err){
+			console.error("DELETE LIKESHOP:GET FAILED: ", err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/like/delete?shop={shop_id}&user={client_id}
 
 module.exports = router;
