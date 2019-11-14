@@ -20,7 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
             android:name="com.collathon.jamukja.IntroActivity"
@@ -56,7 +55,6 @@
             android:theme="@style/AppTheme.NoActionBar2" />
 
         <!-- 고객 관점 -->
-
         <!-- (고객) 마이 메뉴 -->
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity"
@@ -75,7 +73,6 @@
 
         <!-- 가게 상세정보 -->
         <!-- 가게 별 메뉴 리스트 -->
-
         <activity
             android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuViewActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
@@ -99,7 +96,7 @@
             android:name="com.collathon.jamukja.customer.reservation.ReservationSeatConfirmActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
-            android:name="com.collathon.jamukja.customer.reservation.ReservationTicketConrifmActivity"
+            android:name="com.collathon.jamukja.customer.reservation.ReservationTicketConfirmActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
 
         <!-- 자영업자 관점 -->
@@ -122,6 +119,13 @@
             android:name="com.collathon.jamukja.owner.Menu_remove"
             android:theme="@style/AppTheme.NoActionBar2" />
 
+        <!-- 블랙리스트 -->
+        <activity
+            android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList"
+            android:theme="@style/AppTheme.NoActionBar2" />
+        <activity
+            android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList_List"
+            android:theme="@style/AppTheme.NoActionBar2" />
 
     </application>
 

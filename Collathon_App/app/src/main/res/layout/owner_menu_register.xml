@@ -10,7 +10,7 @@
         android:id="@+id/et_menuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="메뉴이름을 입력하세요"
         android:inputType="textPersonName"
@@ -42,13 +42,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_menuContent" />
 
+    <EditText
+        android:id="@+id/et_menuCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="메뉴 수량을 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_menuPrice"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btn_insert"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/et_menuPrice"
-        app:layout_constraintStart_toStartOf="@+id/et_menuPrice"
-        app:layout_constraintTop_toBottomOf="@+id/et_menuPrice" />
+        app:layout_constraintEnd_toEndOf="@+id/et_menuCount"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_menuCount"
+        app:layout_constraintTop_toBottomOf="@+id/et_menuCount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

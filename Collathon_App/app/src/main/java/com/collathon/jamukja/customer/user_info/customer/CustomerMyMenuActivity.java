@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.collathon.jamukja.customer.reservation.ReservationSeatConfirmActivity;
-import com.collathon.jamukja.customer.reservation.ReservationTicketConrifmActivity;
+import com.collathon.jamukja.customer.reservation.ReservationTicketConfirmActivity;
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             @Override
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
-                Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationTicketConrifmActivity.class);
+                Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationTicketConfirmActivity.class);
                 CustomerMyMenuActivity.this.startActivity(ticketIntent);
 
             }
