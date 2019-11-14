@@ -47,6 +47,34 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/nanumsquare"
+                                android:text="예약시간"
+                                android:textColor="#45555f"
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/reservation_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginLeft="20dp"
+                                android:fontFamily="@font/nanumsquare"
+                                android:text="10:00-11:00"
+                                android:textColor="#58585a"
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
                         <TableLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
@@ -58,7 +86,6 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="1dp"
                                     android:text="주문내역"
                                     android:fontFamily="@font/nanumsquare"
                                     android:textSize="17dp"
@@ -69,7 +96,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="16dp"
-                                    android:layout_marginLeft="4dp"
                                     android:text="수량"
                                     android:textColor="#45555f"
                                     android:fontFamily="@font/nanumsquare"
@@ -105,38 +131,6 @@
                             </TableRow>
 
                         </TableLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:fontFamily="@font/nanumsquare"
-                                android:text="예약시간"
-                                android:textColor="#45555f"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/reservation_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="2dp"
-                                android:layout_marginLeft="20dp"
-                                android:fontFamily="@font/nanumsquare"
-                                android:text="10:00-11:00"
-                                android:textColor="#58585a"
-                                android:textSize="17dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
                     </LinearLayout>
-
-
                 </LinearLayout>
 </LinearLayout>

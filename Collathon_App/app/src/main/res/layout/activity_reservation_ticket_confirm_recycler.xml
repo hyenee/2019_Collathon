@@ -38,10 +38,11 @@
 
             </LinearLayout>
         </FrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ticket_confirm_recycler"
             android:layout_width="409dp"
-            android:layout_height="604dp"
+            android:layout_height="653dp"
             android:fontFamily="@font/nanumsquare"
             app:layout_constraintTop_toBottomOf="@+id/category_name"
             tools:ignore="MissingConstraints"

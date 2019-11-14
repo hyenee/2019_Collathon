@@ -26,5 +26,5 @@ public class Data {
 
     public String getTime(){ return time; }
 
-    public void setTime(String count) {this.time = time; }
+    public void setTime(String time) {this.time = time; }
 }
