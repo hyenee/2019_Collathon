@@ -3,11 +3,13 @@ package com.collathon.jamukja.owner;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.janolja.R;
@@ -15,7 +17,7 @@ import com.collathon.janolja.R;
 import java.util.ArrayList;
 
 public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ItemViewHolder>  {
-    private ArrayList<Data> listData = new ArrayList<>();
+    private ArrayList<MenuData> listData = new ArrayList<>();
     private TextView textView1;
     private TextView textView2;
     private Data data;
@@ -44,7 +46,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ItemViewHo
         return listData.size();
     }
 
-    void addItem(Data data) {
+    void addItem(MenuData data) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
     }
@@ -53,11 +55,11 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ItemViewHo
         listData.remove(str);
 
     }
-    Data getData(int temp){
+    MenuData getData(int temp){
 
         return listData.get(temp);
     }
-    ArrayList<Data> getListData(){
+    ArrayList<MenuData> getListData(){
         return listData;
     }
 
@@ -70,7 +72,8 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ItemViewHo
         private TextView textView1;
         private TextView textView2;
         private TextView textView3;
-        private Data data;
+        private TextView textView4;
+        private MenuData data;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -78,30 +81,26 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ItemViewHo
             textView1 = itemView.findViewById(R.id.user_title);
             textView2 = itemView.findViewById(R.id.user_content);
             textView3 = itemView.findViewById(R.id.menu_price);
+            textView4 = itemView.findViewById(R.id.et_count);
         }
 
-        void onBind(Data data) {
+        void onBind(MenuData data) {
             this.data = data;
 
             textView1.setText(data.getTitle());
             textView2.setText(data.getContent());
             textView3.setText(data.getPrice());
+            textView4.setText(data.getCount());
 
             itemView.setOnClickListener(this);
             textView1.setOnClickListener(this);
             textView2.setOnClickListener(this);
             textView3.setOnClickListener(this);
+            textView4.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-
-
-            }
-
         }
-
-
     }
 }

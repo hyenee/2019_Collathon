@@ -2,15 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_Lists"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.collathon.jamukja.owner.item_view_menu">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/user_content"
         android:layout_width="191dp"
         android:layout_height="18dp"
-        android:gravity="left"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:text="content"
         android:textColor="@android:color/darker_gray"
@@ -21,8 +26,8 @@
 
     <TextView
         android:id="@+id/user_title"
-        android:layout_width="71dp"
-        android:layout_height="42dp"
+        android:layout_width="190dp"
+        android:layout_height="37dp"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="TITLE"
@@ -36,11 +41,22 @@
         android:id="@+id/menu_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/et_count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/et_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

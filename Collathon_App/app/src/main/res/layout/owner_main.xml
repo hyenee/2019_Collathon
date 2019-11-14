@@ -15,6 +15,7 @@
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="TextView"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -26,6 +27,7 @@
         android:layout_marginTop="60dp"
         android:text="님, 환영합니다!"
         android:textSize="25dp"
+        android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/user_name"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -38,6 +40,83 @@
         app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:padding="0dip">
+
+            <Button
+                android:id="@+id/homeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
+                android:background="#ffffff "
+                android:text="홈"
+                app:layout_constraintEnd_toStartOf="@+id/homeButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
+
+            <Button
+                android:id="@+id/bookButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
+                android:background="#ffffff"
+                android:text="예약관리"
+                app:layout_constraintEnd_toStartOf="@+id/bookButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
+
+            <Button
+                android:id="@+id/blackButton"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:background="#fffffd"
+                android:fontFamily="@font/nanumsquare"
+                android:text="블랙리스트"
+                app:layout_constraintEnd_toStartOf="@+id/blackButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/nanumsquare"
+                android:background="#ffffff"
+                android:text="로그아웃"
+                app:layout_constraintEnd_toStartOf="@+id/logoutButton"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="688dp" />
+        </LinearLayout>
+    </LinearLayout>
 
 
 
