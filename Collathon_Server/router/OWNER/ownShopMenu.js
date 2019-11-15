@@ -7,7 +7,7 @@ let sql = require('../../mysql/db_sql')();
 router.get('/', function(req, res, next){
 	console.log("---log start(OWN MENU:GET)---");
  	console.log("OWN MENU:GET -> shop_id : ", req.query.id);
-	sql.getMenuDetail(req.query.id, function(err, result){
+	sql.getMenuwithTimeSale(req.query.id, function(err, result){
 		res.send(result);
 	});
 	console.log("---log end---");

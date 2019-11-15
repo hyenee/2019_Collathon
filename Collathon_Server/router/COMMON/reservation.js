@@ -13,15 +13,35 @@ router.get('/table/user/', function(req, res, next){
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/table/user?id={client_id}
 
-/* GET reservation detailed information */
+/* GET owner's seat reservation information */
+router.get('/table/owner/', function(req, res, next){
+	console.log("---log start(RESERVATION:GET)---");
+ 	console.log("USER'S TABLE:GET -> shop id : ", req.query.shop);
+	sql.getOwnerReservationTable(req.query.shop, function(err, result){
+		res.send(result);
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/table/owner?shop={shop_id}
+
+/* GET user's reservation detailed information */
 router.get('/detail/', function(req, res, next){
 	console.log("---log start(RESERVATION:GET)---");
 	console.log("DETAIL:GET -> user id : ", req.query.id);
-	sql.getReservationMenu(req.query.id, function(err, result){
+	sql.getUserReservationMenu(req.query.id, function(err, result){
 		res.send(result);
 	});
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/detail?id={client_id}
+
+/* GET owner's reservation detailed information */
+router.get('/owner/', function(req, res, next){
+	console.log("---log start(RESERVATION:GET)---");
+	console.log("DETAIL:GET -> shop id : ", req.query.shop);
+	sql.getOwnerReservationMenu(req.query.shop, function(err, result){
+		res.send(result);
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/owner?shop={shop_id}
 
 /* GET remaining table information */
 router.get('/table/remain/', function(req, res, next){

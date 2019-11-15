@@ -77,8 +77,11 @@ let getShopDetail = function(shop_id, callback){
 	query_function(sql, callback);
 };
 
-let getMenuDetail = function(shop_id, callback){
+let getMenuwithTimeSale = function(shop_id, callback){
 	let sql = "select name, price, description, count from Menu where shop_id="+shop_id;
+	//let hour = select date_format(date_add(now(), interval 9 hour), '%H');
+	//query_function_no_callback(hour);
+	
 	query_function(sql, callback);
 };
 
@@ -142,13 +145,23 @@ let getUserReservationTable = function(client_id, callback){
 	query_function(sql, callback);
 };
 
-let getReservationMenu = function(client_id, callback){
+let getUserReservationMenu = function(client_id, callback){
 	let sql = "select Reservation.id as reservation_id, Shop.name as shop, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
+let getOwnerReservationTable = function(shop_id, callback){
+	let sql = "select id as reservation_id, client_id as user, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where shop_id="+shop_id;
+	query_function(sql, callback);
+};
+
+let getOwnerReservationMenu = function(shop_id, callback){
+	let sql = "select Reservation.id as reservation_id, Reservation.client_id as user, ReservationMenu.name as menu, count, time from Reservation natural join(ReservationMenu), Shop where Shop.id=Reservation.shop_id and ReservationMenu.shop_id="+shop_id;
+	query_function(sql, callback);
+};
+
 let getReservationTable = function(shop_id, time, callback){
-	let sql = "select r.shop_id, rt.number, (s.count-rt.count) as remain_table from Reservation as r natural join(ReservationTable as rt) inner join(ShopTable as s) on r.shop_id = s.shop_id and rt.number = s.number where r.shop_id="+shop_id+" and time=\""+time+"\"";
+	let sql = "select r.shop_id, s.number, if((s.number=rt.number), s.count-rt.count, s.count) as remain_table from Reservation as r natural join(ReservationTable as rt) inner join(ShopTable as s) on r.shop_id = s.shop_id where r.shop_id="+shop_id+" and time=\""+time+"\"";
 	query_function(sql, callback);
 };
 
@@ -193,7 +206,7 @@ module.exports = function() {
 		addOwnerUser: addOwnerUser,
 		getCategoryShop: getCategoryShop,
 		getShopDetail: getShopDetail,
-		getMenuDetail: getMenuDetail,
+		getMenuwithTimeSale: getMenuwithTimeSale,
 		getOwnerShop: getOwnerShop,
 		addOwnerShop: addOwnerShop,
 		addShopMenu: addShopMenu,
@@ -207,9 +220,11 @@ module.exports = function() {
 		getLikeShop: getLikeShop,
 		addLikeShop: addLikeShop,
 		deleteLikeShop: deleteLikeShop,
-		getReservationTable, getReservationTable,
-		getReservationMenu, getReservationMenu,
-		getUserReservationTable, getUserReservationTable,
+		getReservationTable: getReservationTable,
+		getUserReservationMenu: getUserReservationMenu,
+		getUserReservationTable: getUserReservationTable,
+		getOwnerReservationTable: getOwnerReservationTable,
+		getOwnerReservationMenu: getOwnerReservationMenu,
 		addReservation: addReservation,
 		addReservationMenu: addReservationMenu,
 		addReservationTable: addReservationTable,
