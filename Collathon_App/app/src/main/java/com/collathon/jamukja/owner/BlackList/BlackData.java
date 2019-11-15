@@ -4,7 +4,6 @@ public class BlackData {
     private String ID;
     private int count;
 
-
     public String getID() {
         return ID;
     }

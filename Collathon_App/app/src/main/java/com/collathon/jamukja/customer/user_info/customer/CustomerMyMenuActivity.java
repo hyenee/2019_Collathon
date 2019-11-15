@@ -12,11 +12,9 @@ import com.collathon.jamukja.customer.reservation.ticket_confirm.ReservationTick
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
-<<<<<<< HEAD
+
     private static final String TAG = "CustomerMyMenuActivity";
-=======
     private String userID;
->>>>>>> d17449e207e10e4b065c4c0f291d032f390b55da
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

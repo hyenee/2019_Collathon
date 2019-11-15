@@ -38,7 +38,6 @@ public class Owner_BlackList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_black_list);
 
-        NetworkManager.init(); //thread 시작
         setRecyclerView();
         getBlackListData();
     }
@@ -111,7 +110,7 @@ public class Owner_BlackList extends AppCompatActivity {
 
                                     client_id_list.add(client_id);
                                     count_list.add(count);
-                                    Log.i("STORE", "추출 결과 :  " + client_id + ", " + count);
+                                    Log.i(TAG, "추출 결과 :  " + client_id + ", " + count);
                                 }
 
                                 for (int i = 0; i < client_id_list.size(); i++) {

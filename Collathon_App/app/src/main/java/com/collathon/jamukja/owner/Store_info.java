@@ -53,7 +53,7 @@ public class Store_info extends AppCompatActivity {
         shopName = intent.getExtras().getString("shop_id");
 
         textView_storename.setText(name);
-        init();
+        setRecyclerView();
         getData();
 
         btn_registerMenu = findViewById(R.id.btn_registerMenu);
@@ -220,7 +220,13 @@ public class Store_info extends AppCompatActivity {
                                         .create()
                                         .show();
                                 adapter.deldete(index[0]);
-                                adapter.notifyDataSetChanged();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // adapter의 값이 변경되었다는 것을 알려줍니다.
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
                             }
 
                         } catch (JSONException e) {
@@ -243,14 +249,19 @@ public class Store_info extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void init() {
-        RecyclerView recyclerView = findViewById(R.id.recycler_menu);
+    private void setRecyclerView() {
+        final RecyclerView recyclerView = findViewById(R.id.recycler_menu);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new SecondAdapter();
-        recyclerView.setAdapter(adapter);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 
     private void getData() {

@@ -13,13 +13,13 @@
 
     <TextView
         android:id="@+id/user_title"
-        android:layout_width="173dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="TITLE"
         android:textColor="@android:color/black"
-        android:textSize="25sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

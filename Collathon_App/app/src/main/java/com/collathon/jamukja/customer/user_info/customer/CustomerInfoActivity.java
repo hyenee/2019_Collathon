@@ -42,13 +42,8 @@ public class CustomerInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_info_change);
         handler = new Handler();
 
-<<<<<<< HEAD
         Intent intent = getIntent(); /*데이터 수신*/
         userID = intent.getExtras().getString("userID"); /*String형*/
-=======
-        Intent intent = getIntent();
-        userID = intent.getExtras().getString("userID");
->>>>>>> d17449e207e10e4b065c4c0f291d032f390b55da
 
         customer_name = (TextView)findViewById(R.id.customer_name); //사용자 이름
         customer_phone = (TextView)findViewById(R.id.customer_phone); //사용자 핸드폰
