@@ -79,7 +79,7 @@ let getShopDetail = function(shop_id, callback){
 
 let getMenuwithTimeSale = function(shop_id, time, callback){
 	time = time+":00-%"
-	let sql = "select m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
+	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
