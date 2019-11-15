@@ -196,6 +196,16 @@ let getTimeSale = function(shop_id, callback){
 	query_function(sql, callback);
 };
 
+let addTimeSale = function(shop_id, name, sale_price, time, callback){
+	let sql = "insert into TimeSale (shop_id, name, sale_price, time) select "+shop_id+", \""+name+"\", "+sale_price+", \""+time+"\" from dual where not exists (select * from TimeSale where shop_id="+shop_id+" and name=\""+name+"\" and time=\""+time+"\")";
+	query_function(sql, callback);
+};
+
+let deleteTimeSale = function(id,callback){
+	let sql = "delete from TimeSale where id="+id;
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -228,6 +238,8 @@ module.exports = function() {
 		addReservationTable: addReservationTable,
 		deleteReservationAll: deleteReservationAll,
 		getTimeSale: getTimeSale,
+		addTimeSale: addTimeSale,
+		deleteTimeSale: deleteTimeSale,
 		pool: pool
 	}
 };
