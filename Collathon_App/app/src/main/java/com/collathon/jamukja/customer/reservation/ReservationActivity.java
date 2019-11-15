@@ -67,7 +67,7 @@ public class ReservationActivity extends AppCompatActivity {
         number_table_4 = (EditText) findViewById(R.id.number_table_4);
         time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 text로 보여줌
 
-        decisionMenuButton = (Button)findViewById(R.id.decisionMenuButton);
+        //decisionMenuButton = (Button)findViewById(R.id.decisionMenuButton);
         timeButton = (Button)findViewById(R.id.timeButton);
         reserveButton = (Button)findViewById(R.id.reserveButton);
 
@@ -84,20 +84,25 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        current = currentTime();
         //메뉴 확정 버튼 클릭
         decisionMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                decisionMenu();
+                addReservationMenu();
             }
         });
 
+
+         */
         //예약하기 버튼 누르면 예약 정보 전송
         reserveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 current = currentTime();
                 addReservation();
+                addReservationMenu();
                 addReservationTable();
             }
         });
@@ -124,6 +129,14 @@ public class ReservationActivity extends AppCompatActivity {
         name_list = new ArrayList<>();
         price_list = new ArrayList<>();
         count_list = new ArrayList<>();
+        TimeZone time;
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("HH");
+        time = TimeZone.getTimeZone("Asia/Seoul");
+        df.setTimeZone(time);
+        Log.i("MENU", "CURRENT TIME : "+ df.format(date));
+        final String HH = df.format(date);
+        Log.i("MENU", HH);
 
         try {
             NetworkManager.add(new Runnable() {
@@ -131,7 +144,7 @@ public class ReservationActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/menu";
-                        site += "?id="+shop_id;
+                        site += "?id="+shop_id+"&time="+HH;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
@@ -173,7 +186,7 @@ public class ReservationActivity extends AppCompatActivity {
                                     Log.i("RESERVATION", "추출 결과 :  " + name+", "+price+"," + count);
                                 }
                                 for(int i=0; i<name_list.size(); i++){
-                                    Log.i("RESERVATION", "리스트 값 :  " + name_list.get(i)+", "+price_list.get(i)+", " + count_list.get(i));
+                                    Log.i("RESERVATION(get data)", "리스트 값 :  " + name_list.get(i)+", "+price_list.get(i)+", " + count_list.get(i));
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
@@ -211,16 +224,6 @@ public class ReservationActivity extends AppCompatActivity {
         }
     }
 
-    private void decisionMenu(){
-        List numList = new ArrayList();
-        //Log.i("RESERVATION", "MENU NUMBER : " + menu_number);
-
-        for(int i=0; i<name_list.size(); i++){
-
-        }
-
-    }
-
     //예약 시간 선택
     private void selectTime(){
         final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
@@ -233,7 +236,7 @@ public class ReservationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         selectedIndex[0] = which;
-                        Log.i("RESERVATION", "which : "+which+", selectedIndex[0] : " +selectedIndex[0]);
+                        Log.i("RESERVATION(selectTime)", "which : "+which+", selectedIndex[0] : " +selectedIndex[0]);
                     }
                 })
                 .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -248,14 +251,14 @@ public class ReservationActivity extends AppCompatActivity {
                         Toast.makeText(ReservationActivity.this, time[selectedIndex[0]],
                                 Toast.LENGTH_SHORT).show();
                         reservation_time = time[selectedIndex[0]];
-                        Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
+                        Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
                         selected = selectedIndex[0];
                         time_id.setText(reservation_time); //time_id 화면에 보내줌
                         getReservationTable(reservation_time);
                     }
                 }).create().show();
         //reservation_time = time[selectedIndex[0]];
-        Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
+        Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
     }
 
     //현재 시간, 사용자id, 예약 시간, 가게 id 서버로 전송
@@ -264,18 +267,18 @@ public class ReservationActivity extends AppCompatActivity {
             NetworkManager nm = new NetworkManager();
                 String client_site = "/reservation/add?current="+current+"&user="+client_id
                         +"&time="+reservation_time+"&shop="+shop_id;
-                Log.i("RESERVATION", "SITE= "+client_site);
+                Log.i("RESERVATION(addReservation)", "SITE= "+client_site);
                 nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보
 
                 while(true){ // thread 작업이 끝날 때까지 대기
                     if(nm.isEnd){
                         break;
                     }
-                    Log.i("RESERVATION", "아직 작업 안끝남.");
+                    Log.i("RESERVATION(addReservation)", "아직 작업 안끝남.");
                 }
                 JSONObject jsonObject = nm.getResult();
                 String success = jsonObject.getString("result");
-                Log.i("RESERVATION", "서버에서 받아온 result = " + success);
+                Log.i("RESERVATION(addReservation)", "서버에서 받아온 result = " + success);
 
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
@@ -284,6 +287,58 @@ public class ReservationActivity extends AppCompatActivity {
                             .create()
                             .show();
                 }
+                /*
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                    builder.setMessage("예약 성공")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }*/
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //메뉴, 수량 서버로 전송
+    private void addReservationMenu(){
+        //adapter = new RecyclerAdapter();
+        List<String> menu = adapter.menu_list;
+        List<String> count = adapter.count_list;
+        for(int i=0; i<menu.size(); i++){
+            Log.i("RESERVATION(addReservationMenu)", "menu, count" + menu.get(i)+", "+count.get(i));
+            if(!count.get(i).equals("0"))
+                addReservationMenuPost(menu.get(i), count.get(i));
+        }
+    }
+
+    private void addReservationMenuPost(String menu_name, String menu_count){
+        try {
+            NetworkManager nm = new NetworkManager();
+            String client_site = "/reservation/add/menu?current="+current+"&user="+client_id
+                    +"&shop="+shop_id+"&menu="+menu_name+"&count="+menu_count;
+            Log.i("RESERVATION(addReservationMenu)", "SITE= "+client_site);
+            nm.postInfo(client_site, "POST");
+
+            while(true){ // thread 작업이 끝날 때까지 대기
+                if(nm.isEnd){
+                    break;
+                }
+                Log.i("RESERVATION(addReservationMenu)", "아직 작업 안끝남.");
+            }
+            JSONObject jsonObject = nm.getResult();
+            String success = jsonObject.getString("result");
+            Log.i("RESERVATION(addReservationMenu)", "서버에서 받아온 result = " + success);
+
+            if (success.equals("ERROR")){
+                AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                builder.setMessage("예약 실패")
+                        .setNegativeButton("다시 시도", null)
+                        .create()
+                        .show();
+            }
                 /*
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
@@ -316,6 +371,7 @@ public class ReservationActivity extends AppCompatActivity {
         if(table_2.getBytes().length<=0){
             table_2="0";
         }
+        //if(Integer.parseInt(table_2)>0)
         else{
             addReservationTablePost(2, Integer.parseInt(table_2));
 
@@ -326,7 +382,7 @@ public class ReservationActivity extends AppCompatActivity {
         else{
             addReservationTablePost(4, Integer.parseInt(table_4));
         }
-        Log.i("RESERVATION", "table_1 : " +table_1+", table_2 : "+ table_2+", table_4 : " + table_4);
+        Log.i("RESERVATION(addReservationTable)", "table_1 : " +table_1+", table_2 : "+ table_2+", table_4 : " + table_4);
     }
 
     //현재 시간, 사용자id, 가게id, 예약한 테이블 종류 및 인원 서버로 전송
@@ -336,18 +392,18 @@ public class ReservationActivity extends AppCompatActivity {
             NetworkManager nm = new NetworkManager();
             String client_site = "/reservation/add/table?current="+current+"&user="+client_id+"&shop="+shop_id
                     +"&table="+number_of_table+"&count="+table_count;
-            Log.i("RESERVATION", "SITE= "+client_site);
+            Log.i("RESERVATIONRESERVATION(addReservationTable)", "SITE= "+client_site);
             nm.postInfo(client_site, "POST");
 
             while(true){ // thread 작업이 끝날 때까지 대기
                 if(nm.isEnd){
                     break;
                 }
-                Log.i("RESERVATION", "아직 작업 안끝남.");
+                Log.i("RESERVATIONRESERVATION(addReservationTable)", "아직 작업 안끝남.");
             }
             JSONObject jsonObject = nm.getResult();
             String success = jsonObject.getString("result");
-            Log.i("RESERVATION", "서버에서 받아온 result = " + success);
+            Log.i("RESERVATIONRESERVATION(addReservationTable)", "서버에서 받아온 result = " + success);
 
             if (success.equals("ERROR")){
                 AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
@@ -397,7 +453,7 @@ public class ReservationActivity extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i("RESERVATION", "서버 연결됨");
+                                Log.i("RESERVATION(getReservationTable)", "서버 연결됨");
                                 // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -415,7 +471,7 @@ public class ReservationActivity extends AppCompatActivity {
                                 br.close(); // 스트림 해제
 
                                 String rec_data = buf.toString();
-                                Log.i("RESERVATION, ", "서버: " + rec_data);
+                                Log.i("RESERVATION(getReservationTable), ", "서버: " + rec_data);
 
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
@@ -426,14 +482,14 @@ public class ReservationActivity extends AppCompatActivity {
                                     id_list.add(shop_id);
                                     number_list.add(number);
                                     remain_table_list.add(remain_table);
-                                    Log.i("RESERVATION", "추출 결과 :  " + shop_id+", "+number+", " + remain_table);
+                                    Log.i("RESERVATION(getReservationTable)", "추출 결과 :  " + shop_id+", "+number+", " + remain_table);
                                 }
 
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         for(int i=0; i<id_list.size(); i++){
-                                            Log.i("RESERVATION", "리스트 값 :  " + id_list.get(i)+", "+number_list.get(i)+", " + remain_table_list.get(i));
+                                            Log.i("RESERVATION(getReservationTable)", "리스트 값 :  " + id_list.get(i)+", "+number_list.get(i)+", " + remain_table_list.get(i));
 
                                             if (number_list.get(i).equals("1"))
                                                 table_1.setText(remain_table_list.get(i));

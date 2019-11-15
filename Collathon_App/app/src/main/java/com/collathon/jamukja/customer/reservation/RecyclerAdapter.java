@@ -30,6 +30,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     int selected = 0; //구매 수량 선택 다이얼로그에 쓸 변수
     String menu_count = "0"; //예약시간 초기 0으로 설정
 
+    ArrayList<String> menu_list = new ArrayList<>();
+    List<String> count_list = new ArrayList<>();
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -86,28 +89,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 price.setText(data.getPrice());
                 remain_count.setText(data.getCount());
                 menu_number.setText("0");
+                final String menu_name = data.getName().toString();
+                Log.i("RESERVATION ADAPTER", "menu_name : "+menu_name);
 
                 name.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        selectMenuNumber();
+                        selectMenuNumber(menu_name);
                     }
                 });
             }
 
-            public void selectMenuNumber () {
-                final List<String> num = new ArrayList();
+            public void selectMenuNumber (final String menu_name) {
+                final List<String> num;
+                num = new ArrayList(); //남은 수량만큼 list에 담음
+
                 final int[] selectedIndex = {0};
                 final int remain_count_toInt = Integer.parseInt(remain_count.getText().toString());
-                Log.i("RESERVATION ADAPTER", "remain_count to int : "+remain_count_toInt);
                 for(int i=0; i<=remain_count_toInt; i++){
                     num.add(String.valueOf(i));
                 }
-                final String[] number = num.toArray(new String[num.size()]);
-                for(int i=0; i<number.length; i++){
-                    Log.i("RESERVATION", "number[i]"+number[i]);
-                }
-
+                final String[] number = num.toArray(new String[num.size()]); //리스트에 있는 내용을 배열로 옮김
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("구매 수량 선택")
@@ -115,7 +117,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 selectedIndex[0] = which;
-                                Log.i("RESERVATION ADAPTER", "which : " + which + ", selectedIndex[0] : " + selectedIndex[0]);
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -127,11 +128,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 Toast.makeText(context, number[selectedIndex[0]], Toast.LENGTH_SHORT).show();
                                 menu_count = number[selectedIndex[0]].toString();
-                                Log.i("RESERVATION ADAPTER", "MENU COUNT : " + menu_count);
                                 selected = selectedIndex[0];
                                 menu_number.setText(menu_count); //구매 수량 화면에 보내줌
+
+                                if(menu_list.contains(menu_name)){
+                                    int index = menu_list.indexOf(menu_name);
+                                    count_list.set(index, menu_count);
+                                    for(int i=0; i<menu_list.size(); i++){
+                                        Log.i("RESERVATION ADAPTER", "menu, count list : " + menu_list.get(i) +", " + count_list.get(i));
+                                    }
+                                }
+                                else{
+                                    menu_list.add(menu_name);
+                                    count_list.add(menu_count);
+                                    for(int i=0; i<menu_list.size(); i++){
+                                        Log.i("RESERVATION ADAPTER", "menu, count list : " + menu_list.get(i) +", " + count_list.get(i));
+                                    }
+                                }
+
                             }
                             }).create().show();
+
+
             }
     }
 }
