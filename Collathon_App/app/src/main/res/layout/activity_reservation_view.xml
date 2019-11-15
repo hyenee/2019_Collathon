@@ -40,12 +40,13 @@
         android:text="남은 수량"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
-    <EditText
+    <TextView
         android:id="@+id/reservation_menu_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="345dp"
+        android:layout_marginBottom="5dp"
         android:text="0"
         android:textSize="17sp"
         android:inputType="number"
