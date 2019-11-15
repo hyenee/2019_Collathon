@@ -27,10 +27,11 @@ router.get('/shop/', function(req, res, next){
 router.get('/menu/', function(req, res, next){
 	console.log("---log start(SHOP:GET)---");
 	console.log("DETAIL MENU:GET -> shop id : ", req.query.id);
-	sql.getMenuwithTimeSale(req.query.id, function(err, result){
+	console.log("DETAIL MENU:GET -> time(hour) : ", req.query.time);
+	sql.getMenuwithTimeSale(req.query.id, req.query.time, function(err, result){
 		res.send(result);
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7080/categories/menu?id={shop_id}
+}); // http://oreh.onyah.net:7080/categories/menu?id={shop_id}&time={current hour}
 
 module.exports = router;

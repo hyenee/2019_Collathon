@@ -77,11 +77,9 @@ let getShopDetail = function(shop_id, callback){
 	query_function(sql, callback);
 };
 
-let getMenuwithTimeSale = function(shop_id, callback){
-	let sql = "select name, price, description, count from Menu where shop_id="+shop_id;
-	//let hour = select date_format(date_add(now(), interval 9 hour), '%H');
-	//query_function_no_callback(hour);
-	
+let getMenuwithTimeSale = function(shop_id, time, callback){
+	time = time+":00-%"
+	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
@@ -198,6 +196,16 @@ let getTimeSale = function(shop_id, callback){
 	query_function(sql, callback);
 };
 
+let addTimeSale = function(shop_id, name, sale_price, time, callback){
+	let sql = "insert into TimeSale (shop_id, name, sale_price, time) select "+shop_id+", \""+name+"\", "+sale_price+", \""+time+"\" from dual where not exists (select * from TimeSale where shop_id="+shop_id+" and name=\""+name+"\" and time=\""+time+"\")";
+	query_function(sql, callback);
+};
+
+let deleteTimeSale = function(id,callback){
+	let sql = "delete from TimeSale where id="+id;
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -230,6 +238,8 @@ module.exports = function() {
 		addReservationTable: addReservationTable,
 		deleteReservationAll: deleteReservationAll,
 		getTimeSale: getTimeSale,
+		addTimeSale: addTimeSale,
+		deleteTimeSale: deleteTimeSale,
 		pool: pool
 	}
 };
