@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.janolja.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list
@@ -53,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for (int i = 0; i < listData.size(); i++) {
-            Log.i("RESERVATION", "addItem :" + listData.get(i).getName() + ", " + listData.get(i).getPrice() + ", " + listData.get(i).getCount());
+            Log.i("RESERVATION ADAPTER", "addItem :" + listData.get(i).getName() + ", " + listData.get(i).getPrice() + ", " + listData.get(i).getCount());
         }
     }
 
@@ -93,35 +96,42 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             }
 
             public void selectMenuNumber () {
-                final String[] time = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+                final List<String> num = new ArrayList();
                 final int[] selectedIndex = {0};
+                final int remain_count_toInt = Integer.parseInt(remain_count.getText().toString());
+                Log.i("RESERVATION ADAPTER", "remain_count to int : "+remain_count_toInt);
+                for(int i=0; i<=remain_count_toInt; i++){
+                    num.add(String.valueOf(i));
+                }
+                final String[] number = num.toArray(new String[num.size()]);
+                for(int i=0; i<number.length; i++){
+                    Log.i("RESERVATION", "number[i]"+number[i]);
+                }
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("구매 수량 선택")
-                        .setSingleChoiceItems(time, selected, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(number, selected, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 selectedIndex[0] = which;
-
-                                Log.i("RESERVATION", "which : " + which + ", selectedIndex[0] : " + selectedIndex[0]);
+                                Log.i("RESERVATION ADAPTER", "which : " + which + ", selectedIndex[0] : " + selectedIndex[0]);
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
+                            public void onClick(DialogInterface dialog, int which) { }
                         })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                Toast.makeText(context, time[selectedIndex[0]], Toast.LENGTH_SHORT).show();
-                                menu_count = time[selectedIndex[0]];
-                                Log.i("RESERVATION", "MENU COUNT : " + menu_count);
+                                Toast.makeText(context, number[selectedIndex[0]], Toast.LENGTH_SHORT).show();
+                                menu_count = number[selectedIndex[0]].toString();
+                                Log.i("RESERVATION ADAPTER", "MENU COUNT : " + menu_count);
                                 selected = selectedIndex[0];
-                                menu_number.setText(menu_count); //time_id 화면에 보내줌
+                                menu_number.setText(menu_count); //구매 수량 화면에 보내줌
                             }
-                        }).create().show();
+                            }).create().show();
             }
     }
 }

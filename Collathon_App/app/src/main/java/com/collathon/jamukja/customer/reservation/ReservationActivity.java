@@ -119,13 +119,12 @@ public class ReservationActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    //메뉴, 가격 출력
     private void getData() {
-        //메뉴, 가격 출력
         name_list = new ArrayList<>();
         price_list = new ArrayList<>();
         count_list = new ArrayList<>();
 
-        //서버 디비 값 파싱
         try {
             NetworkManager.add(new Runnable() {
                 @Override
@@ -222,6 +221,7 @@ public class ReservationActivity extends AppCompatActivity {
 
     }
 
+    //예약 시간 선택
     private void selectTime(){
         final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
                 "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00"};
@@ -251,12 +251,14 @@ public class ReservationActivity extends AppCompatActivity {
                         Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
                         selected = selectedIndex[0];
                         time_id.setText(reservation_time); //time_id 화면에 보내줌
+                        getReservationTable(reservation_time);
                     }
                 }).create().show();
         //reservation_time = time[selectedIndex[0]];
         Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
     }
 
+    //현재 시간, 사용자id, 예약 시간, 가게 id 서버로 전송
     private void addReservation(){
         try {
             NetworkManager nm = new NetworkManager();
@@ -297,11 +299,13 @@ public class ReservationActivity extends AppCompatActivity {
         }
     }
 
+    //테이블 예약
     public void addReservationTable(){
         String table_1 = number_table_1.getText().toString();
         String table_2 = number_table_2.getText().toString();
         String table_4 = number_table_4.getText().toString();
 
+        //각 table 마다 빈칸인 경우 0으로 초기화
         if(table_1.getBytes().length<=0){
             table_1="0";
         }
@@ -322,15 +326,12 @@ public class ReservationActivity extends AppCompatActivity {
         else{
             addReservationTablePost(4, Integer.parseInt(table_4));
         }
-
-        Log.i("RESERVATION","table4"+table_4);
         Log.i("RESERVATION", "table_1 : " +table_1+", table_2 : "+ table_2+", table_4 : " + table_4);
-
-
     }
 
+    //현재 시간, 사용자id, 가게id, 예약한 테이블 종류 및 인원 서버로 전송
     public void addReservationTablePost(int number_of_table, int table_count){
-        //테이블 인원 POST
+        //테이블 종류에 따라 post
         try {
             NetworkManager nm = new NetworkManager();
             String client_site = "/reservation/add/table?current="+current+"&user="+client_id+"&shop="+shop_id
@@ -364,6 +365,107 @@ public class ReservationActivity extends AppCompatActivity {
 
             }
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //시간에 따라 테이블 정보 값 서버에서 가져옴
+    public void getReservationTable(String time){
+        reservation_time = time;
+        final List<String> id_list, number_list, remain_table_list; //파싱해온 값 저장하는 리스트
+        id_list = new ArrayList<>();
+        number_list = new ArrayList<>();
+        remain_table_list = new ArrayList<>();
+        final TextView table_1 = (TextView)findViewById(R.id.table_1);
+        final TextView table_2 = (TextView)findViewById(R.id.table_2);
+        final TextView table_4 = (TextView)findViewById(R.id.table_4);
+
+
+        try {
+            NetworkManager.add(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String site = NetworkManager.url + "/reservation/table/remain";
+                        site += "?id="+shop_id+"&time="+reservation_time;
+                        Log.i("MENU", site);
+
+                        URL url = new URL(site);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                        if (connection != null) {
+                            connection.setConnectTimeout(2000);
+                            connection.setUseCaches(false);
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                Log.i("RESERVATION", "서버 연결됨");
+                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                InputStream is = connection.getInputStream();
+                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                BufferedReader br = new BufferedReader(isr);
+                                String str = null;
+                                StringBuffer buf = new StringBuffer();
+
+                                // 읽어온다.
+                                do {
+                                    str = br.readLine();
+                                    if (str != null) {
+                                        buf.append(str);
+                                    }
+                                } while (str != null);
+                                br.close(); // 스트림 해제
+
+                                String rec_data = buf.toString();
+                                Log.i("RESERVATION, ", "서버: " + rec_data);
+
+                                JSONArray jsonArray = new JSONArray(rec_data);
+                                for(int i=0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String shop_id = jsonObject.getString("shop_id");
+                                    String number = jsonObject.getString("number");
+                                    String remain_table = jsonObject.getString("remain_table");
+                                    id_list.add(shop_id);
+                                    number_list.add(number);
+                                    remain_table_list.add(remain_table);
+                                    Log.i("RESERVATION", "추출 결과 :  " + shop_id+", "+number+", " + remain_table);
+                                }
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        for(int i=0; i<id_list.size(); i++){
+                                            Log.i("RESERVATION", "리스트 값 :  " + id_list.get(i)+", "+number_list.get(i)+", " + remain_table_list.get(i));
+
+                                            if (number_list.get(i).equals("1"))
+                                                table_1.setText(remain_table_list.get(i));
+                                            else if(number_list.get(i).equals("2"))
+                                                table_2.setText(remain_table_list.get(i));
+                                            else if(number_list.get(i).equals("4"))
+                                                table_4.setText(remain_table_list.get(i));
+                                            else{
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+
+                            }
+                            connection.disconnect(); // 연결 끊기
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
