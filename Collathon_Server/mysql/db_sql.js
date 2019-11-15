@@ -77,11 +77,9 @@ let getShopDetail = function(shop_id, callback){
 	query_function(sql, callback);
 };
 
-let getMenuwithTimeSale = function(shop_id, callback){
-	let sql = "select name, price, description, count from Menu where shop_id="+shop_id;
-	//let hour = select date_format(date_add(now(), interval 9 hour), '%H');
-	//query_function_no_callback(hour);
-	
+let getMenuwithTimeSale = function(shop_id, time, callback){
+	time = time+":00-%"
+	let sql = "select m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
