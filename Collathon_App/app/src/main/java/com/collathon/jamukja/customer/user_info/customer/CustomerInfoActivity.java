@@ -31,23 +31,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CustomerInfoActivity extends AppCompatActivity {
+    private static final String TAG = "CustomerInfoActivity";
     Handler handler;
     TextView customer_name, customer_phone, customer_email, customer_id;
     EditText customer_passwd;
-    //String passwd;
     Button changeButton;
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_info_change);
         handler = new Handler();
 
+        Intent intent = getIntent(); /*데이터 수신*/
+        userID = intent.getExtras().getString("userID"); /*String형*/
+
         customer_name = (TextView)findViewById(R.id.customer_name); //사용자 이름
         customer_phone = (TextView)findViewById(R.id.customer_phone); //사용자 핸드폰
         customer_email = (TextView)findViewById(R.id.customer_email); //사용자 이메일
         customer_id = (TextView)findViewById(R.id.customer_id); //사용자 아이디
         customer_passwd = (EditText)findViewById(R.id.customer_passwd); //사용자 비밀번호
-        //passwd = ((EditText)findViewById(R.id.customer_passwd)).getText().toString(); //비밀번호만 변경 가능
         changeButton = (Button)findViewById(R.id.changeButton); //비밀번호 변경 버튼
 
         getCustomInfo();
@@ -70,7 +74,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/mypage/user";
-                        site += "?id=1";
+                        site += "?id="+userID;
                         Log.i("MY", site);
 
                         URL url = new URL(site);
@@ -149,7 +153,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         try {
             NetworkManager nm = new NetworkManager();
             if (customer_passwd.length()>0) {
-                String client_site = "/mypage/user?id=1"+ "&new=" + newPasswd;
+                String client_site = "/mypage/user?id="+userID+ "&new=" + newPasswd;
                 Log.i("MY", "SITE= "+client_site);
                 nm.postInfo(client_site, "PATCH"); //받은 placeId에 따른 장소 세부 정보
 

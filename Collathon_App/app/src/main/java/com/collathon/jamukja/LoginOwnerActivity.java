@@ -34,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.collathon.janolja.R;
 
 public class LoginOwnerActivity extends AppCompatActivity {
-    private static final String TAG = "LoginCustomerActivity";
+    private static final String TAG = "LoginOwnerActivity";
     private AlertDialog.Builder builder;
     String userID;
     String userPasswd;

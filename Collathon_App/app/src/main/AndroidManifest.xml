@@ -18,14 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity
+            android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList"
+            android:theme="@style/AppTheme.NoActionBar2">
+        </activity>
         <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
             android:name="com.collathon.jamukja.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -48,16 +50,13 @@
         <activity
             android:name="com.collathon.jamukja.RegisterOwnerActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 고객 관점 -->
-
         <!-- (고객) 마이 메뉴 -->
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2" />
-
-        <!-- 가게 리스트 -->
+            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 리스트 -->
         <activity
             android:name="com.collathon.jamukja.customer.store.category.list.StoreListActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
@@ -65,7 +64,6 @@
             android:name="com.collathon.jamukja.customer.store.category.list.StoreListViewActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 상세정보 -->
         <!-- 가게 별 메뉴 리스트 -->
-
         <activity
             android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailMenuViewActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
@@ -98,15 +96,13 @@
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name="com.collathon.jamukja.owner.Menu_remove"
+            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 예약 -->
+        <activity
+            android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
-
-        <!-- 예약 -->
-        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-        <activity android:name="com.collathon.jamukja.customer.reservation.ReservationViewActivity"
-            android:theme="@style/AppTheme.NoActionBar2"/>
-
-
+        <activity
+            android:name="com.collathon.jamukja.customer.reservation.ReservationViewActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
     </application>
 
 </manifest>

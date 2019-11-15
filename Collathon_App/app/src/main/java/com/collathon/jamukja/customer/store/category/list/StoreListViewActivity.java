@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.collathon.janolja.R;
 
 public class StoreListViewActivity extends AppCompatActivity {
+    private static final String TAG = "StoreListViewActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

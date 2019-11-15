@@ -67,12 +67,12 @@ public class StoreListActivity extends AppCompatActivity {
                 break;
         }
 
-        init();
+        setRecyclerView();
         getData();
 
     }
 
-    private void init() {
+    private void setRecyclerView() {
         final RecyclerView recyclerView = findViewById(R.id.store_list_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private long backKeyPressedTime  = 0;
     private Toast toast;
     private String userID;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // 하단 메뉴바 이동
                 case R.id.homeButton:
-                    startActivity(MainActivity.class);
+                    startActivity(MainActivity.class, userID);
                     break;
 
 //                case R.id.pickButton:
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
 
                 case R.id.myButton:
-                    startActivity(CustomerMyMenuActivity.class);
+                    startActivity(CustomerMyMenuActivity.class, userID);
                     break;
 
                 case R.id.logoutButton:
@@ -108,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void startActivity(Class c){
+    private void startActivity(Class c, String id){
         Intent intent = new Intent(MainActivity.this, c);
+        intent.putExtra("userID", id);
         startActivity(intent);
     }
 

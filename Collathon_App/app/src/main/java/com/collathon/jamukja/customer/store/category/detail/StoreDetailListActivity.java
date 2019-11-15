@@ -55,11 +55,6 @@ public class StoreDetailListActivity extends AppCompatActivity {
         shopName = intent.getExtras().getString("shopName");
         shopID = intent.getExtras().getString("shopID");
 
-//        final Button menuButton = (Button) findViewById(R.id.menuButton); //상세 메뉴
-//        final Button infoButton = (Button) findViewById(R.id.store_informationButton); //가게 정보
-//        final Button reservationButton = (Button) findViewById(R.id.reservationButton); //예약하기
-//        final TextView shopNameTextView = (TextView) findViewById(R.id.store_name); //사용자 이름
-
         findViewById(R.id.menuButton).setOnClickListener(onClickListener); //상세 메뉴
         findViewById(R.id.store_informationButton).setOnClickListener(onClickListener); //가게 정보
         findViewById(R.id.reservationButton).setOnClickListener(onClickListener); //예약하기
@@ -101,6 +96,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                     break;
                 case R.id.store_informationButton:
                     Intent infoIntent = new Intent(StoreDetailListActivity.this, StoreDetailInfoActivity.class);
+                    infoIntent.putExtra("shopID", shopID);
                     StoreDetailListActivity.this.startActivity(infoIntent);
                     break;
                 case R.id.reservationButton:
@@ -191,11 +187,9 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));
 
-                                    //adapter.shopName = shopName;
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-                                //adapter.notifyDataSetChanged();
 
                                 runOnUiThread(new Runnable() {
                                     @Override

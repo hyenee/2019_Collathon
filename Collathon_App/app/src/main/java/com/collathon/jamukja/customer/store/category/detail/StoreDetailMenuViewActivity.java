@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.collathon.janolja.R;
 
 public class StoreDetailMenuViewActivity extends AppCompatActivity {
+    private static final String TAG = "StoreDetailMenuViewActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.store.category.detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,11 +23,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class StoreDetailInfoActivity extends AppCompatActivity {
+    private static final String TAG = "StoreDetailInfoActivity";
+    private String shopID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_detail_info);
+
+        Intent intent = getIntent();
+        shopID = intent.getExtras().getString("shopID");
 
         final TextView tx_name = findViewById(R.id.store_name);
         final TextView tx_category = findViewById(R.id.store_category);
@@ -40,7 +46,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/shop";
-                        site += "?id=1";
+                        site += "?id="+shopID;
                         Log.i("STORE", site);
 
                         URL url = new URL(site);

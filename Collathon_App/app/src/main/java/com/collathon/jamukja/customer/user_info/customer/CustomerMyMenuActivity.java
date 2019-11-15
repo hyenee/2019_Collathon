@@ -12,6 +12,8 @@ import com.collathon.jamukja.customer.reservation.ReservationTicketConrifmActivi
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
+    private static final String TAG = "CustomerMyMenuActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
