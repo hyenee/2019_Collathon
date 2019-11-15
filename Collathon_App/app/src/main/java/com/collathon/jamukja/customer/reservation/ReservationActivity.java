@@ -43,13 +43,12 @@ public class ReservationActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     Button decisionMenuButton, timeButton, reserveButton; //메뉴 확정, 시간, 예약하기 버튼
-    EditText menu_number, number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
+    EditText number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
     TextView time_id; //시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
     private String client_id, shop_id; //사용자 id, 가게 id 받아옴
-    TextView name;
-    String current;
+    String current; //현재 시간 받아오는 변수
 
     List<String> name_list, price_list, count_list;
 
@@ -63,12 +62,10 @@ public class ReservationActivity extends AppCompatActivity {
         client_id = intent.getExtras().getString("userID");
         shop_id = intent.getExtras().getString("shopID");
 
-        name = (TextView)findViewById(R.id.reservation_menu_name);
-        menu_number = (EditText) findViewById(R.id.reservation_menu_number);
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
         number_table_4 = (EditText) findViewById(R.id.number_table_4);
-        time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 보여줌
+        time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 text로 보여줌
 
         decisionMenuButton = (Button)findViewById(R.id.decisionMenuButton);
         timeButton = (Button)findViewById(R.id.timeButton);
@@ -239,6 +236,12 @@ public class ReservationActivity extends AppCompatActivity {
                         Log.i("RESERVATION", "which : "+which+", selectedIndex[0] : " +selectedIndex[0]);
                     }
                 })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
@@ -271,7 +274,7 @@ public class ReservationActivity extends AppCompatActivity {
                 JSONObject jsonObject = nm.getResult();
                 String success = jsonObject.getString("result");
                 Log.i("RESERVATION", "서버에서 받아온 result = " + success);
-/*
+
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
                     builder.setMessage("예약 실패")
@@ -279,15 +282,16 @@ public class ReservationActivity extends AppCompatActivity {
                             .create()
                             .show();
                 }
+                /*
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
                     builder.setMessage("예약 성공")
                             .setPositiveButton("확인", null)
                             .create()
                             .show();
-                }
+                }*/
 
- */
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -377,7 +381,5 @@ public class ReservationActivity extends AppCompatActivity {
         return current;
     }
 
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
+    private void startToast(String msg) { Toast.makeText(this, msg, Toast.LENGTH_SHORT).show(); }
     }

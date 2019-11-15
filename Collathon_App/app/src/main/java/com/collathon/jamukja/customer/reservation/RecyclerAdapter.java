@@ -93,7 +93,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             }
 
             public void selectMenuNumber () {
-                final String[] time = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+                final String[] time = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
                 final int[] selectedIndex = {0};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -102,7 +102,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 selectedIndex[0] = which;
+
                                 Log.i("RESERVATION", "which : " + which + ", selectedIndex[0] : " + selectedIndex[0]);
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
                             }
                         })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -115,8 +122,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                                 menu_number.setText(menu_count); //time_id 화면에 보내줌
                             }
                         }).create().show();
-                //reservation_time = time[selectedIndex[0]];
-                Log.i("RESERVATION", "MENU COUNT : " + menu_count);
             }
     }
 }

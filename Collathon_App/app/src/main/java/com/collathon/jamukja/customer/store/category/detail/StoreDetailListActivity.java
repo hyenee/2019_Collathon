@@ -32,9 +32,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class StoreDetailListActivity extends AppCompatActivity {
     private static final String TAG = "StoreDetailListActivity";
@@ -131,6 +135,16 @@ public class StoreDetailListActivity extends AppCompatActivity {
         final List<String> price_list = new ArrayList<>();
         final List<String> description_list = new ArrayList<>();
 
+        //현재 시간 가져오기
+        TimeZone time;
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("HH");
+        time = TimeZone.getTimeZone("Asia/Seoul");
+        df.setTimeZone(time);
+        Log.i("MENU", "CURRENT TIME : "+ df.format(date));
+        final String HH = df.format(date);
+        Log.i("MENU", HH);
+
         //서버 디비 값 파싱
         try {
             NetworkManager.add(new Runnable() {
@@ -138,7 +152,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/menu";
-                        site += "?id="+shopID;
+                        site += "?id="+shopID+"&time="+HH;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
