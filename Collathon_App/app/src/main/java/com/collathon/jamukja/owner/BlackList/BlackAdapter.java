@@ -23,12 +23,14 @@ public class BlackAdapter extends RecyclerView.Adapter<BlackAdapter.ItemViewHold
     private ArrayList<BlackData> listData = new ArrayList<>();
     private Context context;
 
+
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_black_list_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_item_view_store, parent, false);
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
@@ -68,6 +70,7 @@ public class BlackAdapter extends RecyclerView.Adapter<BlackAdapter.ItemViewHold
 
             clientIDTextView = itemView.findViewById(R.id.black_clientID);
             countTextView = itemView.findViewById(R.id.black_count);
+
         }
 
         void onBind(BlackData data) {
@@ -81,6 +84,7 @@ public class BlackAdapter extends RecyclerView.Adapter<BlackAdapter.ItemViewHold
             itemView.setOnClickListener(this);
             //clientIDTextView.setOnClickListener(this);
             //countTextView.setOnClickListener(this);
+
         }
 
         @Override
@@ -92,7 +96,5 @@ public class BlackAdapter extends RecyclerView.Adapter<BlackAdapter.ItemViewHold
                     break;
             }
         }
-
-
     }
 }

@@ -65,7 +65,7 @@
                 android:fontFamily="@font/nanumsquare"
                 android:textColor="#49575f"
                 android:layout_height="wrap_content"
-                android:text="번호표 확인>"
+                android:text="번호표 예약 확인>"
                 android:textSize="20dp" />
 
 

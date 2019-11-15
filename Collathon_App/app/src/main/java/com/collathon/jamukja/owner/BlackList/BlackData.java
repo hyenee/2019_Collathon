@@ -4,10 +4,6 @@ public class BlackData {
     private String ID;
     private int count;
 
-//    public BlackData(String ID, int count) {
-//        this.ID = ID;
-//        this.count = count;
-//    }
 
     public String getID() {
         return ID;
@@ -25,3 +21,4 @@ public class BlackData {
         this.count = count;
     }
 }
+

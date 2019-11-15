@@ -101,6 +101,8 @@ public class StoreDetailListActivity extends AppCompatActivity {
                     break;
                 case R.id.reservationButton:
                     Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
+                    reservIntent.putExtra("userID", userID);
+                    reservIntent.putExtra("shopID", shopID);
                     StoreDetailListActivity.this.startActivity(reservIntent);
                     break;
             }
@@ -182,7 +184,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
-                                    com.collathon.jamukja.customer.store.category.detail.Data data = new com.collathon.jamukja.customer.store.category.detail.Data();
+                                    Data data = new Data();
                                     data.setName(name_list.get(i));
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));

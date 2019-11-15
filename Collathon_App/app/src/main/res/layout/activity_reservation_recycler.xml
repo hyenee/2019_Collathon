@@ -7,17 +7,55 @@
     android:orientation="vertical"
     tools:context="com.collathon.jamukja.customer.reservation.ReservationActivity">
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="17sp"
+            android:fontFamily="@font/nanumsquare"
+            android:text="메뉴이름"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="메뉴가격" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="남은 수량" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="330dp"
+            android:fontFamily="@font/nanumsquare"
+            android:textSize="17sp"
+            android:text="구매 수량" />
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reservation_recycler"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:fontFamily="@font/nanumsquare"
-        app:layout_constraintTop_toBottomOf="@+id/calculationButton"
+        app:layout_constraintTop_toBottomOf="@+id/decisionMenuButton"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp" />
 
+
     <Button
-        android:id="@+id/calculationButton"
+        android:id="@+id/decisionMenuButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -25,7 +63,7 @@
         android:fontFamily="@font/nanumsquare"
         android:background="#EE7764"
         android:textColor="#FFFFFF"
-        android:text="금액 계산하기" />
+        android:text="메뉴 확정" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -38,16 +76,16 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:fontFamily="@font/nanumsquare"
-            android:text="주문금액"/>
+            android:text="주문내역"/>
 
         <TextView
-            android:id="@+id/order_amount"
+            android:id="@+id/order_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dip"
             android:fontFamily="@font/nanumsquare"
             android:textSize="16dp"
-            android:text="0원" />
+            android:text="" />
     </RelativeLayout>
 
     <!-- 시간 -->
@@ -59,9 +97,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="92dp"
+            android:layout_marginLeft="70dp"
             android:textSize="16dp"
             android:text="시간"/>
+
+
+        <TextView
+            android:id="@+id/time_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:textSize="16dp"
+            android:text=""/>
 
         <Button
             android:id="@+id/timeButton"
@@ -71,8 +118,9 @@
             android:textColor="#FFFFFF"
             android:text="시간"
             android:fontFamily="@font/nanumsquare"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="50dp"
             android:textSize="16dp" />
+
 
     </LinearLayout>
 
@@ -131,7 +179,7 @@
                 android:id="@+id/table_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -140,7 +188,7 @@
                 android:id="@+id/number_table_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
@@ -164,7 +212,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -173,7 +221,7 @@
                 android:id="@+id/number_table_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
@@ -197,7 +245,7 @@
                 android:id="@+id/table_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0명"
+                android:text="0개"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"
                 android:gravity="center"/>
@@ -206,7 +254,7 @@
                 android:id="@+id/number_table_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint=" 선택"
+                android:text="0"
                 android:inputType="number"
                 android:fontFamily="@font/nanumsquare"
                 android:textSize="16dp"

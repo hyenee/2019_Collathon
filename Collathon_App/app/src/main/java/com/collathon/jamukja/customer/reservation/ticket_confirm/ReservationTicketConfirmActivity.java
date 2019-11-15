@@ -1,15 +1,14 @@
-package com.collathon.jamukja.owner.BlackList;
+package com.collathon.jamukja.customer.reservation.ticket_confirm;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import com.collathon.jamukja.MainActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.janolja.R;
 
@@ -27,29 +26,35 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Owner_BlackList extends AppCompatActivity {
+public class ReservationTicketConfirmActivity extends AppCompatActivity {
+    private RecyclerAdapter adapter;
+    Handler handler;
+    private String userID;
 
-    private static final String TAG = "Owner_BlackList";
-    private BlackAdapter adapter;
-    private String ownerID;
+    List<String> shop_list, menu_list, count_list, time_list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.owner_black_list);
+        setContentView(R.layout.activity_reservation_ticket_confirm_recycler);
 
-        NetworkManager.init(); //thread 시작
-        setRecyclerView();
-        getBlackListData();
+        Intent intent = getIntent();
+        userID = intent.getExtras().getString("userID");
+        handler = new Handler();
+
+        init();
+        getData();
+
     }
 
-    private void setRecyclerView() {
-        final RecyclerView recyclerView = findViewById(R.id.black_list_recycler);
+    private void init() {
+        final RecyclerView recyclerView = findViewById(R.id.ticket_confirm_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new BlackAdapter();
+        adapter = new RecyclerAdapter();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -59,13 +64,12 @@ public class Owner_BlackList extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    //http://oreh.onyah.net:7080/blacklist/add?id=client_id&shop=shopid&comment=comment 등록
-    //http://oreh.onyah.net:7080/blacklist/all
-
-    private void getBlackListData() {
-        //카테고리에 따른 가게 출력
-        final List<String> client_id_list = new ArrayList<>();
-        final List<Integer> count_list = new ArrayList<>();
+    private void getData() {
+        //예약한 가게, 메뉴, 수량, 시간 출력
+        shop_list = new ArrayList<>();
+        menu_list = new ArrayList<>();
+        count_list = new ArrayList<>();
+        time_list = new ArrayList<>();
 
         //서버 디비 값 파싱
         try {
@@ -73,8 +77,9 @@ public class Owner_BlackList extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        String site = NetworkManager.url + "/blacklist/all";
-                        Log.i("STORE", site);
+                        String site = NetworkManager.url + "/reservation/detail";
+                        site += "?id="+userID;
+                        Log.i("TICKET CONFIRM", site);
 
                         URL url = new URL(site);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -83,7 +88,7 @@ public class Owner_BlackList extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i(TAG, "서버 연결됨");
+                                Log.i("TICKET CONFIRM", "서버 연결됨");
                                 // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -101,25 +106,33 @@ public class Owner_BlackList extends AppCompatActivity {
                                 br.close(); // 스트림 해제
 
                                 String rec_data = buf.toString();
-                                Log.i(TAG, "서버 get data: " + rec_data);
+                                Log.i("TICKET CONFIRM, ", "서버: " + rec_data);
 
                                 JSONArray jsonArray = new JSONArray(rec_data);
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                                for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String client_id = jsonObject.getString("client_id");
-                                    int count = jsonObject.getInt("count");
-
-                                    client_id_list.add(client_id);
+                                    String shop = jsonObject.getString("shop");
+                                    String menu = jsonObject.getString("menu");
+                                    String count = jsonObject.getString("count");
+                                    String time = jsonObject.getString("time");
+                                    shop_list.add(shop);
+                                    menu_list.add(menu);
                                     count_list.add(count);
-                                    Log.i("STORE", "추출 결과 :  " + client_id + ", " + count);
+                                    time_list.add(time);
+                                    Log.i("TICKET CONFIRM", "추출 결과 :  " + shop+", "+menu+"," + count+", "+ time);
                                 }
-
-                                for (int i = 0; i < client_id_list.size(); i++) {
+                                for(int i=0; i<shop_list.size(); i++){
+                                    Log.i("TICKET CONFIRM", "리스트 값 :  " + shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
+                                }
+                                for (int i = 0; i < shop_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
-                                    BlackData data = new BlackData();
-                                    data.setID(client_id_list.get(i));
+                                    Data data = new Data();
+                                    data.setShop(shop_list.get(i));
+                                    data.setMenu(menu_list.get(i));
                                     data.setCount(count_list.get(i));
+                                    data.setTime(time_list.get(i));
 
+                                    // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
                                 runOnUiThread(new Runnable() {
@@ -136,21 +149,16 @@ public class Owner_BlackList extends AppCompatActivity {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } catch (JSONException e) {
+                    }catch(JSONException e){
                         e.printStackTrace();
                     }
+
                 }
             });
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-
-    private void startActivity(Class c) {
-        Intent intent = new Intent(Owner_BlackList.this, c);
-        startActivity(intent);
     }
 
 }

@@ -36,7 +36,7 @@ import com.collathon.janolja.R;
 public class LoginOwnerActivity extends AppCompatActivity {
     private static final String TAG = "LoginOwnerActivity";
     private AlertDialog.Builder builder;
-    String userID;
+    String ownerID;
     String userPasswd;
     String getUserPasswd;
     Handler handler;
@@ -48,7 +48,6 @@ public class LoginOwnerActivity extends AppCompatActivity {
 
         final EditText idText = (EditText)findViewById(R.id.idText);
         final EditText passwordText = (EditText)findViewById(R.id.passwordText);
-        passwordText.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         final Button loginButton = (Button)findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
 
@@ -72,9 +71,9 @@ public class LoginOwnerActivity extends AppCompatActivity {
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             @Override
             public void onClick(View view) {
-                userID = idText.getText().toString();
+                ownerID = idText.getText().toString();
                 userPasswd = passwordText.getText().toString();
-                Log.i("LOGIN:USERID", userID);
+                Log.i("LOGIN:USERID", ownerID);
                 Log.i("LOGIN:PASSWORD", userPasswd);
 
                 //아이디, 비번 입력 안 한 경우 확인 메세지 나오게 함
@@ -92,7 +91,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 String site = NetworkManager.url + "/owner/login";
-                                site += "?id=" + userID + "&passwd=" + userPasswd;
+                                site += "?id=" + ownerID + "&passwd=" + userPasswd;
                                 Log.i("LOGIN", site);
 
                                 URL url = new URL(site);
@@ -137,7 +136,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                                 Intent loginIntent = new Intent(LoginOwnerActivity.this, MainOwnerActivity.class);
 
                                                 Bundle bundle = new Bundle();
-                                                bundle.putString("Client_id", userID);
+                                                bundle.putString("Owner_id", ownerID);
                                                 loginIntent.putExtras(bundle);
 
                                                 LoginOwnerActivity.this.startActivity(loginIntent);

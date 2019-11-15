@@ -1,7 +1,6 @@
 package com.collathon.jamukja.customer.reservation;
 
-import android.app.Dialog;
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,40 +31,74 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class ReservationActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
-    //private String menuname;
     Handler handler;
-    Button calButton, timeButton, reserveButton;
-    TextView textView;
-    int choiceIndex = 0;
+    Button decisionMenuButton, timeButton, reserveButton; //메뉴 확정, 시간, 예약하기 버튼
+    EditText menu_number, number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
+    TextView time_id; //시간 표시할 TextView,
+    String reservation_time="0"; //예약시간 초기 0으로 설정
+    int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
+    private String client_id, shop_id; //사용자 id, 가게 id 받아옴
+
+    List<String> name_list, price_list, count_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_recycler);
 
-        calButton = (Button)findViewById(R.id.calculationButton);
+        //사용자, 가게 id 받아옴
+        Intent intent = getIntent();
+        client_id = intent.getExtras().getString("userID");
+        shop_id = intent.getExtras().getString("shopID");
+
+        menu_number = (EditText) findViewById(R.id.reservation_menu_number);
+        number_table_1 = (EditText) findViewById(R.id.number_table_1);
+        number_table_2 = (EditText) findViewById(R.id.number_table_2);
+        number_table_4 = (EditText) findViewById(R.id.number_table_4);
+        time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 보여줌
+
+        decisionMenuButton = (Button)findViewById(R.id.decisionMenuButton);
         timeButton = (Button)findViewById(R.id.timeButton);
         reserveButton = (Button)findViewById(R.id.reserveButton);
 
         handler = new Handler();
-        //Intent intent = getIntent();
-        //String name = intent.getExtras().getString("shopname");
-        //menuname="1";
+
         init();
         getData();
 
-        timeButton.setOnClickListener(new View.OnClickListener() {
+        //메뉴 확정 버튼 클릭
+        decisionMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSingleChoiceDialog();
+                decisionMenu();
             }
         });
 
+
+        //시간 버튼 클릭하면 예약 시간 선택 가능
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectTime();
+            }
+        });
+
+        //예약하기 버튼 누르면 예약 정보 전송
+        reserveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addReservation();
+            }
+        });
     }
 
     private void init() {
@@ -84,9 +118,10 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        //카테고리에 따른 가게 출력
-        final List<String> name_list = new ArrayList<>();
-        final List<String> price_list = new ArrayList<>();
+        //메뉴, 가격 출력
+        name_list = new ArrayList<>();
+        price_list = new ArrayList<>();
+        count_list = new ArrayList<>();
 
         //서버 디비 값 파싱
         try {
@@ -95,7 +130,7 @@ public class ReservationActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/menu";
-                        site += "?id=1";
+                        site += "?id="+shop_id;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
@@ -130,24 +165,25 @@ public class ReservationActivity extends AppCompatActivity {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String name = jsonObject.getString("name");
                                     String price = jsonObject.getString("price");
+                                    String count = jsonObject.getString("count");
                                     name_list.add(name);
                                     price_list.add(price);
-                                    Log.i("RESERVATION", "추출 결과 :  " + name+", "+price);
+                                    count_list.add(count);
+                                    Log.i("RESERVATION", "추출 결과 :  " + name+", "+price+"," + count);
                                 }
                                 for(int i=0; i<name_list.size(); i++){
-                                    Log.i("RESERVATION", "리스트 값 :  " + name_list.get(i)+", "+price_list.get(i));
+                                    Log.i("RESERVATION", "리스트 값 :  " + name_list.get(i)+", "+price_list.get(i)+", " + count_list.get(i));
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
                                     data.setName(name_list.get(i));
                                     data.setPrice(price_list.get(i));
+                                    data.setCount(count_list.get(i));
 
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-                                //adapter.notifyDataSetChanged();
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -174,41 +210,91 @@ public class ReservationActivity extends AppCompatActivity {
         }
     }
 
-    private void showSingleChoiceDialog(){
-        final int backup = choiceIndex; //이전 선택 상태 값 백업하는 변수
-        AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
-        builder.setTitle("예약 시간 선택");
+    private void decisionMenu(){
+        List numList = new ArrayList();
+        Log.i("RESERVATION", "MENU NUMBER : " + menu_number);
+        for(int i=0; i<name_list.size(); i++){
 
-        final String[] time = {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00",
-                "17:00", "18:00", "19:00", "20:00", "21:00"};
+        }
 
-        builder.setSingleChoiceItems(time, choiceIndex, new DialogInterface.OnClickListener() {
-            //버튼의 선택 상태가 변경된 경우 처리하는 위치
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //which값이 선택 항목의 index
-                choiceIndex = which;
-                Toast.makeText(ReservationActivity.this, time[which], Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                textView.setText(time[choiceIndex]);
-            }
-        });
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                choiceIndex = backup;
-            }
-        });
-
-        builder.create();
-        builder.show();
     }
 
+    private void selectTime(){
+        final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
+                "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00"};
+        final int[] selectedIndex = {0};
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+        builder.setTitle("예약 시간 선택")
+                .setSingleChoiceItems(time, selected, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        selectedIndex[0] = which;
+                        Log.i("RESERVATION", "which : "+which+", selectedIndex[0] : " +selectedIndex[0]);
+                    }
+                })
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Toast.makeText(ReservationActivity.this, time[selectedIndex[0]],
+                                Toast.LENGTH_SHORT).show();
+                        reservation_time = time[selectedIndex[0]];
+                        Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
+                        selected = selectedIndex[0];
+                        time_id.setText(reservation_time); //time_id 화면에 보내줌
+                    }
+                }).create().show();
+        //reservation_time = time[selectedIndex[0]];
+        Log.i("RESERVATION", "RESERVATION TIME : " + reservation_time);
+    }
 
-}
+    private void addReservation(){
+        //현재 시간 가져오기
+        TimeZone time;
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("yyMMddHHmmss");
+        time = TimeZone.getTimeZone("Asia/Seoul");
+        df.setTimeZone(time);
+        Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
+        String current = df.format(date);
+
+        try {
+            NetworkManager nm = new NetworkManager();
+                String client_site = "/reservation/add?current="+current+"&user="+client_id
+                        +"&time="+reservation_time+"&shop="+shop_id;
+                Log.i("RESERVATION", "SITE= "+client_site);
+                nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보
+
+                while(true){ // thread 작업이 끝날 때까지 대기
+                    if(nm.isEnd){
+                        break;
+                    }
+                    Log.i("RESERVATION", "아직 작업 안끝남.");
+                }
+                JSONObject jsonObject = nm.getResult();
+                String success = jsonObject.getString("result");
+                Log.i("RESERVATION", "서버에서 받아온 result = " + success);
+
+                if (success.equals("ERROR")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                    builder.setMessage("예약 실패")
+                            .setNegativeButton("다시 시도", null)
+                            .create()
+                            .show();
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                    builder.setMessage("예약 성공")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    private void startToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    }

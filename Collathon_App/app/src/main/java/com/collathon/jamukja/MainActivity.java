@@ -83,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
 //                    break;
 
                 case R.id.myButton:
-                    startActivity(CustomerMyMenuActivity.class, userID);
+                    Intent intent = new Intent(MainActivity.this, CustomerMyMenuActivity.class);
+                    intent.putExtra("userID", userID);
+                    MainActivity.this.startActivity(intent);
                     break;
 
                 case R.id.logoutButton:

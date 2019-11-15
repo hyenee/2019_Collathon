@@ -20,7 +20,7 @@
         android:id="@+id/reservation_menu_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="130dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/nanumsquare"
@@ -28,14 +28,26 @@
         android:text="메뉴 가격"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
+    <TextView
+        android:id="@+id/reservation_remaining_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanumsquare"
+        android:textSize="17sp"
+        android:text="남은 수량"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
     <EditText
         android:id="@+id/reservation_menu_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="345dp"
+        android:text="0"
         android:textSize="17sp"
-        android:hint="개수 입력"
         android:inputType="number"
         android:fontFamily="@font/nanumsquare"
         />
