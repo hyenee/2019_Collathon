@@ -23,6 +23,7 @@ import com.collathon.janolja.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,6 +48,8 @@ public class ReservationActivity extends AppCompatActivity {
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
     private String client_id, shop_id; //사용자 id, 가게 id 받아옴
+    TextView name;
+    String current;
 
     List<String> name_list, price_list, count_list;
 
@@ -60,6 +63,7 @@ public class ReservationActivity extends AppCompatActivity {
         client_id = intent.getExtras().getString("userID");
         shop_id = intent.getExtras().getString("shopID");
 
+        name = (TextView)findViewById(R.id.reservation_menu_name);
         menu_number = (EditText) findViewById(R.id.reservation_menu_number);
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
@@ -75,15 +79,6 @@ public class ReservationActivity extends AppCompatActivity {
         init();
         getData();
 
-        //메뉴 확정 버튼 클릭
-        decisionMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                decisionMenu();
-            }
-        });
-
-
         //시간 버튼 클릭하면 예약 시간 선택 가능
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +87,21 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
+        //메뉴 확정 버튼 클릭
+        decisionMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decisionMenu();
+            }
+        });
+
         //예약하기 버튼 누르면 예약 정보 전송
         reserveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                current = currentTime();
                 addReservation();
+                addReservationTable();
             }
         });
     }
@@ -212,7 +217,8 @@ public class ReservationActivity extends AppCompatActivity {
 
     private void decisionMenu(){
         List numList = new ArrayList();
-        Log.i("RESERVATION", "MENU NUMBER : " + menu_number);
+        //Log.i("RESERVATION", "MENU NUMBER : " + menu_number);
+
         for(int i=0; i<name_list.size(); i++){
 
         }
@@ -249,15 +255,6 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void addReservation(){
-        //현재 시간 가져오기
-        TimeZone time;
-        Date date = new Date();
-        DateFormat df = new SimpleDateFormat("yyMMddHHmmss");
-        time = TimeZone.getTimeZone("Asia/Seoul");
-        df.setTimeZone(time);
-        Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
-        String current = df.format(date);
-
         try {
             NetworkManager nm = new NetworkManager();
                 String client_site = "/reservation/add?current="+current+"&user="+client_id
@@ -274,7 +271,7 @@ public class ReservationActivity extends AppCompatActivity {
                 JSONObject jsonObject = nm.getResult();
                 String success = jsonObject.getString("result");
                 Log.i("RESERVATION", "서버에서 받아온 result = " + success);
-
+/*
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
                     builder.setMessage("예약 실패")
@@ -289,12 +286,98 @@ public class ReservationActivity extends AppCompatActivity {
                             .create()
                             .show();
                 }
+
+ */
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+    public void addReservationTable(){
+        String table_1 = number_table_1.getText().toString();
+        String table_2 = number_table_2.getText().toString();
+        String table_4 = number_table_4.getText().toString();
+
+        if(table_1.getBytes().length<=0){
+            table_1="0";
+        }
+        else{
+            addReservationTablePost(1, Integer.parseInt(table_1));
+
+        }
+        if(table_2.getBytes().length<=0){
+            table_2="0";
+        }
+        else{
+            addReservationTablePost(2, Integer.parseInt(table_2));
+
+        }
+        if(table_4.getBytes().length<=0){
+            table_4="0";
+        }
+        else{
+            addReservationTablePost(4, Integer.parseInt(table_4));
+        }
+
+        Log.i("RESERVATION","table4"+table_4);
+        Log.i("RESERVATION", "table_1 : " +table_1+", table_2 : "+ table_2+", table_4 : " + table_4);
+
+
+    }
+
+    public void addReservationTablePost(int number_of_table, int table_count){
+        //테이블 인원 POST
+        try {
+            NetworkManager nm = new NetworkManager();
+            String client_site = "/reservation/add/table?current="+current+"&user="+client_id+"&shop="+shop_id
+                    +"&table="+number_of_table+"&count="+table_count;
+            Log.i("RESERVATION", "SITE= "+client_site);
+            nm.postInfo(client_site, "POST");
+
+            while(true){ // thread 작업이 끝날 때까지 대기
+                if(nm.isEnd){
+                    break;
+                }
+                Log.i("RESERVATION", "아직 작업 안끝남.");
+            }
+            JSONObject jsonObject = nm.getResult();
+            String success = jsonObject.getString("result");
+            Log.i("RESERVATION", "서버에서 받아온 result = " + success);
+
+            if (success.equals("ERROR")){
+                AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                builder.setMessage("예약 실패")
+                        .setNegativeButton("다시 시도", null)
+                        .create()
+                        .show();
+            }
+            else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
+                builder.setMessage("예약 성공")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show();
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String currentTime(){
+        //현재 시간 가져오기
+        TimeZone time;
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("yyMMddHHmmss");
+        time = TimeZone.getTimeZone("Asia/Seoul");
+        df.setTimeZone(time);
+        Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
+        String current = df.format(date);
+
+        return current;
+    }
+
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-
     }

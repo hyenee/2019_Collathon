@@ -1,5 +1,6 @@
 package com.collathon.jamukja.customer.reservation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
     private Context context;
+    int selected = 0; //구매 수량 선택 다이얼로그에 쓸 변수
+    String menu_count="0"; //예약시간 초기 0으로 설정
+    private EditText menu_number;
 
     @NonNull
     @Override
@@ -68,6 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name = (TextView)itemView.findViewById(R.id.reservation_menu_name);
             price = (TextView)itemView.findViewById(R.id.reservation_menu_price);
             remain_count = (TextView)itemView.findViewById(R.id.reservation_remaining_count);
+            menu_number = (EditText) itemView.findViewById(R.id.reservation_menu_number);
         }
 
         void onBind(Data data) {
@@ -76,6 +82,45 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name.setText(data.getName());
             price.setText(data.getPrice());
             remain_count.setText(data.getCount());
+
+
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //selectMenuNumber();
+                }
+            });
         }
+
     }
+
+
+    public void selectMenuNumber(){
+        final String[] time = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        final int[] selectedIndex = {0};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("구매 수량 선택")
+                .setSingleChoiceItems(time, selected, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        selectedIndex[0] = which;
+                        Log.i("RESERVATION", "which : "+which+", selectedIndex[0] : " +selectedIndex[0]);
+                    }
+                })
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Toast.makeText(context, time[selectedIndex[0]], Toast.LENGTH_SHORT).show();
+                        menu_count = time[selectedIndex[0]];
+                        Log.i("RESERVATION", "MENU COUNT : " + menu_count);
+                        selected = selectedIndex[0];
+                        menu_number.setText(menu_count); //time_id 화면에 보내줌
+                    }
+                }).create().show();
+        //reservation_time = time[selectedIndex[0]];
+        Log.i("RESERVATION", "MENU COUNT : " + menu_count);
+    }
+
+
 }

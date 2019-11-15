@@ -1,10 +1,15 @@
 package com.collathon.jamukja.customer.reservation.ticket_confirm;
 
 public class Data {
+    private String id;
     private String shop;
     private String menu;
     private String count;
     private String time;
+
+    public String getId(){ return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public String getShop() {
         return shop;

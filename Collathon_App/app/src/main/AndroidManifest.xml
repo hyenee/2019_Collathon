@@ -115,9 +115,6 @@
         <activity
             android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList"
             android:theme="@style/AppTheme.NoActionBar2" />
-        <activity
-            android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList_List"
-            android:theme="@style/AppTheme.NoActionBar2" />
 
     </application>
 

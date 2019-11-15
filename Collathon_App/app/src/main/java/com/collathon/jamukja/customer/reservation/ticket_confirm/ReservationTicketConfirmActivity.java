@@ -31,7 +31,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     Handler handler;
     private String userID;
 
-    List<String> shop_list, menu_list, count_list, time_list;
+    List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
 
 
     @Override
@@ -65,7 +65,8 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        //예약한 가게, 메뉴, 수량, 시간 출력
+        //예약 id, 예약한 가게, 메뉴, 수량, 시간 출력
+        reservation_id_list = new ArrayList<>();
         shop_list = new ArrayList<>();
         menu_list = new ArrayList<>();
         count_list = new ArrayList<>();
@@ -111,22 +112,25 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String reservation_id = jsonObject.getString("reservation_id");
                                     String shop = jsonObject.getString("shop");
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
+                                    reservation_id_list.add(reservation_id);
                                     shop_list.add(shop);
                                     menu_list.add(menu);
                                     count_list.add(count);
                                     time_list.add(time);
-                                    Log.i("TICKET CONFIRM", "추출 결과 :  " + shop+", "+menu+"," + count+", "+ time);
+                                    Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
                                 }
                                 for(int i=0; i<shop_list.size(); i++){
-                                    Log.i("TICKET CONFIRM", "리스트 값 :  " + shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
+                                    Log.i("TICKET CONFIRM", "리스트 값 :  " + reservation_id_list.get(i)+", "+ shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
                                 }
                                 for (int i = 0; i < shop_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
+                                    data.setId(reservation_id_list.get(i));
                                     data.setShop(shop_list.get(i));
                                     data.setMenu(menu_list.get(i));
                                     data.setCount(count_list.get(i));
