@@ -23,21 +23,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class StoreDetailInfoActivity extends AppCompatActivity {
-    private String shop_id; //가게 id 받아옴
+
+    private static final String TAG = "StoreDetailInfoActivity";
+    private String shopID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_detail_info);
 
+        Intent intent = getIntent();
+        shopID = intent.getExtras().getString("shopID");
+
         final TextView tx_name = findViewById(R.id.store_name);
         final TextView tx_category = findViewById(R.id.store_category);
         final TextView tx_tel = findViewById(R.id.store_phone);
         final TextView tx_address = findViewById(R.id.store_location);
-
-        //사용자, 가게 id 받아옴
-        Intent intent = getIntent();
-        shop_id = intent.getExtras().getString("shopID");
 
         //서버 디비 값 파싱
         try {
@@ -46,8 +47,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/shop";
-                        site += "?id="+shop_id;
-                        Log.i("STORE", site);
+                        site += "?id="+shopID;
 
                         URL url = new URL(site);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -62,8 +62,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView textView1;
         private TextView textView2;
         private Data data;
-        private CheckBox checkBox;
-
 
         ItemViewHolder(View itemView) {
             super(itemView);

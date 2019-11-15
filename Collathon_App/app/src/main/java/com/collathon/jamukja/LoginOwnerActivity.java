@@ -34,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.collathon.janolja.R;
 
 public class LoginOwnerActivity extends AppCompatActivity {
-    private static final String TAG = "LoginCustomerActivity";
+    private static final String TAG = "LoginOwnerActivity";
     private AlertDialog.Builder builder;
     String ownerID;
     String userPasswd;
@@ -48,6 +48,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
 
         final EditText idText = (EditText)findViewById(R.id.idText);
         final EditText passwordText = (EditText)findViewById(R.id.passwordText);
+        passwordText.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         final Button loginButton = (Button)findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
 

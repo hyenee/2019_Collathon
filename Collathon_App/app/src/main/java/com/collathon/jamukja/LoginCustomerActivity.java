@@ -71,8 +71,6 @@ public class LoginCustomerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userID = idText.getText().toString();
                 userPasswd = passwordText.getText().toString();
-                Log.i("LOGIN:USERID", userID);
-                Log.i("LOGIN:PASSWORD", userPasswd);
 
                 //아이디, 비번 입력 안 한 경우 확인 메세지 나오게 함
                 if(idText.getText().toString().equals("") || passwordText.getText().toString().equals("")){
@@ -90,7 +88,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
                             try {
                                 String site = NetworkManager.url + "/user/login";
                                 site += "?id=" + userID + "&passwd=" + userPasswd;
-                                Log.i("LOGIN", site);
+                                Log.i(TAG, site);
 
                                 URL url = new URL(site);
                                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -99,7 +97,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                     connection.setConnectTimeout(2000);
                                     connection.setUseCaches(false);
                                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                        Log.i("LOGIN", "서버 연결됨");
+                                        Log.i(TAG, "서버 연결됨");
 
                                         // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                         InputStream is = connection.getInputStream();
@@ -118,16 +116,15 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                         br.close(); // 스트림 해제
 
                                         String rec_data = buf.toString();
-                                        Log.i("LOGIN", " 서버: " + rec_data);
+                                        Log.i(TAG, " 서버: " + rec_data);
 
                                         if (rec_data.equals("")) {
-                                            Log.i("LoginCustomerActivity","아이디가 틀렸습니다.");
+                                            Log.i(TAG,"아이디가 틀렸습니다.");
                                         } else {
                                             // 객체를 추출한다.(장소하나의 정보)
                                             JSONArray root = new JSONArray(rec_data);
                                             JSONObject obj1 = root.getJSONObject(0);
                                             getUserPasswd = obj1.getString("passwd");
-                                            Log.i(TAG, "추출 결과 place_type: " + getUserPasswd);
 
                                             if (getUserPasswd.equals(userPasswd)) {
                                                 Log.i(TAG, "로그인에 성공하셨습니다.");
@@ -138,7 +135,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
                                                 mHandler.postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        builder.setMessage("로그인에 실패했습니다.")
+                                                        builder.setMessage("아이디나 비밀번호가 틀렸습니다.")
                                                                 .setNegativeButton("확인", null)
                                                                 .create()
                                                                 .show();
@@ -160,7 +157,6 @@ public class LoginCustomerActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }

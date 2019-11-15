@@ -20,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
             android:name="com.collathon.jamukja.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -52,8 +52,8 @@
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name="com.collathon.jamukja.RegisterOwnerActivity"
-            android:theme="@style/AppTheme.NoActionBar2" />
 
+            android:theme="@style/AppTheme.NoActionBar2" />
         <!-- 고객 관점 -->
         <!-- (고객) 마이 메뉴 -->
         <activity
@@ -61,9 +61,7 @@
             android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name="com.collathon.jamukja.customer.user_info.customer.CustomerInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2" />
-
-        <!-- 가게 리스트 -->
+            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 리스트 -->
         <activity
             android:name="com.collathon.jamukja.customer.store.category.list.StoreListActivity"
             android:theme="@style/AppTheme.NoActionBar2" />

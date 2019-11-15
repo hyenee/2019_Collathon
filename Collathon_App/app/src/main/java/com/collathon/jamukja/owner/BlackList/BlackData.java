@@ -2,12 +2,7 @@ package com.collathon.jamukja.owner.BlackList;
 
 public class BlackData {
     private String ID;
-    private String count;
-
-    public BlackData(String ID, String count) {
-        this.ID = ID;
-        this.count = count;
-    }
+    private int count;
 
     public String getID() {
         return ID;
@@ -17,11 +12,12 @@ public class BlackData {
         this.ID = ID;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 }
+

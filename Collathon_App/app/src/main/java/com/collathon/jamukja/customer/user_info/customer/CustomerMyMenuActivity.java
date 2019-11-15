@@ -12,6 +12,8 @@ import com.collathon.jamukja.customer.reservation.ticket_confirm.ReservationTick
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
+
+    private static final String TAG = "CustomerMyMenuActivity";
     private String userID;
 
     @Override

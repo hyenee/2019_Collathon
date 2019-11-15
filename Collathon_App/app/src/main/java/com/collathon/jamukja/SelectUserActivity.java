@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.collathon.janolja.R;
 
 public class SelectUserActivity extends AppCompatActivity {
+    private static final String TAG = "SelectUserActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

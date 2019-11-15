@@ -189,11 +189,9 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));
 
-                                    //adapter.shopName = shopName;
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-                                //adapter.notifyDataSetChanged();
 
                                 runOnUiThread(new Runnable() {
                                     @Override

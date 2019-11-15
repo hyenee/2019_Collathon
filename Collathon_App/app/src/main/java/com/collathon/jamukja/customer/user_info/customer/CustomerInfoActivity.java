@@ -29,6 +29,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CustomerInfoActivity extends AppCompatActivity {
+    private static final String TAG = "CustomerInfoActivity";
     Handler handler;
     TextView customer_name, customer_phone, customer_email, customer_id;
     EditText customer_passwd;
@@ -41,8 +42,8 @@ public class CustomerInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_info_change);
         handler = new Handler();
 
-        Intent intent = getIntent();
-        userID = intent.getExtras().getString("userID");
+        Intent intent = getIntent(); /*데이터 수신*/
+        userID = intent.getExtras().getString("userID"); /*String형*/
 
         customer_name = (TextView)findViewById(R.id.customer_name); //사용자 이름
         customer_phone = (TextView)findViewById(R.id.customer_phone); //사용자 핸드폰
@@ -150,7 +151,7 @@ public class CustomerInfoActivity extends AppCompatActivity {
         try {
             NetworkManager nm = new NetworkManager();
             if (customer_passwd.length()>0) {
-                String client_site = "/mypage/user?id=1"+ "&new=" + newPasswd;
+                String client_site = "/mypage/user?id="+userID+ "&new=" + newPasswd;
                 Log.i("MY", "SITE= "+client_site);
                 nm.postInfo(client_site, "PATCH"); //받은 placeId에 따른 장소 세부 정보
 
