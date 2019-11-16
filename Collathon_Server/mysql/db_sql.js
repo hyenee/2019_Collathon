@@ -139,7 +139,7 @@ let deleteLikeShop = function(shop_id, name, callback){
 };
 
 let getUserReservationTable = function(client_id, callback){
-	let sql = "select id as reservation_id, name as shop, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	let sql = "select id as reservation_id, name as shop, number, reservation_count as count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -149,7 +149,7 @@ let getUserReservationMenu = function(client_id, callback){
 };
 
 let getOwnerReservationTable = function(shop_id, callback){
-	let sql = "select id as reservation_id, client_id as user, number, count, time from Reservation natural join(Shop) natural join(ReservationTable) where shop_id="+shop_id;
+	let sql = "select id as reservation_id, client_id as user, number, reservation_count as count, time from Reservation natural join(Shop) natural join(ReservationTable) where shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
@@ -159,7 +159,7 @@ let getOwnerReservationMenu = function(shop_id, callback){
 };
 
 let getReservationTable = function(shop_id, time, callback){
-	let sql = "select r.shop_id, s.number, if((s.number=rt.number), s.count-rt.count, s.count) as remain_table from Reservation as r natural join(ReservationTable as rt) inner join(ShopTable as s) on r.shop_id = s.shop_id where r.shop_id="+shop_id+" and time=\""+time+"\"";
+	let sql = "select s.shop_id, s.number, ifnull(count-count(reservation_count), count) as remain_table from ShopTable as s left join(ReservationTable as rt) on rt.number=s.number and rt.shop_id=s.shop_id left join(Reservation as r) on rt.id=r.id where s.shop_id="+shop_id+" and time =\""+time+"\" or time is null group by s.number";
 	query_function(sql, callback);
 };
 
