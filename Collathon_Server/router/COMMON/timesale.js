@@ -3,12 +3,6 @@ let express = require('express');
 let router = express.Router();
 let sql = require('../../mysql/db_sql')();
 
-/* GET timesale history */
-router.get('/', function(req, res, next){
-	console.log("---log start(TIMESALE:GET)---");
- 	console.log("TIMESALE:GET -> shop id : ", req.query.shop);	
-});
-
 /* Get Shop Stock Menu*/
 router.get('/stock/', function(req, res, next){
 	console.log("---log start(TIMESALE:GETSTOCK)---");
