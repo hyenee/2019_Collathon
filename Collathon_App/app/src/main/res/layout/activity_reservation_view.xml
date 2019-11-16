@@ -7,51 +7,87 @@
         android:id="@+id/reservation_menu_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/nanumsquare"
         android:textSize="17sp"
-        android:text="메뉴 이름"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        android:text="메뉴 이름"/>
 
 
     <TextView
         android:id="@+id/reservation_menu_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
         android:fontFamily="@font/nanumsquare"
-        android:textSize="17sp"
-        android:text="메뉴 가격"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        android:layout_below="@+id/reservation_menu_name"
+        android:textSize="13sp"
+        android:text="메뉴 가격"/>
 
     <TextView
-        android:id="@+id/reservation_remaining_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="50dp"
+        android:fontFamily="@font/nanumsquare"
+        android:layout_alignLeft="@+id/reservation_menu_price"
+        android:textSize="13sp"
+        android:text="원"/>
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="240dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/nanumsquare"
-        android:textSize="17sp"
-        android:text="남은 수량"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        android:textSize="15sp"
+        android:text="남은 수량"/>
+
+    <TextView
+        android:id="@+id/reservation_remaining_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanumsquare"
+        android:textSize="15sp"
+        android:text="0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginBottom="5dp"
+        android:text="구매 수량"
+        android:textSize="15sp"
+        android:inputType="number"
+        android:fontFamily="@font/nanumsquare" />
 
     <TextView
         android:id="@+id/reservation_menu_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="345dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginLeft="320dp"
         android:layout_marginBottom="5dp"
         android:text="0"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:inputType="number"
-        android:fontFamily="@font/nanumsquare"
-        />
+        android:fontFamily="@font/nanumsquare" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/reservation_menu_number"/>
 
 
 

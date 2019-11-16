@@ -44,7 +44,7 @@ public class ReservationActivity extends AppCompatActivity {
     Handler handler;
     Button decisionMenuButton, timeButton, reserveButton; //메뉴 확정, 시간, 예약하기 버튼
     EditText number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
-    TextView time_id; //시간 표시할 TextView,
+    TextView time_id, order_list; //시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
     private String client_id, shop_id; //사용자 id, 가게 id 받아옴
@@ -66,8 +66,8 @@ public class ReservationActivity extends AppCompatActivity {
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
         number_table_4 = (EditText) findViewById(R.id.number_table_4);
         time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 text로 보여줌
+        //order_list = (TextView) findViewById(R.id.order_list);
 
-        //decisionMenuButton = (Button)findViewById(R.id.decisionMenuButton);
         timeButton = (Button)findViewById(R.id.timeButton);
         reserveButton = (Button)findViewById(R.id.reserveButton);
 
@@ -84,18 +84,6 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        current = currentTime();
-        //메뉴 확정 버튼 클릭
-        decisionMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addReservationMenu();
-            }
-        });
-
-
-         */
         //예약하기 버튼 누르면 예약 정보 전송
         reserveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -361,14 +349,14 @@ public class ReservationActivity extends AppCompatActivity {
         String table_4 = number_table_4.getText().toString();
 
         //각 table 마다 빈칸인 경우 0으로 초기화
-        if(table_1.getBytes().length<=0){
+        if(table_1.length() == 0 || table_1.equals("0")){
             table_1="0";
         }
         else{
             addReservationTablePost(1, Integer.parseInt(table_1));
 
         }
-        if(table_2.getBytes().length<=0){
+        if(table_2.length() ==0 || table_2.equals("0")){
             table_2="0";
         }
         //if(Integer.parseInt(table_2)>0)
@@ -376,7 +364,7 @@ public class ReservationActivity extends AppCompatActivity {
             addReservationTablePost(2, Integer.parseInt(table_2));
 
         }
-        if(table_4.getBytes().length<=0){
+        if(table_4.length() == 0 || table_4.equals("0")){
             table_4="0";
         }
         else{

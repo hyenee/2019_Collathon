@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginLeft="80dp"
                     android:text="시간"
                     android:textSize="16dp" />
 
@@ -34,7 +34,7 @@
                     android:id="@+id/time_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="60dp"
                     android:text=""
                     android:textSize="16dp" />
 
@@ -56,36 +56,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="메뉴이름"
-                    android:textSize="17sp" />
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="120dp"
+                    android:layout_marginLeft="430dp"
                     android:fontFamily="@font/nanumsquare"
-                    android:text="메뉴가격"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="230dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="남은 수량"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="330dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="구매 수량"
+                    android:text=""
                     android:textSize="17sp" />
             </RelativeLayout>
 
@@ -94,40 +73,15 @@
                 android:id="@+id/reservation_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanumsquare"
-                app:layout_constraintTop_toBottomOf="@+id/decisionMenuButton"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="주문내역"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:id="@+id/order_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dip"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text=""
-                    android:textSize="16dp" />
-            </RelativeLayout>
 
             <!-- 테이블 선택 -->
             <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center">
 
                 <TableRow
