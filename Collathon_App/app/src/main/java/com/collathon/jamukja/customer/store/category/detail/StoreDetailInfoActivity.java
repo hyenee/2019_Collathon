@@ -39,6 +39,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
         final TextView tx_category = findViewById(R.id.store_category);
         final TextView tx_tel = findViewById(R.id.store_phone);
         final TextView tx_address = findViewById(R.id.store_location);
+        final TextView tx_table = findViewById(R.id.store_table);
 
         //서버 디비 값 파싱
         try {
@@ -82,7 +83,8 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                                 final String tel = jsonObject.getString("tel");
                                 final String address = jsonObject.getString("address");
                                 final String category = jsonObject.getString("category");
-                                Log.i("STORE", "추출 결과 :  " + name+", "+tel+", "+address+", "+category);
+                                final String table = jsonObject.getString("check_table");
+                                Log.i("STORE", "추출 결과 :  " + name+", "+tel+", "+address+", "+category+", " + table);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -91,6 +93,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
                                         tx_category.setText(category);
                                         tx_tel.setText(tel);
                                         tx_address.setText(address);
+                                        tx_table.setText(table);
                                     }
                                 });
 

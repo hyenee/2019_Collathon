@@ -47,7 +47,7 @@ public class ReservationActivity extends AppCompatActivity {
     TextView time_id, order_list; //시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
-    private String client_id, shop_id; //사용자 id, 가게 id 받아옴
+    private String userID, shopID; //사용자 id, 가게 id 받아옴
     String current; //현재 시간 받아오는 변수
 
     List<String> name_list, price_list, count_list;
@@ -59,8 +59,8 @@ public class ReservationActivity extends AppCompatActivity {
 
         //사용자, 가게 id 받아옴
         Intent intent = getIntent();
-        client_id = intent.getExtras().getString("userID");
-        shop_id = intent.getExtras().getString("shopID");
+        userID = intent.getExtras().getString("userID");
+        shopID = intent.getExtras().getString("shopID");
 
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
@@ -132,7 +132,7 @@ public class ReservationActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/categories/menu";
-                        site += "?id="+shop_id+"&time="+HH;
+                        site += "?id="+shopID+"&time="+HH;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
@@ -253,8 +253,8 @@ public class ReservationActivity extends AppCompatActivity {
     private void addReservation(){
         try {
             NetworkManager nm = new NetworkManager();
-                String client_site = "/reservation/add?current="+current+"&user="+client_id
-                        +"&time="+reservation_time+"&shop="+shop_id;
+                String client_site = "/reservation/add?current="+current+"&user="+userID
+                        +"&time="+reservation_time+"&shop="+shopID;
                 Log.i("RESERVATION(addReservation)", "SITE= "+client_site);
                 nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보
 
@@ -305,8 +305,8 @@ public class ReservationActivity extends AppCompatActivity {
     private void addReservationMenuPost(String menu_name, String menu_count){
         try {
             NetworkManager nm = new NetworkManager();
-            String client_site = "/reservation/add/menu?current="+current+"&user="+client_id
-                    +"&shop="+shop_id+"&menu="+menu_name+"&count="+menu_count;
+            String client_site = "/reservation/add/menu?current="+current+"&user="+userID
+                    +"&shop="+shopID+"&menu="+menu_name+"&count="+menu_count;
             Log.i("RESERVATION(addReservationMenu)", "SITE= "+client_site);
             nm.postInfo(client_site, "POST");
 
@@ -378,7 +378,7 @@ public class ReservationActivity extends AppCompatActivity {
         //테이블 종류에 따라 post
         try {
             NetworkManager nm = new NetworkManager();
-            String client_site = "/reservation/add/table?current="+current+"&user="+client_id+"&shop="+shop_id
+            String client_site = "/reservation/add/table?current="+current+"&user="+userID+"&shop="+shopID
                     +"&table="+number_of_table+"&count="+table_count;
             Log.i("RESERVATIONRESERVATION(addReservationTable)", "SITE= "+client_site);
             nm.postInfo(client_site, "POST");
@@ -431,7 +431,7 @@ public class ReservationActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/reservation/table/remain";
-                        site += "?id="+shop_id+"&time="+reservation_time;
+                        site += "?id="+shopID+"&time="+reservation_time;
                         Log.i("MENU", site);
 
                         URL url = new URL(site);
@@ -528,4 +528,14 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void startToast(String msg) { Toast.makeText(this, msg, Toast.LENGTH_SHORT).show(); }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent reservationIntent = new Intent();
+        reservationIntent.putExtra("userID",userID);
+        reservationIntent.putExtra("shopID",shopID);
+        setResult(1234, reservationIntent);
+        finish();
+    }
     }

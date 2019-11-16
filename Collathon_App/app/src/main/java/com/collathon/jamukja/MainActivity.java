@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
+import com.collathon.jamukja.customer.store.pick.PickStoreActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
 
@@ -77,10 +78,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(MainActivity.class, userID);
                     break;
 
-//                case R.id.pickButton:
-//                    Intent noodleIntent = new Intent(MainActivity.this, StoreListActivity.class);
-//                    MainActivity.this.startActivity(noodleIntent);
-//                    break;
+                case R.id.pickButton:
+                    Intent pickIntent = new Intent(MainActivity.this, PickStoreActivity.class);
+                    pickIntent.putExtra("userID", userID);
+                    MainActivity.this.startActivity(pickIntent);
+                    break;
 
                 case R.id.myButton:
                     Intent intent = new Intent(MainActivity.this, CustomerMyMenuActivity.class);

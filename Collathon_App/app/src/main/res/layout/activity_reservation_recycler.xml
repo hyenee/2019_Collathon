@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
                     android:text="시간"
-                    android:textSize="16dp" />
+                    android:textSize="17dp" />
 
 
                 <TextView
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="60dp"
                     android:text=""
-                    android:textSize="16dp" />
+                    android:textSize="17dp" />
 
                 <Button
                     android:id="@+id/timeButton"
@@ -94,7 +94,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="테이블 인원"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                         android:gravity="center"
                         android:padding="16dp"
                         android:text="잔여"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
                         android:gravity="center"
                         android:padding="20sp"
                         android:text="개수"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                 </TableRow>
 
@@ -126,7 +126,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="1인"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/table_1"
@@ -135,7 +135,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="0개"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <EditText
                         android:id="@+id/number_table_1"
@@ -145,7 +145,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                 </TableRow>
 
@@ -159,7 +159,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="2인"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/table_2"
@@ -168,7 +168,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="0개"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <EditText
                         android:id="@+id/number_table_2"
@@ -178,7 +178,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                 </TableRow>
 
@@ -192,7 +192,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="4인"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/table_4"
@@ -201,7 +201,7 @@
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
                         android:text="0개"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                     <EditText
                         android:id="@+id/number_table_4"
@@ -211,7 +211,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="16dp" />
+                        android:textSize="17dp" />
 
                 </TableRow>
 
@@ -227,7 +227,7 @@
                 android:fontFamily="@font/nanumsquare"
                 android:text="예약하기"
                 android:textColor="#FFFFFF"
-                android:textSize="15dp" />
+                android:textSize="17dp" />
 
         </LinearLayout>
     </ScrollView>
