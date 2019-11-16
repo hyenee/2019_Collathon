@@ -7,6 +7,22 @@ let sql = require('../../mysql/db_sql')();
 router.get('/', function(req, res, next){
 	console.log("---log start(TIMESALE:GET)---");
  	console.log("TIMESALE:GET -> shop id : ", req.query.shop);	
+});
+
+/* Get Shop Stock Menu*/
+router.get('/stock/', function(req, res, next){
+	console.log("---log start(TIMESALE:GETSTOCK)---");
+	console.log("TIMESALE:GETSTOCK -> shop id : ", req.query.shop);
+	sql.getStockMenu(req.query.shop, function(err, result){
+		res.send(result);
+	});
+	console.log("---log end---");
+}); //http://oreh.onyah.net:7080/timesale/stock?shop={shop_id}
+
+/* GET timesale history */
+router.get('/', function(req, res, next){
+	console.log("---log start(TIMESALE:GET)---");
+ 	console.log("TIMESALE:GET -> shop id : ", req.query.shop);
 	sql.getTimeSale(req.query.shop, function(err, result){
 		res.send(result);
 	});

@@ -124,7 +124,7 @@ let addBlackList = function(client_id, shop_id, comment, callback){
 };
 
 let getLikeShop = function(client_id, callback){
-	let sql = "select * from Likes where name =\""+client_id+"\"";  
+	let sql = "select l.name as user_id, shop_id, s.name as shop, master as owner, tel, address, category, check_table from Likes as l, Shop as s where l.shop_id=s.id and l.name =\""+client_id+"\"";  
 	query_function(sql, callback);
 };
 
@@ -206,6 +206,11 @@ let deleteTimeSale = function(id,callback){
 	query_function(sql, callback);
 };
 
+let getStockMenu = function(shop_id, callback){
+	let sql = "select * from Menu where shop_id ="+shop_id+" and count > 0";
+	query_function(sql, callback);
+};
+
 module.exports = function() {
 	return {
 		getClientUser: getClientUser,
@@ -240,6 +245,7 @@ module.exports = function() {
 		getTimeSale: getTimeSale,
 		addTimeSale: addTimeSale,
 		deleteTimeSale: deleteTimeSale,
+		getStockMenu: getStockMenu,
 		pool: pool
 	}
 };
