@@ -48,7 +48,7 @@ let addClientUser = function(name, client_id, passwd, phone, email, callback){
 };
 
 let getOwnerUser = function(owner_id, password, callback){
-	let sql = "select passwd from Supplier where id=\""+owner_id+"\"";
+	let sql = "select passwd, name from Supplier where id=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -79,7 +79,7 @@ let getShopDetail = function(shop_id, callback){
 
 let getMenuwithTimeSale = function(shop_id, time, callback){
 	time = time+":00-%"
-	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
+	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count, check_table from Menu as m inner join(Shop as s) on m.shop_id=s.id left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
@@ -159,7 +159,7 @@ let getOwnerReservationMenu = function(shop_id, callback){
 };
 
 let getReservationTable = function(shop_id, time, callback){
-	let sql = "select s.shop_id, s.number, ifnull(count-count(reservation_count), count) as remain_table from ShopTable as s left join(ReservationTable as rt) on rt.number=s.number and rt.shop_id=s.shop_id left join(Reservation as r) on rt.id=r.id where s.shop_id="+shop_id+" and time =\""+time+"\" or time is null group by s.number";
+	let sql = "select s.shop_id, s.number, if(time is null, count, count-count(reservation_count)) as remain_table from ShopTable as s left join(ReservationTable as rt) on rt.number=s.number and rt.shop_id=s.shop_id left join(Reservation as r) on rt.id=r.id and time=\""+time+"\" where s.shop_id="+shop_id+" group by s.shop_id, s.number";
 	query_function(sql, callback);
 };
 
