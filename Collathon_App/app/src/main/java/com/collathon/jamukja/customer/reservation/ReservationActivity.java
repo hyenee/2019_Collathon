@@ -52,8 +52,6 @@ public class ReservationActivity extends AppCompatActivity {
     private String userID, shopID; //사용자 id, 가게 id intent로 받아옴
     String current; //현재 시간 받아오는 변수
     TableLayout tableLayout; //테이블 레이아웃
-    //String checkTable; //가게 테이블 여부 확인하는 변수
-    //List<String> check_list = new ArrayList<>();
 
     List<String> name_list, price_list, count_list; //json 파싱한 값 저장
 
@@ -81,8 +79,6 @@ public class ReservationActivity extends AppCompatActivity {
         init();
         getData();
 
-        //checkTable = getCheckTable();
-        //Log.i("RESERVATION", "get check table : " +checkTable);
 /*
         if(getCheckTable().equals("N")){
             tableLayout.setVisibility(View.INVISIBLE);
@@ -259,7 +255,6 @@ public class ReservationActivity extends AppCompatActivity {
                         getReservationTable(reservation_time);
                     }
                 }).create().show();
-        //reservation_time = time[selectedIndex[0]];
         Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
     }
 
@@ -437,7 +432,9 @@ public class ReservationActivity extends AppCompatActivity {
         final TextView table_1 = (TextView)findViewById(R.id.table_1);
         final TextView table_2 = (TextView)findViewById(R.id.table_2);
         final TextView table_4 = (TextView)findViewById(R.id.table_4);
-
+        table_1.setText("0");
+        table_2.setText("0");
+        table_4.setText("0");
 
         try {
             NetworkManager.add(new Runnable() {
@@ -499,9 +496,16 @@ public class ReservationActivity extends AppCompatActivity {
                                                 table_2.setText(remain_table_list.get(i));
                                             else if(number_list.get(i).equals("4"))
                                                 table_4.setText(remain_table_list.get(i));
-                                            else{
-
-                                            }
+                                        }
+                                        //테이블 잔여 0인 경우 예약 못하게 함
+                                        if(table_1.getText().toString().equals("0")){
+                                            number_table_1.setVisibility(View.INVISIBLE);
+                                        }
+                                        if(table_2.getText().toString().equals("0")){
+                                            number_table_2.setVisibility(View.INVISIBLE);
+                                        }
+                                        if(table_4.getText().toString().equals("0")){
+                                            number_table_4.setVisibility(View.INVISIBLE);
                                         }
                                     }
                                 });
@@ -522,74 +526,8 @@ public class ReservationActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
-/*
-    public String getCheckTable(){
-
-        //테이블 여부 파싱
-        try {
-            NetworkManager.add(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String site = NetworkManager.url + "/categories/shop";
-                        site += "?id="+shopID;
-
-                        URL url = new URL(site);
-                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-                        if (connection != null) {
-                            connection.setConnectTimeout(2000);
-                            connection.setUseCaches(false);
-                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i("RESERVATION", "서버 연결됨");
-                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
-                                InputStream is = connection.getInputStream();
-                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
-                                BufferedReader br = new BufferedReader(isr);
-                                String str = null;
-                                StringBuffer buf = new StringBuffer();
-
-                                // 읽어온다.
-                                do {
-                                    str = br.readLine();
-                                    if (str != null) {
-                                        buf.append(str);
-                                    }
-                                } while (str != null);
-                                br.close(); // 스트림 해제
-
-                                String rec_data = buf.toString();
-                                Log.i("RESERVATION, ", "서버: " + rec_data);
-
-                                JSONArray jsonArray = new JSONArray(rec_data);
-                                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                final String table = jsonObject.getString("check_table");
-                                //checkTable = table;
-                                check_list.add(table);
-                                Log.i("RESERVATION", "추출 결과 :  " + table);
-                                Log.i("RESERVATION", "checktable :  " + check_list.get(0));
-
-
-                            }
-                            connection.disconnect(); // 연결 끊기
-                        }
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }catch(JSONException e){
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Log.i("RESERVATION", "checktable2 :  " + check_list.get(0));
-        return "Y";
-    }*/
 
     public String currentTime(){
         //현재 시간 가져오기

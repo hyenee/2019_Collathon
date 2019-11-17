@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
-                        android:text="0개"
+                        android:text="0"
                         android:textSize="17dp" />
 
                     <EditText
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
-                        android:text="0개"
+                        android:text="0"
                         android:textSize="17dp" />
 
                     <EditText
@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquare"
                         android:gravity="center"
-                        android:text="0개"
+                        android:text="0"
                         android:textSize="17dp" />
 
                     <EditText
