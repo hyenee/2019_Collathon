@@ -8,14 +8,27 @@
 
     <TextView
         android:id="@+id/et_storename"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="TextView"
+        android:hint="가게 이름"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_menu"
         tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_menu"
+        android:layout_width="409dp"
+        android:layout_height="592dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_timesale"
+        app:layout_constraintTop_toBottomOf="@+id/et_storename"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
 
     <Button
         android:id="@+id/btn_timesale"
@@ -26,7 +39,6 @@
         android:layout_marginBottom="20dp"
         android:text="타임세일"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_registerMenu"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -42,16 +54,6 @@
         app:layout_constraintTop_toBottomOf="@+id/recycler_menu"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_menu"
-        android:layout_width="409dp"
-        android:layout_height="592dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_timesale"
-        app:layout_constraintTop_toBottomOf="@+id/et_storename"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp" />
 
     <Button
         android:id="@+id/btn_remove"

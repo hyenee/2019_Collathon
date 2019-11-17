@@ -6,17 +6,39 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+<<<<<<< HEAD
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TimeSale" />
+=======
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="reservation" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc7218b1-82d9-4a67-94dc-489b2c8680e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/CheckableLinearLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ListViewAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/owner_menu_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_menu_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/owner_store_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/owner_store_info.xml" afterDir="false" />
+=======
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
@@ -33,6 +55,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml" afterDir="false" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,25 +65,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ReservationActivity.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-38">
-                    <caret line="224" column="40" lean-forward="true" selection-start-line="224" selection-start-column="40" selection-end-line="224" selection-end-column="40" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsManager">
@@ -73,6 +77,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleActivity.java">
+=======
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,16 +94,30 @@
                 <element signature="e#4624#4625#0" expanded="true" />
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/Owner_BlackList.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1349">
-              <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            <state relative-caret-position="212">
+              <caret line="326" column="42" lean-forward="true" selection-start-line="326" selection-start-column="42" selection-end-line="326" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
+<<<<<<< HEAD
+                <element signature="e#3146#3287#0" expanded="true" />
+                <element signature="e#3286#3287#0" expanded="true" />
+                <element signature="e#3516#3834#0" expanded="true" />
+                <element signature="e#3833#3834#0" expanded="true" />
+                <element signature="e#3965#4651#0" expanded="true" />
+                <element signature="e#4650#4651#0" expanded="true" />
+                <element signature="e#10588#10810#0" expanded="true" />
+                <element signature="e#10809#10810#0" expanded="true" />
+                <element signature="e#12388#12610#0" expanded="true" />
+                <element signature="e#12609#12610#0" expanded="true" />
+=======
                 <element signature="e#1519#1663#0" expanded="true" />
                 <element signature="e#1662#1663#0" expanded="true" />
                 <element signature="e#4946#5280#0" expanded="true" />
                 <element signature="e#5279#5280#0" expanded="true" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
               </folding>
             </state>
           </provider>
@@ -123,28 +144,50 @@
               </folding>
 =======
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_owner.xml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_customer.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="23" />
->>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+            <state relative-caret-position="-691">
+              <caret line="58" column="42" lean-forward="true" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+              <folding>
+                <element signature="e#1835#2195#0" expanded="true" />
+                <element signature="e#2194#2195#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="3914">
+              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+=======
+            <state relative-caret-position="114">
+              <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="23" />
+>>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list_list.xml">
+          <provider editor-type-id="android-designer2" />
+=======
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml">
           <provider selected="true" editor-type-id="android-designer2" />
@@ -153,66 +196,68 @@
               <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/StoreListActivity.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1656">
-              <caret line="164" column="50" lean-forward="true" selection-start-line="164" selection-start-column="50" selection-end-line="164" selection-end-column="50" />
-              <folding>
-                <element signature="e#2555#2699#0" expanded="true" />
-                <element signature="e#2698#2699#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="171">
+              <caret line="9" column="44" lean-forward="true" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/RecyclerAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-505">
-              <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+            <state relative-caret-position="76">
+              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/SecondAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="87" column="39" lean-forward="true" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
-              <folding>
-                <element signature="e#2808#2983#0" expanded="true" />
-                <element signature="e#2982#2983#0" expanded="true" />
-                <element signature="e#3345#3720#0" expanded="true" />
-                <element signature="e#3719#3720#0" expanded="true" />
-                <element signature="e#3767#4363#0" expanded="true" />
-                <element signature="e#4362#4363#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="297">
+              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/RecyclerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+=======
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="281">
               <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_recycler.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="-4674" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+            </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_select_user.xml">
-          <provider editor-type-id="text-editor" />
-          <provider selected="true" editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2831">
+              <caret line="210" column="21" lean-forward="true" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -227,6 +272,16 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+<<<<<<< HEAD
+      <find>Reser</find>
+      <find>shopID</find>
+      <find>shop_id</find>
+      <find>getReserve</find>
+      <find>getTime</find>
+      <find>url</find>
+      <find>reserve</find>
+=======
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <find>TIME</find>
       <find>set</find>
       <find>reservation_time</find>
@@ -247,6 +302,10 @@
       <find>log</find>
       <find>id</find>
       <find>userID</find>
+<<<<<<< HEAD
+      <find>show blue print</find>
+      <find>time</find>
+=======
       <find>setTime</find>
       <find>itemview</find>
       <find>adapter</find>
@@ -257,6 +316,7 @@
       <find>selected</find>
       <find>current</find>
       <find>RecyclerAdapter</find>
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -265,6 +325,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackData.java" />
 =======
@@ -295,6 +357,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/StoreDetailInfoActivity.java" />
 =======
         <option value="$PROJECT_DIR$/local.properties" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ReservationActivity.java" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
@@ -305,10 +368,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/ReservationTicketConfirmViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_ticket_confirm_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_ticket_confirm_recycler.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/StoreDetailInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/user_info/customer/CustomerInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/user_info/customer/CustomerMyMenuActivity.java" />
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/ReservationTicketConfirmActivity.java" />
@@ -327,27 +391,58 @@
     <option name="width" value="1365" />
 =======
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackData.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_black_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/Owner_BlackList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_store.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginCustomerActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_menu_register.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Menu_Register.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/CheckableLinearLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MyEditText.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/ViewHolder.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/ListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ViewHolder.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/RecyclerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_store_info.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/CheckableLinearLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ListViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterCustomerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/ss.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/ssss.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/SecondAdapter.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
+    <option name="x" value="537" />
+    <option name="y" value="16" />
+    <option name="width" value="1385" />
+    <option name="height" value="1020" />
+=======
     <option name="x" value="-29" />
     <option name="y" value="1" />
     <option name="width" value="1379" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
     <option name="height" value="1040" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -355,6 +450,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -366,6 +464,8 @@
               <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
 =======
               <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
@@ -373,6 +473,7 @@
             <path>
               <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -464,16 +565,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="jamukja" type="cbb59c9e:AndroidPsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="owner" type="462c0819:PsiDirectoryNode" />
+=======
               <item name="customer" type="462c0819:PsiDirectoryNode" />
               <item name="customer" type="462c0819:PsiDirectoryNode" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
-            </path>
-            <path>
-              <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="jamukja" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="owner" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
             </path>
             <path>
               <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
@@ -482,6 +580,14 @@
               <item name="jamukja" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="owner" type="462c0819:PsiDirectoryNode" />
               <item name="BlackList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="jamukja" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="owner" type="462c0819:PsiDirectoryNode" />
+              <item name="TimeSale" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JaNolja" type="1abcf292:AndroidViewProjectNode" />
@@ -502,20 +608,22 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_2_API_28 [emulator-5554]" />
+    <property name="DEBUGGABLE_PROCESS" value="com.collathon.janolja" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_28" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-11-15T08:39:00.216Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-11-16T12:54:45.675Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../My Application" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
+      <recent name="com.collathon.jamukja.owner.TimeSale" />
       <recent name="com.collathon.jamukja" />
       <recent name="com.collathon.janolja" />
     </key>
@@ -609,6 +717,9 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
+    <frame x="430" y="13" width="1108" height="816" extended-state="0" />
+=======
+<<<<<<< HEAD
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -616,18 +727,35 @@
       <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.16040269" />
 =======
     <frame x="-23" y="1" width="1103" height="832" extended-state="0" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="1" />
+<<<<<<< HEAD
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.18225192" />
+=======
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.20517737" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <window_info id="Structure" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Find" order="0" weight="0.32796487" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.4465593" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Android Profiler" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.3396779" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329429" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.077598825" />
+=======
 <<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Logcat" order="0" visible="true" weight="0.7602837" />
 =======
@@ -647,6 +775,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.3490701" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -657,6 +786,11 @@
   </component>
   <component name="editorHistoryManager">
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_intro_layout.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MenuData.java">
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_ticket_confirm_recycler.xml">
@@ -666,110 +800,256 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/Data.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_customer_info_change.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="114">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/ReservationTicketConfirmActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_seat_confirm_recycler.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_recycler.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="128" column="48" selection-start-line="128" selection-start-column="41" selection-end-line="128" selection-end-column="48" />
+        <state relative-caret-position="-1805">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/RecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Menu_remove.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="76">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java">
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/Owner_BlackList_List.java" />
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        <state relative-caret-position="-342">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MyEditText.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginCustomerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        <state relative-caret-position="1330">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2223">
-          <caret line="117" selection-start-line="117" selection-end-line="117" />
+        <state relative-caret-position="494">
+          <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/user_info/customer/CustomerInfoActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ViewHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="114">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MenuData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Menu_Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_menu_remove.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store_detail_menu_view.xml">
+      <provider editor-type-id="android-designer2" />
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list_list.xml">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-663" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store_list_recycler.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store_detail_menu_recycler.xml">
+      <provider editor-type-id="android-designer2" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list.xml">
+>>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/StoreDetailInfoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-891">
-          <caret line="48" column="78" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="78" />
+        <state relative-caret-position="570">
+          <caret line="90" column="50" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/user_info/customer/CustomerMyMenuActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_blacklist_list.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_menu_register.xml">
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="60" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="60" />
+        </state>
+      </provider>
     </entry>
 <<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_store.xml">
+      <provider editor-type-id="android-designer2" />
 =======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list_list.xml">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/StoreListViewActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/Data.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackData.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="39" />
+        <state relative-caret-position="304">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_menu.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-57" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/CheckableLinearLayout.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/NetworkManager.java">
+>>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/ListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/Owner_BlackList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="48" column="46" lean-forward="true" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1519#1663#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackAdapter.java">
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store_detail_menu_view.xml">
+      <provider editor-type-id="android-designer2" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginCustomerActivity.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_store_info.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_item.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterOwnerActivity.java">
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="76">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_menu_remove.xml">
-      <provider editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_time_sale_list.xml">
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="123" column="25" selection-start-line="123" selection-start-column="25" selection-end-line="123" selection-end-column="25" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_item_view_store.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/NetworkManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/StoreDetailMenuViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -779,96 +1059,8 @@
       </provider>
     </entry>
 <<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/StoreListViewActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/Data.java">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/IntroActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/NetworkManager.java">
->>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#901#902#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/StoreDetailListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="195" column="31" selection-start-line="195" selection-start-column="31" selection-end-line="201" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store_detail_menu_view.xml">
-      <provider editor-type-id="android-designer2" />
 =======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginCustomerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2204">
-          <caret line="158" column="17" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterCustomerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterOwnerActivity.java">
->>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/SelectUserActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-893">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/item_view_menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_customer_mymenu.xml">
       <provider selected="true" editor-type-id="android-designer2" />
@@ -938,65 +1130,99 @@
           <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/item_view_store.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="194" column="21" selection-start-line="194" selection-start-column="21" selection-end-line="194" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Menu_Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-277">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Menu_remove.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MenuData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/RecyclerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1360">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/SecondAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1341">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/BlackAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-532">
-          <caret line="26" column="99" selection-start-line="26" selection-start-column="99" selection-end-line="26" selection-end-column="99" />
->>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+        <state relative-caret-position="23">
+          <caret line="128" column="2" lean-forward="true" selection-start-line="128" selection-start-column="2" selection-end-line="132" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#4546#4690#0" expanded="true" />
+            <element signature="e#4689#4690#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterCustomerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="100" column="5" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ListViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2802#2803#0" expanded="true" />
+            <element signature="e#2844#2845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/RegisterOwnerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="93" column="3" selection-start-line="93" selection-start-column="3" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/ss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/ss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ReservationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1406">
+          <caret line="175" column="33" lean-forward="true" selection-start-line="175" selection-start-column="33" selection-end-line="175" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/ssss.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="125">
+          <caret line="284" column="42" selection-start-line="284" selection-start-column="38" selection-end-line="284" selection-end-column="42" />
+=======
+        <state relative-caret-position="-532">
+          <caret line="26" column="99" selection-start-line="26" selection-start-column="99" selection-end-line="26" selection-end-column="99" />
+>>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2079#6744#0" expanded="true" />
+            <element signature="e#3056#6684#0" expanded="true" />
+            <element signature="e#6683#6684#0" expanded="true" />
+            <element signature="e#6743#6744#0" expanded="true" />
+            <element signature="e#7407#7797#0" expanded="true" />
+            <element signature="e#7796#7797#0" expanded="true" />
+            <element signature="e#7848#10534#0" expanded="true" />
+            <element signature="e#9935#10269#0" expanded="true" />
+            <element signature="e#10268#10269#0" expanded="true" />
+            <element signature="e#10533#10534#0" expanded="true" />
+            <element signature="e#10696#10697#0" expanded="true" />
+            <element signature="e#10764#10765#0" expanded="true" />
+            <element signature="e#11084#11228#0" expanded="true" />
+            <element signature="e#11227#11228#0" expanded="true" />
+            <element signature="e#11606#15717#0" expanded="true" />
+            <element signature="e#15716#15717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleData.java">
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ticket_confirm/ReservationTicketConfirmActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1018,33 +1244,56 @@
           <caret line="105" column="90" lean-forward="true" selection-start-line="105" selection-start-column="90" selection-end-line="105" selection-end-column="90" />
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Data.java">
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1702">
-          <caret line="252" column="14" selection-start-line="252" selection-start-column="14" selection-end-line="252" selection-end-column="14" />
+        <state relative-caret-position="19">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
           <folding>
-            <element signature="e#10964#11108#0" expanded="true" />
-            <element signature="e#11107#11108#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/AsteriskPasswordTransformationMethod.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/CheckableLinearLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
->>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+        <state relative-caret-position="266">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/list/StoreListActivity.java">
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/view/View.class">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state>
+          <folding>
+            <element signature="e#0#91653#0" expanded="true" />
+          </folding>
+=======
+        <state relative-caret-position="247">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+>>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/TimeSale/TimeSaleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="212">
+          <caret line="326" column="42" lean-forward="true" selection-start-line="326" selection-start-column="42" selection-end-line="326" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3146#3287#0" expanded="true" />
+            <element signature="e#3286#3287#0" expanded="true" />
+            <element signature="e#3516#3834#0" expanded="true" />
+            <element signature="e#3833#3834#0" expanded="true" />
+            <element signature="e#3965#4651#0" expanded="true" />
+            <element signature="e#4650#4651#0" expanded="true" />
+            <element signature="e#10588#10810#0" expanded="true" />
+            <element signature="e#10809#10810#0" expanded="true" />
+            <element signature="e#12388#12610#0" expanded="true" />
+            <element signature="e#12609#12610#0" expanded="true" />
+=======
 <<<<<<< HEAD
         <state relative-caret-position="277">
           <caret line="158" column="56" lean-forward="true" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
@@ -1057,10 +1306,20 @@
             <element signature="e#2555#2699#0" expanded="true" />
             <element signature="e#2698#2699#0" expanded="true" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list_list.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="44" lean-forward="true" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        </state>
+      </provider>
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/selectMenuCount.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1106,42 +1365,50 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_owner.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_customer.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_main.xml">
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/BlackList/Owner_BlackList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1349">
-          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1519#1663#0" expanded="true" />
-            <element signature="e#1662#1663#0" expanded="true" />
-            <element signature="e#4946#5280#0" expanded="true" />
-            <element signature="e#5279#5280#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="95">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/owner_black_list.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="23" />
+        <state relative-caret-position="76">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/ReservationActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/SecondAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/RecyclerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="19">
+          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+=======
         <state relative-caret-position="-38">
           <caret line="224" column="40" lean-forward="true" selection-start-line="224" selection-start-column="40" selection-end-line="224" selection-end-column="40" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/store/category/detail/RecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="76">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+=======
 <<<<<<< HEAD
         <state relative-caret-position="165">
           <caret line="92" column="72" lean-forward="true" selection-start-line="92" selection-start-column="72" selection-end-line="92" selection-end-column="72" />
@@ -1180,14 +1447,19 @@
 =======
         <state relative-caret-position="-505">
           <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/customer/reservation/RecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/LoginOwnerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="87" column="39" lean-forward="true" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+        <state relative-caret-position="-691">
+          <caret line="58" column="42" lean-forward="true" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
           <folding>
+<<<<<<< HEAD
+            <element signature="e#1835#2195#0" expanded="true" />
+            <element signature="e#2194#2195#0" expanded="true" />
+=======
             <element signature="e#2808#2983#0" expanded="true" />
             <element signature="e#2982#2983#0" expanded="true" />
             <element signature="e#3345#3720#0" expanded="true" />
@@ -1207,10 +1479,18 @@
           <folding>
             <element signature="e#2193#5633#0" expanded="true" />
             <element signature="e#5632#5633#0" expanded="true" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/Store_info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2831">
+          <caret line="210" column="21" lean-forward="true" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
+        </state>
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -1248,21 +1528,26 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_recycler.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-4674" />
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_select_user.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/collathon/jamukja/owner/MainOwnerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3914">
+          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_reservation_view.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
 >>>>>>> 1f75f58305ae1e7b09319e70e841f693c2e168e2
+>>>>>>> cd75c67e438f8702424c5d56da1af5150f036baf
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
   </component>
   <component name="masterDetails">

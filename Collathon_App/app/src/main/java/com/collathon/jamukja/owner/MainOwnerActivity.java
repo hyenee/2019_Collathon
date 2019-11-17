@@ -16,6 +16,7 @@ import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.MainActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.BlackList.Owner_BlackList;
+import com.collathon.jamukja.owner.TimeSale.TimeSaleActivity;
 import com.collathon.janolja.R;
 
 import java.io.BufferedReader;
@@ -63,7 +64,6 @@ public class MainOwnerActivity extends AppCompatActivity {
         findViewById(R.id.blackButton).setOnClickListener(onClickListener);
         findViewById(R.id.bookButton).setOnClickListener(onClickListener);
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
-
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -71,12 +71,13 @@ public class MainOwnerActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.blackButton:
-                    Intent intent = new Intent(MainOwnerActivity.this, Owner_BlackList.class);
-                    startActivity(intent);
+                    Intent blackintent = new Intent(MainOwnerActivity.this, Owner_BlackList.class);
+                    startActivity(blackintent);
                     break;
 
                 case R.id.bookButton:
                     break;
+
 
                 case R.id.logoutButton:
                     new AlertDialog.Builder(MainOwnerActivity.this)
