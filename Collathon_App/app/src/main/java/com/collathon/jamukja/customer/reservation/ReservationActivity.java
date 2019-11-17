@@ -47,7 +47,7 @@ public class ReservationActivity extends AppCompatActivity {
     TextView time_id; //예약 선택한 시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
-    private String userID, shopID; //사용자 id, 가게 id intent로 받아옴
+    private String userID, shopID, check_table; //사용자 id, 가게 id, check_table intent로 받아옴
     String current; //현재 시간 받아오는 변수
     TableLayout tableLayout; //테이블 레이아웃
 
@@ -62,6 +62,8 @@ public class ReservationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");
         shopID = intent.getExtras().getString("shopID");
+        check_table = intent.getExtras().getString("check_table");
+        Log.i("RESERVATION", "check_table : " + check_table);
 
         tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
@@ -77,13 +79,6 @@ public class ReservationActivity extends AppCompatActivity {
         init();
         getData();
 
-/*
-        if(getCheckTable().equals("N")){
-            tableLayout.setVisibility(View.INVISIBLE);
-        }
-
- */
-
         //시간 버튼 클릭하면 예약 시간 선택 가능
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +87,30 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
-        //예약하기 버튼 누르면 예약 정보 전송
-        reserveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                current = currentTime();
-                addReservation();
-                addReservationMenu();
-                addReservationTable();
-            }
-        });
+        if(check_table.equals("N")){ //가게에 테이블 없는 경우 핸디오더만 가능
+            tableLayout.setVisibility(View.GONE);
+            //예약하기 버튼 누르면 예약 정보 전송
+            reserveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    current = currentTime();
+                    addReservation();
+                    addReservationMenu();
+                }
+            });
+        }
+        else{
+            //예약하기 버튼 누르면 예약 정보 전송
+            reserveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    current = currentTime();
+                    addReservation();
+                    addReservationMenu();
+                    addReservationTable();
+                }
+            });
+        }
     }
 
     private void init() {
@@ -223,7 +232,7 @@ public class ReservationActivity extends AppCompatActivity {
     //예약 시간 선택
     private void selectTime(){
         final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
-                "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00", "23:00-24:00"};
+                "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00"};
         final String[] range;
         //현재 시간 가져오기
         TimeZone timeZone;
@@ -351,14 +360,14 @@ public class ReservationActivity extends AppCompatActivity {
                         .create()
                         .show();
             }
-                /*
+
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
                     builder.setMessage("예약 성공")
                             .setPositiveButton("확인", null)
                             .create()
                             .show();
-                }*/
+                }
 
 
         } catch (JSONException e) {
