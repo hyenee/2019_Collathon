@@ -101,6 +101,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                 if (connection != null) {
                                     connection.setConnectTimeout(2000);
                                     connection.setUseCaches(false);
+
                                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                                         Log.i("LOGIN", "서버 연결됨");
 
