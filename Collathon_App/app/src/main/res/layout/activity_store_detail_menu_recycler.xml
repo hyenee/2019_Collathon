@@ -89,6 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/store_name"
         tools:ignore="MissingConstraints">
 
+
         <CheckBox
             android:id="@+id/heartCheckBox"
             android:layout_width="30dp"

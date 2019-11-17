@@ -43,7 +43,7 @@ import java.util.TimeZone;
 public class StoreDetailListActivity extends AppCompatActivity {
     private static final String TAG = "StoreDetailListActivity";
     private RecyclerAdapter adapter;
-    private String userID, shopName, shopID;
+    private String userID, shopName, shopID, check_table;
     private boolean userCheck;
     CheckBox checkBox;
     Handler handler;
@@ -131,6 +131,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
 
     private void getData() {
         //카테고리에 따른 가게 출력
+        final List<String> sale_list = new ArrayList<>();
         final List<String> name_list = new ArrayList<>();
         final List<String> price_list = new ArrayList<>();
         final List<String> description_list = new ArrayList<>();
@@ -185,20 +186,23 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String sale = jsonObject.getString("sale");
                                     String name = jsonObject.getString("name");
                                     String price = jsonObject.getString("price");
                                     String description = jsonObject.getString("description");
+                                    sale_list.add(sale);
                                     name_list.add(name);
                                     price_list.add(price);
                                     description_list.add(description);
-                                    Log.i("MENU", "추출 결과 :  " + name+", "+price+", "+description);
+                                    Log.i("MENU", "추출 결과 :  " + sale+ ", "+ name+", "+price+", "+description);
                                 }
                                 for(int i=0; i<name_list.size(); i++){
-                                    Log.i("MENU", "리스트 값 :  " + name_list.get(i)+", "+price_list.get(i)+", "+description_list.get(i));
+                                    Log.i("MENU", "리스트 값 :  " + sale_list.get(i)+", "+ name_list.get(i)+", "+price_list.get(i)+", "+description_list.get(i));
                                 }
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
+                                    data.setSale(sale_list.get(i));
                                     data.setName(name_list.get(i));
                                     data.setPrice(price_list.get(i));
                                     data.setDescription((description_list.get(i)));

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.janolja.R;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,29 +46,32 @@ public class ReservationActivity extends AppCompatActivity {
     Handler handler;
     Button decisionMenuButton, timeButton, reserveButton; //메뉴 확정, 시간, 예약하기 버튼
     EditText number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
-    TextView time_id, order_list; //시간 표시할 TextView,
+    TextView time_id; //예약 선택한 시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
-    private String userID, shopID; //사용자 id, 가게 id 받아옴
+    private String userID, shopID; //사용자 id, 가게 id intent로 받아옴
     String current; //현재 시간 받아오는 변수
+    TableLayout tableLayout; //테이블 레이아웃
+    //String checkTable; //가게 테이블 여부 확인하는 변수
+    //List<String> check_list = new ArrayList<>();
 
-    List<String> name_list, price_list, count_list;
+    List<String> name_list, price_list, count_list; //json 파싱한 값 저장
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_recycler);
 
-        //사용자, 가게 id 받아옴
+        //사용자, 가게 id intent로 받아옴
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");
         shopID = intent.getExtras().getString("shopID");
 
+        tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
         number_table_4 = (EditText) findViewById(R.id.number_table_4);
         time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 text로 보여줌
-        //order_list = (TextView) findViewById(R.id.order_list);
 
         timeButton = (Button)findViewById(R.id.timeButton);
         reserveButton = (Button)findViewById(R.id.reserveButton);
@@ -75,6 +80,15 @@ public class ReservationActivity extends AppCompatActivity {
 
         init();
         getData();
+
+        //checkTable = getCheckTable();
+        //Log.i("RESERVATION", "get check table : " +checkTable);
+/*
+        if(getCheckTable().equals("N")){
+            tableLayout.setVisibility(View.INVISIBLE);
+        }
+
+ */
 
         //시간 버튼 클릭하면 예약 시간 선택 가능
         timeButton.setOnClickListener(new View.OnClickListener() {
@@ -489,12 +503,8 @@ public class ReservationActivity extends AppCompatActivity {
 
                                             }
                                         }
-
                                     }
                                 });
-
-
-
                             }
                             connection.disconnect(); // 연결 끊기
                         }
@@ -513,6 +523,73 @@ public class ReservationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+/*
+    public String getCheckTable(){
+
+        //테이블 여부 파싱
+        try {
+            NetworkManager.add(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String site = NetworkManager.url + "/categories/shop";
+                        site += "?id="+shopID;
+
+                        URL url = new URL(site);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                        if (connection != null) {
+                            connection.setConnectTimeout(2000);
+                            connection.setUseCaches(false);
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                Log.i("RESERVATION", "서버 연결됨");
+                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                InputStream is = connection.getInputStream();
+                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                BufferedReader br = new BufferedReader(isr);
+                                String str = null;
+                                StringBuffer buf = new StringBuffer();
+
+                                // 읽어온다.
+                                do {
+                                    str = br.readLine();
+                                    if (str != null) {
+                                        buf.append(str);
+                                    }
+                                } while (str != null);
+                                br.close(); // 스트림 해제
+
+                                String rec_data = buf.toString();
+                                Log.i("RESERVATION, ", "서버: " + rec_data);
+
+                                JSONArray jsonArray = new JSONArray(rec_data);
+                                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                                final String table = jsonObject.getString("check_table");
+                                //checkTable = table;
+                                check_list.add(table);
+                                Log.i("RESERVATION", "추출 결과 :  " + table);
+                                Log.i("RESERVATION", "checktable :  " + check_list.get(0));
+
+
+                            }
+                            connection.disconnect(); // 연결 끊기
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i("RESERVATION", "checktable2 :  " + check_list.get(0));
+        return "Y";
+    }*/
 
     public String currentTime(){
         //현재 시간 가져오기

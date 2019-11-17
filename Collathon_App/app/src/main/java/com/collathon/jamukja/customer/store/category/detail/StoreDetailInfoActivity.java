@@ -41,7 +41,7 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
         final TextView tx_address = findViewById(R.id.store_location);
         final TextView tx_table = findViewById(R.id.store_table);
 
-        //서버 디비 값 파싱
+        //가게 상세 정보(가게 이름, 카테고리, 전화번호, 위치, 테이블 여부)
         try {
             NetworkManager.add(new Runnable() {
                 @Override
@@ -114,5 +114,13 @@ public class StoreDetailInfoActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent storeDetailInfoIntent = new Intent();
+        storeDetailInfoIntent.putExtra("shopID",shopID);
+        setResult(1234, storeDetailInfoIntent);
+        finish();
     }
 }
