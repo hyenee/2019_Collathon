@@ -32,7 +32,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     private String userID;
 
     List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
-
+    List<OrderList> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
         menu_list = new ArrayList<>();
         count_list = new ArrayList<>();
         time_list = new ArrayList<>();
+        list = new ArrayList<>();
 
         //서버 디비 값 파싱
         try {
@@ -125,20 +126,42 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                     Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
                                 }
                                 for(int i=0; i<shop_list.size(); i++){
+                                    list.add(new OrderList(reservation_id_list.get(i), menu_list.get(i), count_list.get(i)));
                                     Log.i("TICKET CONFIRM", "리스트 값 :  " + reservation_id_list.get(i)+", "+ shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
+                                    Log.i("TICKET CONFIRM", "list : " + reservation_id_list.get(i)+", "+ menu_list.get(i)+", "+ count_list.get(i));
                                 }
+
+                                List<OrderList> sublist = new ArrayList<>();
+
+                                for(int i=0; i<reservation_id_list.size()-1; i++){
+                                    if(!list.get(i).order_id.equals(list.get(i+1).order_id)){
+                                        //splitList.add((OrderList) list.subList(0, i+1));
+                                        sublist = list.subList(0, i+1);
+                                       // Data data = new Data();
+                                       // data.setOrderList((OrderList) sublist);
+
+                                        //list.remove(list.get(i));
+                                        //i=0;
+                                    }
+                                }
+                                for(int i=0; i<sublist.size(); i++){
+                                    Log.i("TICKET CONFIRM", "split list : " + sublist.get(i).order_menu+", " + sublist.get(i).order_count);
+                                }
+
                                 for (int i = 0; i < shop_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
                                     data.setId(reservation_id_list.get(i));
                                     data.setShop(shop_list.get(i));
-                                    data.setMenu(menu_list.get(i));
-                                    data.setCount(count_list.get(i));
+                                    //data.setMenu(menu_list.get(i));
+                                    //data.setCount(count_list.get(i));
                                     data.setTime(time_list.get(i));
 
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

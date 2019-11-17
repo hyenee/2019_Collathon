@@ -29,12 +29,21 @@
                     android:id="@+id/shop_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/nanumsquare"
                     android:text="번호표 예약 확인"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="30dp"
                     android:textColor="#45555f"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <View
+                    android:layout_width="300dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/shop_name"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="#49575f" />
 
             </LinearLayout>
         </FrameLayout>
@@ -43,8 +52,9 @@
             android:id="@+id/ticket_confirm_recycler"
             android:layout_width="409dp"
             android:layout_height="653dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/nanumsquare"
-            app:layout_constraintTop_toBottomOf="@+id/category_name"
+            app:layout_constraintTop_toBottomOf="@+id/shop_name"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="1dp" />
 
