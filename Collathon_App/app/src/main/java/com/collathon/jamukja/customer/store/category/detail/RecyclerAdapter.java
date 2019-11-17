@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for(int i=0; i<listData.size(); i++){
-            Log.i("MENU", "addItem :"+ listData.get(i).getName()+", "+ listData.get(i).getPrice()+", "+ listData.get(i).getDescription());
+            Log.i("MENU", "addItem :"+ listData.get(i).getSale()+", "+ listData.get(i).getName()+", "+ listData.get(i).getPrice()+", "+ listData.get(i).getDescription());
         }
     }
 
@@ -58,6 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView name;
         private TextView price;
         private TextView description;
+        private ImageView timesale;
         private Data data;
 
         ItemViewHolder(View itemView) {
@@ -66,6 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name = (TextView)itemView.findViewById(R.id.menu_name);
             price = (TextView)itemView.findViewById(R.id.menu_price);
             description = (TextView)itemView.findViewById(R.id.menu_description);
+            timesale = (ImageView)itemView.findViewById(R.id.timesale);
         }
 
         void onBind(Data data) {
@@ -74,6 +77,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             name.setText(data.getName());
             price.setText(data.getPrice());
             description.setText(data.getDescription());
+
+
+            if(data.getSale().equals("Y")){
+                timesale.setVisibility(View.VISIBLE);
+            }
+            else if(data.getSale().equals("N"))
+                timesale.setVisibility(View.INVISIBLE);
+
+
         }
 
 

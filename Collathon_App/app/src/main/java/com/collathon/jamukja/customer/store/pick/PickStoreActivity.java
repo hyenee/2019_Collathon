@@ -1,9 +1,9 @@
-package com.collathon.jamukja.customer.reservation.ticket_confirm;
+package com.collathon.jamukja.customer.store.pick;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,30 +26,26 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationTicketConfirmActivity extends AppCompatActivity {
+public class PickStoreActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
-    Handler handler;
     private String userID;
-
-    List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
-    List<OrderList> list;
+    // Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation_ticket_confirm_recycler);
+        setContentView(R.layout.activity_pick_store_recycler);
 
-        Intent intent = getIntent();
-        userID = intent.getExtras().getString("userID");
-        handler = new Handler();
+        Intent intent = getIntent(); /*데이터 수신*/
+        userID = intent.getExtras().getString("userID"); /*String형*/
 
-        init();
+        setRecyclerView();
         getData();
 
     }
 
-    private void init() {
-        final RecyclerView recyclerView = findViewById(R.id.ticket_confirm_recycler);
+    private void setRecyclerView() {
+        final RecyclerView recyclerView = findViewById(R.id.pick_store_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -65,13 +61,12 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        //예약 id, 예약한 가게, 메뉴, 수량, 시간 출력
-        reservation_id_list = new ArrayList<>();
-        shop_list = new ArrayList<>();
-        menu_list = new ArrayList<>();
-        count_list = new ArrayList<>();
-        time_list = new ArrayList<>();
-        list = new ArrayList<>();
+        //카테고리에 따른 가게 출력
+        final List<String> shop_id_list = new ArrayList<>();
+        final List<String> shop_name_list = new ArrayList<>();
+        final List<String> tel_list = new ArrayList<>();
+        final List<String> address_list = new ArrayList<>();
+        final List<String> category_list = new ArrayList<>();
 
         //서버 디비 값 파싱
         try {
@@ -79,9 +74,9 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        String site = NetworkManager.url + "/reservation/detail";
+                        String site = NetworkManager.url + "/like";
                         site += "?id="+userID;
-                        Log.i("TICKET CONFIRM", site);
+                        Log.i("PICK", site);
 
                         URL url = new URL(site);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -90,7 +85,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i("TICKET CONFIRM", "서버 연결됨");
+                                Log.i("PICK", "서버 연결됨");
                                 // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -108,60 +103,40 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                 br.close(); // 스트림 해제
 
                                 String rec_data = buf.toString();
-                                Log.i("TICKET CONFIRM, ", "서버: " + rec_data);
+                                Log.i("PICK, ", "서버: " + rec_data);
 
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String reservation_id = jsonObject.getString("reservation_id");
+                                    String shop_id = jsonObject.getString("shop_id");
                                     String shop = jsonObject.getString("shop");
-                                    String menu = jsonObject.getString("menu");
-                                    String count = jsonObject.getString("count");
-                                    String time = jsonObject.getString("time");
-                                    reservation_id_list.add(reservation_id);
-                                    shop_list.add(shop);
-                                    menu_list.add(menu);
-                                    count_list.add(count);
-                                    time_list.add(time);
-                                    Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
-                                }
-                                for(int i=0; i<shop_list.size(); i++){
-                                    list.add(new OrderList(reservation_id_list.get(i), menu_list.get(i), count_list.get(i)));
-                                    Log.i("TICKET CONFIRM", "리스트 값 :  " + reservation_id_list.get(i)+", "+ shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
-                                    Log.i("TICKET CONFIRM", "list : " + reservation_id_list.get(i)+", "+ menu_list.get(i)+", "+ count_list.get(i));
-                                }
+                                    String tel = jsonObject.getString("tel");
+                                    String address = jsonObject.getString("address");
+                                    String category = jsonObject.getString("category");
 
-                                List<OrderList> sublist = new ArrayList<>();
-
-                                for(int i=0; i<reservation_id_list.size()-1; i++){
-                                    if(!list.get(i).order_id.equals(list.get(i+1).order_id)){
-                                        //splitList.add((OrderList) list.subList(0, i+1));
-                                        sublist = list.subList(0, i+1);
-                                       // Data data = new Data();
-                                       // data.setOrderList((OrderList) sublist);
-
-                                        //list.remove(list.get(i));
-                                        //i=0;
-                                    }
+                                    shop_id_list.add(shop_id);
+                                    shop_name_list.add(shop);
+                                    tel_list.add(tel);
+                                    address_list.add(address);
+                                    category_list.add(category);
+                                    Log.i("PICK", "추출 결과 :  "+  shop_id +", "+ shop+", "+ tel + ", " + address +", " + category);
                                 }
-                                for(int i=0; i<sublist.size(); i++){
-                                    Log.i("TICKET CONFIRM", "split list : " + sublist.get(i).order_menu+", " + sublist.get(i).order_count);
+                                for(int i=0; i<shop_name_list.size(); i++){
+                                    Log.i("PICK", "리스트 값 :  " +  shop_id_list.get(i) +", "+ shop_name_list.get(i)+", "  + tel_list.get(i)+", " +
+                                            address_list.get(i)+", " + category_list.get(i));
                                 }
-
-                                for (int i = 0; i < shop_list.size(); i++) {
+                                for (int i = 0; i < shop_name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
-                                    data.setId(reservation_id_list.get(i));
-                                    data.setShop(shop_list.get(i));
-                                    //data.setMenu(menu_list.get(i));
-                                    //data.setCount(count_list.get(i));
-                                    data.setTime(time_list.get(i));
+                                    data.setShop(shop_name_list.get(i));
+                                    data.setTel(tel_list.get(i));
+                                    data.setAddress(address_list.get(i));
+                                    data.setCategory(category_list.get(i));
 
+                                    adapter.userID = userID;
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -179,7 +154,6 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                     }catch(JSONException e){
                         e.printStackTrace();
                     }
-
                 }
             });
 
@@ -188,4 +162,11 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent pickStoreIntent = new Intent();
+        pickStoreIntent.putExtra("userID",userID);
+        setResult(1234, pickStoreIntent);
+        finish();
+    }
 }

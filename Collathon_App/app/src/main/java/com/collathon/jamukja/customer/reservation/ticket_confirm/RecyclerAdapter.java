@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
+
     private Context context;
 
     @NonNull
@@ -44,14 +46,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
-        for(int i=0; i<listData.size(); i++){
-            Log.i("TICKET CONFIRM", "addItem :"+ listData.get(i).getShop()+", "+ listData.get(i).getMenu()+", " +listData.get(i).getCount()+", "+ listData.get(i).getTime());
+        for (int i = 0; i < listData.size(); i++) {
+           // Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getCount() + ", " + listData.get(i).getTime());
+            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getOrderList() + ", " + listData.get(i).getTime());
         }
     }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
-    class ItemViewHolder extends RecyclerView.ViewHolder{
+    class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private TextView shop;
         private TextView menu;
@@ -62,19 +65,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            shop = (TextView)itemView.findViewById(R.id.reservation_store_name);
-            menu = (TextView)itemView.findViewById(R.id.reservation_ticket_menu);
-            count = (TextView)itemView.findViewById(R.id.reservation_ticket_menu_count);
-            time = (TextView)itemView.findViewById(R.id.reservation_time);
+            shop = (TextView) itemView.findViewById(R.id.reservation_store_name);
+           // menu = (TextView) itemView.findViewById(R.id.reservation_ticket_menu);
+           // count = (TextView) itemView.findViewById(R.id.reservation_ticket_menu_count);
+            time = (TextView) itemView.findViewById(R.id.reservation_time);
         }
 
         void onBind(Data data) {
             this.data = data;
 
             shop.setText(data.getShop());
-            menu.setText(data.getMenu());
-            count.setText(data.getCount());
+            //menu.setText(data.getMenu());
+            //count.setText(data.getCount());
             time.setText(data.getTime());
         }
+
     }
 }

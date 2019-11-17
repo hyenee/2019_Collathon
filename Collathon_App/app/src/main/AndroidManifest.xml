@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <!-- 자영업자 타임세일 -->
         <activity
             android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -77,6 +78,12 @@
         <activity
             android:name="com.collathon.jamukja.customer.reservation.ticket_confirm.ReservationTicketConfirmActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 자영업자 관점 -->
+
+        <!-- 찜목록 -->
+        <activity
+            android:name="com.collathon.jamukja.customer.store.pick.PickStoreActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
+
         <activity
             android:name="com.collathon.jamukja.owner.MainOwnerActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
