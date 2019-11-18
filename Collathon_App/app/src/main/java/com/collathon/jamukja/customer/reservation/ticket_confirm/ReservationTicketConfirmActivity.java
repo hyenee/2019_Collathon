@@ -32,7 +32,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     private String userID;
 
     List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
-    List<OrderList> list;
+    List<Data> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,24 +118,38 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
-                                    reservation_id_list.add(reservation_id);
-                                    shop_list.add(shop);
-                                    menu_list.add(menu);
-                                    count_list.add(count);
-                                    time_list.add(time);
-                                    Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
+                                    list.add(new Data(reservation_id, shop, menu, count, time));
+                                    //reservation_id_list.add(reservation_id);
+                                   // shop_list.add(shop);
+                                   // menu_list.add(menu);
+                                   // count_list.add(count);
+                                   // time_list.add(time);
+                                   // Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
+                                    Log.i("TICKET CONFIRM", "list 값 : " + list.get(i).getId()+", "+list.get(i).getShop()+", "+ list.get(i).getMenu()+","+
+                                            list.get(i).getCount()+", "+ list.get(i).getTime());
                                 }
-                                for(int i=0; i<shop_list.size(); i++){
-                                    list.add(new OrderList(reservation_id_list.get(i), menu_list.get(i), count_list.get(i)));
-                                    Log.i("TICKET CONFIRM", "리스트 값 :  " + reservation_id_list.get(i)+", "+ shop_list.get(i)+", "+menu_list.get(i)+", " + count_list.get(i)+", " +time_list.get(i));
-                                    Log.i("TICKET CONFIRM", "list : " + reservation_id_list.get(i)+", "+ menu_list.get(i)+", "+ count_list.get(i));
+
+                                List<Data> sublist = new ArrayList<>();
+
+                                for(int i=0; i<list.size()-1; i++){
+                                    if(list.get(i).getId().equals(list.get(i+1).getId())){
+                                        sublist = list.subList(0, i+1);
+
+                                        for(int j=0; j<sublist.size();j++){
+                                            Log.i("TICKET CONFIRM", sublist.get(i).getId()+", "+sublist.get(i).getShop()+", "+
+                                                    sublist.get(i).getMenu()+", "+sublist.get(i).getCount()+", "+sublist.get(i).getTime());
+                                        }
+
+                                    }
                                 }
+
+
+/*
 
                                 List<OrderList> sublist = new ArrayList<>();
 
                                 for(int i=0; i<reservation_id_list.size()-1; i++){
                                     if(!list.get(i).order_id.equals(list.get(i+1).order_id)){
-                                        //splitList.add((OrderList) list.subList(0, i+1));
                                         sublist = list.subList(0, i+1);
                                        // Data data = new Data();
                                        // data.setOrderList((OrderList) sublist);
@@ -153,13 +167,15 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                     Data data = new Data();
                                     data.setId(reservation_id_list.get(i));
                                     data.setShop(shop_list.get(i));
-                                    //data.setMenu(menu_list.get(i));
-                                    //data.setCount(count_list.get(i));
+                                    data.setMenu(menu_list.get(i));
+                                    data.setCount(count_list.get(i));
                                     data.setTime(time_list.get(i));
 
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+
+ */
 
 
                                 runOnUiThread(new Runnable() {

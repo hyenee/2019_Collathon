@@ -276,10 +276,11 @@ public class ReservationActivity extends AppCompatActivity {
                         Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
                         selected = selectedIndex[0];
                         time_id.setText(reservation_time); //time_id 화면에 보내줌
-                        getReservationTable(reservation_time);
                     }
                 }).create().show();
         Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
+        if(check_table.equals("Y"))
+            getReservationTable(reservation_time);
     }
 
     //현재 시간, 사용자id, 예약 시간, 가게 id 서버로 전송
