@@ -34,6 +34,23 @@ router.post('/add/', function(req, res, next){
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/ownShop/add?id={owner_id}&name={shop_name}&tel={tel}&addr={address}&category={category}&table={Y/N}
 
+/* POST new shopTable. */
+router.post('/add/table/', function(req, res, next){
+	console.log('---log start(OWN SHOP:POST)---');
+	console.log("OWN SHOP:POST -> number : ", req.query.number);
+	console.log("OWN SHOP:POST -> count : ", req.query.count);
+	sql.addOwnerShopTable(req.query.number, req.query.count, function(err){
+		if(err){
+			console.error("ADD SHOPTABLE:GET FAILED: ", err);
+			res.send([{"result":"ERROR"}]);
+		}
+		else{
+			res.send([{"result":"OK"}]);
+		}
+	});
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/ownShop/add/table?number={table_number}&count={table_count}
+
 /* POST delete shop. */
 router.post('/delete/', function(req, res, next){
 	console.log('---log start(OWN SHOP:POST)---');

@@ -72,6 +72,11 @@ let addOwnerShop = function(owner_id, name, tel, addr, category, table, callback
 	query_function(sql, callback);
 };
 
+let addOwnerShopTable = function( number, count, callback){
+	let sql = "insert into ShopTable values((select max(id) from Shop), "+number+", "+count+")";
+	query_function(sql, callback);
+};
+
 let deleteOwnerShop = function(shop_id, callback){
 	let sql = "delete from Menu where shop_id="+shop_id;
 	let check = query_function_no_callback(sql);
@@ -238,6 +243,7 @@ module.exports = function() {
 		getMenuwithTimeSale: getMenuwithTimeSale,
 		getOwnerShop: getOwnerShop,
 		addOwnerShop: addOwnerShop,
+		addOwnerShopTable: addOwnerShopTable,
 		deleteOwnerShop: deleteOwnerShop,
 		addShopMenu: addShopMenu,
 		deleteShopMenu: deleteShopMenu,
