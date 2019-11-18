@@ -1,4 +1,4 @@
-package com.collathon.jamukja.customer.reservation.ticket_confirm;
+package com.collathon.jamukja.customer.reservation.confirm;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,7 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_reservation_ticket_confirm_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_reservation_confirm_view, parent, false);
         this.context = parent.getContext();
         return new ItemViewHolder(view);
     }
@@ -48,7 +48,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         listData.add(data);
         for (int i = 0; i < listData.size(); i++) {
            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getTime());
-            //Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getOrderList() + ", " + listData.get(i).getTime());
         }
     }
 

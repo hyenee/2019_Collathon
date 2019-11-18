@@ -1,4 +1,4 @@
-package com.collathon.jamukja.customer.reservation.ticket_confirm;
+package com.collathon.jamukja.customer.reservation.confirm;
 
 public class Data {
     private String id;
@@ -6,7 +6,6 @@ public class Data {
     private String menu;
     private String count;
     private String time;
-    private OrderList orderList;
 
     public String getId(){ return id; }
 
@@ -31,10 +30,6 @@ public class Data {
     public String getTime(){ return time; }
 
     public void setTime(String time) {this.time = time; }
-
-    public OrderList getOrderList(){ return orderList; }
-
-    public void setOrderList(OrderList orderList) {this.orderList = orderList; }
 
     public Data(String id, String menu, String count){
         this.id = id;

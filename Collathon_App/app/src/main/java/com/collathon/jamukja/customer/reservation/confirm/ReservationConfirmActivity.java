@@ -1,4 +1,4 @@
-package com.collathon.jamukja.customer.reservation.ticket_confirm;
+package com.collathon.jamukja.customer.reservation.confirm;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationTicketConfirmActivity extends AppCompatActivity {
+public class ReservationConfirmActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     private String userID;
@@ -37,7 +37,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation_ticket_confirm_recycler);
+        setContentView(R.layout.activity_reservation_confirm_recycler);
 
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");

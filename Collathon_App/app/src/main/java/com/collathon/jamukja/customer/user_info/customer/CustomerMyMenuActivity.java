@@ -7,8 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.collathon.jamukja.customer.reservation.seat_confirm.ReservationSeatConfirmActivity;
-import com.collathon.jamukja.customer.reservation.ticket_confirm.ReservationTicketConfirmActivity;
+import com.collathon.jamukja.customer.reservation.confirm.ReservationConfirmActivity;
 import com.collathon.janolja.R;
 
 public class CustomerMyMenuActivity extends AppCompatActivity {
@@ -25,8 +24,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
         userID = intent.getExtras().getString("userID");
 
         TextView customer_info = (TextView)findViewById(R.id.customer_info);
-        TextView reservation_seat_comfirm = (TextView)findViewById(R.id.reservation_seat_confirm);
-        TextView reservation_ticket_comfirm = (TextView)findViewById(R.id.reservation_ticket_confirm);
+        TextView reservation_ticket_comfirm = (TextView)findViewById(R.id.reservation_confirm);
 
         //회원정보
         customer_info.setOnClickListener(new View.OnClickListener() {
@@ -41,18 +39,6 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             }
         });
 
-        //자리 예약 확인
-        reservation_seat_comfirm.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
-            public void onClick(View view) {
-                Intent seatIntent = new Intent(CustomerMyMenuActivity.this, ReservationSeatConfirmActivity.class);
-                seatIntent.putExtra("userID", userID);
-                CustomerMyMenuActivity.this.startActivity(seatIntent);
-
-            }
-        });
 
         //번호표 확인
         reservation_ticket_comfirm.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +46,7 @@ public class CustomerMyMenuActivity extends AppCompatActivity {
             @Override
             // 클릭 시 registerIntent 를 통해서 registerActivity를 실행
             public void onClick(View view) {
-                Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationTicketConfirmActivity.class);
+                Intent ticketIntent = new Intent(CustomerMyMenuActivity.this, ReservationConfirmActivity.class);
                 ticketIntent.putExtra("userID", userID);
                 CustomerMyMenuActivity.this.startActivity(ticketIntent);
 

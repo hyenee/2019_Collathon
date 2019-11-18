@@ -48,24 +48,15 @@
                 android:textSize="20dp" />
 
 
-            <TextView
-                android:id="@+id/reservation_seat_confirm"
-                android:layout_marginTop="30dp"
-                android:layout_width="300dp"
-                android:fontFamily="@font/nanumsquare"
-                android:textColor="#49575f"
-                android:layout_height="wrap_content"
-                android:text="자리 예약 확인>"
-                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/reservation_ticket_confirm"
+                android:id="@+id/reservation_confirm"
                 android:layout_marginTop="30dp"
                 android:layout_width="300dp"
                 android:fontFamily="@font/nanumsquare"
                 android:textColor="#49575f"
                 android:layout_height="wrap_content"
-                android:text="번호표 예약 확인>"
+                android:text="예약 확인>"
                 android:textSize="20dp" />
 
 
