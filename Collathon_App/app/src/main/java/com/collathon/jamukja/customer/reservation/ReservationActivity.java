@@ -47,7 +47,7 @@ public class ReservationActivity extends AppCompatActivity {
     TextView time_id; //예약 선택한 시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
-    private String userID, shopID; //사용자 id, 가게 id intent로 받아옴
+    private String userID, shopID, check_table; //사용자 id, 가게 id, check_table intent로 받아옴
     String current; //현재 시간 받아오는 변수
     TableLayout tableLayout; //테이블 레이아웃
 
@@ -62,6 +62,8 @@ public class ReservationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");
         shopID = intent.getExtras().getString("shopID");
+        check_table = intent.getExtras().getString("check_table");
+        Log.i("RESERVATION", "check_table : " + check_table);
 
         tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         number_table_1 = (EditText) findViewById(R.id.number_table_1);
@@ -77,13 +79,6 @@ public class ReservationActivity extends AppCompatActivity {
         init();
         getData();
 
-/*
-        if(getCheckTable().equals("N")){
-            tableLayout.setVisibility(View.INVISIBLE);
-        }
-
- */
-
         //시간 버튼 클릭하면 예약 시간 선택 가능
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +87,30 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
-        //예약하기 버튼 누르면 예약 정보 전송
-        reserveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                current = currentTime();
-                addReservation();
-                addReservationMenu();
-                addReservationTable();
-            }
-        });
+        if(check_table.equals("N")){ //가게에 테이블 없는 경우 핸디오더만 가능
+            tableLayout.setVisibility(View.GONE);
+            //예약하기 버튼 누르면 예약 정보 전송
+            reserveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    current = currentTime();
+                    addReservation();
+                    addReservationMenu();
+                }
+            });
+        }
+        else{
+            //예약하기 버튼 누르면 예약 정보 전송
+            reserveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    current = currentTime();
+                    addReservation();
+                    addReservationMenu();
+                    addReservationTable();
+                }
+            });
+        }
     }
 
     private void init() {
@@ -222,6 +231,9 @@ public class ReservationActivity extends AppCompatActivity {
 
     //예약 시간 선택
     private void selectTime(){
+        final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
+                "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00"};
+        final String[] range;
         //현재 시간 가져오기
         TimeZone timeZone;
         Date date = new Date();
@@ -229,14 +241,17 @@ public class ReservationActivity extends AppCompatActivity {
         timeZone = TimeZone.getTimeZone("Asia/Seoul");
         df.setTimeZone(timeZone);
         String current = df.format(date);
-        int currentToInt = Integer.parseInt(current) - 10;
-        Log.i("RESERVATION", "select time : " + current +", "+ currentToInt);
+        int currentToInt;
 
-        final String[] time = {"10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00",
-                "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00", "23:00-24:00"};
-        final String[] range = Arrays.copyOfRange(time, currentToInt, time.length); //현재 시간 이후의 시간만 예약가능
+        //현재시간 이후 시간만 예약 가능
+        if(Integer.parseInt(current)>=10){ //10시 이후면 -10 해줌
+            currentToInt = Integer.parseInt(current) - 10;
+            range = Arrays.copyOfRange(time, currentToInt, time.length); //현재 시간 이후의 시간만 예약가능
+        }
+        else
+            range = Arrays.copyOfRange(time, 0, time.length);
+
         final int[] selectedIndex = {0};
-
         AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
         builder.setTitle("예약 시간 선택")
                 .setSingleChoiceItems(range, selected, new DialogInterface.OnClickListener() {
@@ -261,10 +276,11 @@ public class ReservationActivity extends AppCompatActivity {
                         Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
                         selected = selectedIndex[0];
                         time_id.setText(reservation_time); //time_id 화면에 보내줌
-                        getReservationTable(reservation_time);
                     }
                 }).create().show();
         Log.i("RESERVATION(selectTime)", "RESERVATION TIME : " + reservation_time);
+        if(check_table.equals("Y"))
+            getReservationTable(reservation_time);
     }
 
     //현재 시간, 사용자id, 예약 시간, 가게 id 서버로 전송
@@ -345,14 +361,14 @@ public class ReservationActivity extends AppCompatActivity {
                         .create()
                         .show();
             }
-                /*
+
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
                     builder.setMessage("예약 성공")
                             .setPositiveButton("확인", null)
                             .create()
                             .show();
-                }*/
+                }
 
 
         } catch (JSONException e) {
@@ -438,7 +454,6 @@ public class ReservationActivity extends AppCompatActivity {
         id_list = new ArrayList<>();
         number_list = new ArrayList<>();
         remain_table_list = new ArrayList<>();
-        check_table_list = new ArrayList<>();
         final TextView table_1 = (TextView)findViewById(R.id.table_1);
         final TextView table_2 = (TextView)findViewById(R.id.table_2);
         final TextView table_4 = (TextView)findViewById(R.id.table_4);
@@ -488,12 +503,10 @@ public class ReservationActivity extends AppCompatActivity {
                                     String shop_id = jsonObject.getString("shop_id");
                                     String number = jsonObject.getString("number");
                                     String remain_table = jsonObject.getString("remain_table");
-                                    String check_table = jsonObject.getString("check_table");
                                     id_list.add(shop_id);
                                     number_list.add(number);
                                     remain_table_list.add(remain_table);
-                                    check_table_list.add(check_table);
-                                    Log.i("RESERVATION(getReservationTable)", "추출 결과 :  " + shop_id+", "+number+", " + remain_table+", "+check_table);
+                                    Log.i("RESERVATION(getReservationTable)", "추출 결과 :  " + shop_id+", "+number+", " + remain_table);
                                 }
 
                                 runOnUiThread(new Runnable() {
@@ -509,9 +522,6 @@ public class ReservationActivity extends AppCompatActivity {
                                             else if(number_list.get(i).equals("4"))
                                                 table_4.setText(remain_table_list.get(i));
                                         }
-                                        if(check_table_list.get(0) == "N")
-                                            tableLayout.setVisibility(View.INVISIBLE);
-
                                         //테이블 잔여 0인 경우 예약 못하게 함
                                         if(table_1.getText().toString().equals("0")){
                                             number_table_1.setVisibility(View.INVISIBLE);

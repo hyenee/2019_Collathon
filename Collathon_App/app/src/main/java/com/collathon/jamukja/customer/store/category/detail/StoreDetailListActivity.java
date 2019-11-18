@@ -43,11 +43,12 @@ import java.util.TimeZone;
 public class StoreDetailListActivity extends AppCompatActivity {
     private static final String TAG = "StoreDetailListActivity";
     private RecyclerAdapter adapter;
-    private String userID, shopName, shopID, check_table;
+    private String userID, shopName, shopID;
     private boolean userCheck;
     CheckBox checkBox;
     Handler handler;
     List<String> shop_id_list = new ArrayList<>();
+    List<String> check_table_list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +108,7 @@ public class StoreDetailListActivity extends AppCompatActivity {
                     Intent reservIntent = new Intent(StoreDetailListActivity.this, ReservationActivity.class);
                     reservIntent.putExtra("userID", userID);
                     reservIntent.putExtra("shopID", shopID);
+                    reservIntent.putExtra("check_table",check_table_list.get(0));
                     StoreDetailListActivity.this.startActivity(reservIntent);
                     break;
             }
@@ -190,15 +192,18 @@ public class StoreDetailListActivity extends AppCompatActivity {
                                     String name = jsonObject.getString("name");
                                     String price = jsonObject.getString("price");
                                     String description = jsonObject.getString("description");
+                                    String check_table = jsonObject.getString("check_table");
                                     sale_list.add(sale);
                                     name_list.add(name);
                                     price_list.add(price);
                                     description_list.add(description);
-                                    Log.i("MENU", "추출 결과 :  " + sale+ ", "+ name+", "+price+", "+description);
+                                    check_table_list.add(check_table);
+                                    Log.i("MENU", "추출 결과 :  " + sale+ ", "+ name+", "+price+", "+description+", " + check_table);
                                 }
                                 for(int i=0; i<name_list.size(); i++){
-                                    Log.i("MENU", "리스트 값 :  " + sale_list.get(i)+", "+ name_list.get(i)+", "+price_list.get(i)+", "+description_list.get(i));
+                                    Log.i("MENU", "리스트 값 :  " + sale_list.get(i)+", "+ name_list.get(i)+", "+price_list.get(i)+", "+description_list.get(i)+", "+ check_table_list.get(i));
                                 }
+
                                 for (int i = 0; i < name_list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
                                     Data data = new Data();
