@@ -28,7 +28,7 @@ let query_function_no_callback = function(sql){
 		}
 		con.query(sql, function (err, result, fields){
 			con.release();
-			if (err) return callback(err);
+			if (err) return "error";
 		});
 	});
 };
@@ -69,6 +69,22 @@ let getOwnerShop = function(owner_id, callback){
 
 let addOwnerShop = function(owner_id, name, tel, addr, category, table, callback){
 	let sql = "insert into Shop (master, name, tel, address, category, check_table) values(\""+owner_id+"\", \""+name+"\", \""+tel+"\", \""+addr+"\", \""+category+"\", \""+table+"\")";
+	query_function(sql, callback);
+};
+
+let deleteOwnerShop = function(shop_id, callback){
+	let sql = "delete from Menu where shop_id="+shop_id;
+	let check = query_function_no_callback(sql);
+	if(check == "error") {
+		return callback("ERROR");
+	}
+	sql = "delete from ShopTable where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from BlackList where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from Likes where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from Shop where id="+shop_id;
 	query_function(sql, callback);
 };
 
@@ -222,6 +238,7 @@ module.exports = function() {
 		getMenuwithTimeSale: getMenuwithTimeSale,
 		getOwnerShop: getOwnerShop,
 		addOwnerShop: addOwnerShop,
+		deleteOwnerShop: deleteOwnerShop,
 		addShopMenu: addShopMenu,
 		deleteShopMenu: deleteShopMenu,
 		getClientUserDetail: getClientUserDetail,
