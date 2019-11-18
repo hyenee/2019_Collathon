@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,10 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.LoginCustomerActivity;
 import com.collathon.jamukja.NetworkManager;
-import com.collathon.jamukja.RegisterCustomerActivity;
-import com.collathon.jamukja.owner.TimeSale.TimeSaleActivity;
+import com.collathon.jamukja.owner.TimeSale.TimeSaleAdd.TimeSaleActivity;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -36,10 +33,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 public class Store_info extends AppCompatActivity {
@@ -67,18 +61,26 @@ public class Store_info extends AppCompatActivity {
 
         findViewById(R.id.btn_registerMenu).setOnClickListener(onClickListener);
         findViewById(R.id.btn_remove).setOnClickListener(onClickListener);
-        findViewById(R.id.btn_timesale).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_timesaleAdd).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_timesaleDelete).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View myview) {
             switch (myview.getId()) {
-                case R.id.btn_timesale:
-                    Intent intent = new Intent(Store_info.this, TimeSaleActivity.class);
+                case R.id.btn_timesaleAdd:
+                    Intent intent = new Intent(Store_info.this, com.collathon.jamukja.owner.TimeSale.TimeSaleAdd.TimeSaleActivity.class);
                     intent.putExtra("shopName", name);
                     intent.putExtra("shopID", shopID);
                     startActivity(intent);
+                    break;
+
+                case R.id.btn_timesaleDelete:
+                    Intent intent2 = new Intent(Store_info.this, com.collathon.jamukja.owner.TimeSale.TimeSaleDelete.TimeSaleActivity.class);
+                    intent2.putExtra("shopName", name);
+                    intent2.putExtra("shopID", shopID);
+                    startActivity(intent2);
                     break;
 
                 case R.id.btn_registerMenu:
@@ -261,7 +263,7 @@ public class Store_info extends AppCompatActivity {
         try {
             NetworkManager nm = new NetworkManager();
             if (menuName.length() > 0 && menuDescription.length() > 0 && menuPrice.length() > 0) {
-                String client_site = "/ownMenu/add?id=" + ownerName + "&name=" + menuName + "&price="
+                String client_site = "/ownMenu/add?id=" + shopID + "&name=" + menuName + "&price="
                         + menuPrice + "&des=" + menuDescription + "&count=" + menuCount + "";
                 Log.i(TAG, client_site);
                 nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보

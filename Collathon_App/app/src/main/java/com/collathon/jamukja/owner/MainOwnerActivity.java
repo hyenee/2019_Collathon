@@ -2,21 +2,16 @@ package com.collathon.jamukja.owner;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.LoginCustomerActivity;
 import com.collathon.jamukja.LoginOwnerActivity;
-import com.collathon.jamukja.MainActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.BlackList.Owner_BlackList;
-import com.collathon.jamukja.owner.TimeSale.TimeSaleActivity;
 import com.collathon.janolja.R;
 
 import java.io.BufferedReader;

@@ -20,7 +20,11 @@
         tools:ignore="GoogleAppIndexingWarning">
         <!-- 자영업자 타임세일 -->
         <activity
-            android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleActivity"
+            android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleAdd.TimeSaleActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleDelete.TimeSaleActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
