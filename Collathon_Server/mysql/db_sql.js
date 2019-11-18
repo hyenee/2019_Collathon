@@ -155,7 +155,7 @@ let deleteLikeShop = function(shop_id, name, callback){
 };
 
 let getUserReservationTable = function(client_id, callback){
-	let sql = "select id as reservation_id, name as shop, number, reservation_count as count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	let sql = "select r.id as reservation_id, name as shop, number, reservation_count as count, time from Reservation as r inner join(Shop as s) on r.shop_id=s.id inner join(ReservationTable as rt) on r.id=rt.id where client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
