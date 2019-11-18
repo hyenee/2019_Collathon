@@ -131,6 +131,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                             JSONArray root = new JSONArray(rec_data);
                                             JSONObject obj1 = root.getJSONObject(0);
                                             getUserPasswd = obj1.getString("passwd");
+                                            String ownerName = obj1.getString("name");
                                             Log.i(TAG, "추출 결과 place_type: " + getUserPasswd);
 
                                             if (getUserPasswd.equals(userPasswd)) {
@@ -139,6 +140,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
 
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("Owner_id", ownerID);
+                                                bundle.putString("OwnerName", ownerName);
                                                 loginIntent.putExtras(bundle);
 
                                                 LoginOwnerActivity.this.startActivity(loginIntent);

@@ -6,132 +6,118 @@
     android:layout_height="match_parent"
     tools:context="com.collathon.jamukja.owner.MainOwnerActivity">
 
-    <TextView
-        android:id="@+id/user_name"
+    <LinearLayout
+        android:id="@+id/layout_owner_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="TextView"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@id/recycler_layout">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="176dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="님, 환영합니다!"
-        android:textSize="25dp"
-        app:layout_constraintStart_toEndOf="@+id/user_name"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="님, 환영합니다!"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/user_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/recycler_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fillViewport="true"
         android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/textView1">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_owner_name">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_border_layout"
+            android:padding="3dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_store"
-                android:layout_width="409dp"
-                android:layout_height="545dp"
+                android:layout_width="380dp"
+                android:layout_height="510dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
         </RelativeLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/layout_owner_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:orientation="horizontal"></LinearLayout>
+            android:background="#ffffff "
+            android:fontFamily="@font/nanumsquare"
+            android:text="홈"
+            android:textAlignment="center" />
 
-        <LinearLayout
-
-            android:layout_width="fill_parent"
+        <Button
+            android:id="@+id/bookButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal"
-            android:padding="0dip">
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="예약관리"
+            android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/homeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="0.1"
-                android:background="#ffffff "
-                android:fontFamily="@font/nanumsquare"
-                android:text="홈"
-                app:layout_constraintEnd_toStartOf="@+id/homeButton"
-                app:layout_constraintHorizontal_bias="0.37"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="688dp" />
+        <Button
+            android:id="@+id/blackButton"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="블랙리스트"
+            android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/bookButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="0.1"
-                android:background="#ffffff"
-                android:fontFamily="@font/nanumsquare"
-                android:text="예약관리"
-                app:layout_constraintEnd_toStartOf="@+id/bookButton"
-                app:layout_constraintHorizontal_bias="0.37"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="688dp" />
-
-            <Button
-                android:id="@+id/blackButton"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="0.1"
-                android:background="#fffffd"
-                android:fontFamily="@font/nanumsquare"
-                android:text="블랙리스트"
-                app:layout_constraintEnd_toStartOf="@+id/blackButton"
-                app:layout_constraintHorizontal_bias="0.37"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="688dp" />
-
-            <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="0.1"
-                android:background="#ffffff"
-                android:fontFamily="@font/nanumsquare"
-                android:text="로그아웃"
-                app:layout_constraintEnd_toStartOf="@+id/logoutButton"
-                app:layout_constraintHorizontal_bias="0.37"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="688dp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="로그아웃"
+            android:textAlignment="center" />
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

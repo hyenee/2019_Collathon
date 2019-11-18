@@ -44,7 +44,7 @@ public class MainOwnerActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     private TextView textView_ownerName;
     private Toast toast;
-    private String ownerID;
+    private String ownerID, ownerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,10 @@ public class MainOwnerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ownerID = intent.getExtras().getString("Owner_id");
+        ownerName = intent.getExtras().getString("OwnerName");
 
         textView_ownerName = findViewById(R.id.user_name);
-        textView_ownerName.setText(ownerID);
+        textView_ownerName.setText(ownerName);
 
         setRecyclerView();
         getData();
