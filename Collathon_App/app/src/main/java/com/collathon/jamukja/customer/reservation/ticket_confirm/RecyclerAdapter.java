@@ -47,8 +47,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for (int i = 0; i < listData.size(); i++) {
-           // Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getCount() + ", " + listData.get(i).getTime());
-            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getOrderList() + ", " + listData.get(i).getTime());
+           Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getTime());
+            //Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getOrderList() + ", " + listData.get(i).getTime());
         }
     }
 
@@ -73,6 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
            // menu = (TextView) itemView.findViewById(R.id.reservation_ticket_menu);
            // count = (TextView) itemView.findViewById(R.id.reservation_ticket_menu_count);
             time = (TextView) itemView.findViewById(R.id.reservation_time);
+            menu = (TextView) itemView.findViewById(R.id.reservation_menu);
         }
 
         void onBind(Data data) {
@@ -82,6 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             //menu.setText(data.getMenu());
             //count.setText(data.getCount());
             time.setText(data.getTime());
+            menu.setText(data.getMenu());
         }
 
     }

@@ -110,6 +110,8 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                 String rec_data = buf.toString();
                                 Log.i("TICKET CONFIRM, ", "서버: " + rec_data);
 
+                                //list.add(new Data("0", "0", "0", "0"));
+
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -118,66 +120,37 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
-                                    list.add(new Data(reservation_id, shop, menu, count, time));
-                                    //reservation_id_list.add(reservation_id);
-                                   // shop_list.add(shop);
-                                   // menu_list.add(menu);
-                                   // count_list.add(count);
-                                   // time_list.add(time);
-                                   // Log.i("TICKET CONFIRM", "추출 결과 :  " + reservation_id+", "+ shop+", "+menu+"," + count+", "+ time);
-                                    Log.i("TICKET CONFIRM", "list 값 : " + list.get(i).getId()+", "+list.get(i).getShop()+", "+ list.get(i).getMenu()+","+
-                                            list.get(i).getCount()+", "+ list.get(i).getTime());
+                                    String temp = "";
+                                    temp += "  "+ menu  + "  x " + count + "개";
+                                    list.add(new Data(reservation_id, shop, temp, time));
+
                                 }
 
-                                List<Data> sublist = new ArrayList<>();
-
-                                for(int i=0; i<list.size()-1; i++){
-                                    if(list.get(i).getId().equals(list.get(i+1).getId())){
-                                        sublist = list.subList(0, i+1);
-
-                                        for(int j=0; j<sublist.size();j++){
-                                            Log.i("TICKET CONFIRM", sublist.get(i).getId()+", "+sublist.get(i).getShop()+", "+
-                                                    sublist.get(i).getMenu()+", "+sublist.get(i).getCount()+", "+sublist.get(i).getTime());
+                                for (int index = 0; index < list.size(); index++) {
+                                    for(int j = 0; j < index; j++){
+                                        if (list.get(index).getId()== list.get(j).getId()){
+                                            String tt = list.get(index).getMenu();
+                                            tt += "\n"+ list.get(j).getMenu();
+                                            list.get(index).setMenu(tt);
+//                                            list.set(index, new Data(list.get(index).getId(),
+//                                                    list.get(index).getShop(), , list.get(index).getTime()));
+                                            list.set(j, new Data("-1", "-1", "-1", "-1"));
                                         }
-
                                     }
                                 }
 
-
-/*
-
-                                List<OrderList> sublist = new ArrayList<>();
-
-                                for(int i=0; i<reservation_id_list.size()-1; i++){
-                                    if(!list.get(i).order_id.equals(list.get(i+1).order_id)){
-                                        sublist = list.subList(0, i+1);
-                                       // Data data = new Data();
-                                       // data.setOrderList((OrderList) sublist);
-
-                                        //list.remove(list.get(i));
-                                        //i=0;
-                                    }
-                                }
-                                for(int i=0; i<sublist.size(); i++){
-                                    Log.i("TICKET CONFIRM", "split list : " + sublist.get(i).order_menu+", " + sublist.get(i).order_count);
+                                for (int index = list.size()-1; index >= 0; index--) {
+                                    if(list.get(index).getId().equals("-1")
+                                            || list.get(index).getMenu().equals(null))
+                                        list.remove(index);
                                 }
 
-                                for (int i = 0; i < shop_list.size(); i++) {
+                                for (int i = 0; i < list.size(); i++) {
                                     // 각 List의 값들을 data 객체에 set 해줍니다.
-                                    Data data = new Data();
-                                    data.setId(reservation_id_list.get(i));
-                                    data.setShop(shop_list.get(i));
-                                    data.setMenu(menu_list.get(i));
-                                    data.setCount(count_list.get(i));
-                                    data.setTime(time_list.get(i));
-
+                                    Data data = list.get(i);
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
-
- */
-
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

@@ -49,4 +49,12 @@ public class Data {
         this.count = count;
         this.time = time;
     }
+
+    public Data(String id, String shop, String menu, String time){
+        this.id = id;
+        this.shop = shop;
+        this.menu = menu;
+        this.count = count;
+        this.time = time;
+    }
 }
