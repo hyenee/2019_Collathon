@@ -28,7 +28,7 @@ let query_function_no_callback = function(sql){
 		}
 		con.query(sql, function (err, result, fields){
 			con.release();
-			if (err) return callback(err);
+			if (err) return "error";
 		});
 	});
 };
@@ -48,7 +48,7 @@ let addClientUser = function(name, client_id, passwd, phone, email, callback){
 };
 
 let getOwnerUser = function(owner_id, password, callback){
-	let sql = "select passwd from Supplier where id=\""+owner_id+"\"";
+	let sql = "select passwd, name from Supplier where id=\""+owner_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -72,6 +72,27 @@ let addOwnerShop = function(owner_id, name, tel, addr, category, table, callback
 	query_function(sql, callback);
 };
 
+let addOwnerShopTable = function( number, count, callback){
+	let sql = "insert into ShopTable values((select max(id) from Shop), "+number+", "+count+")";
+	query_function(sql, callback);
+};
+
+let deleteOwnerShop = function(shop_id, callback){
+	let sql = "delete from Menu where shop_id="+shop_id;
+	let check = query_function_no_callback(sql);
+	if(check == "error") {
+		return callback("ERROR");
+	}
+	sql = "delete from ShopTable where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from BlackList where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from Likes where shop_id="+shop_id;
+	query_function_no_callback(sql);
+	sql = "delete from Shop where id="+shop_id;
+	query_function(sql, callback);
+};
+
 let getShopDetail = function(shop_id, callback){
 	let sql = "select * from Shop where id="+shop_id;
 	query_function(sql, callback);
@@ -79,7 +100,7 @@ let getShopDetail = function(shop_id, callback){
 
 let getMenuwithTimeSale = function(shop_id, time, callback){
 	time = time+":00-%"
-	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count from Menu as m left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
+	let sql = "select if(sale_price!=0, 'Y', 'N') as sale, m.name, ifnull(sale_price, price) as price, description, count, check_table from Menu as m inner join(Shop as s) on m.shop_id=s.id left join(TimeSale as t) on m.shop_id=t.shop_id and m.name=t.name and t.time like \""+time+"\" where m.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
@@ -139,7 +160,7 @@ let deleteLikeShop = function(shop_id, name, callback){
 };
 
 let getUserReservationTable = function(client_id, callback){
-	let sql = "select id as reservation_id, name as shop, number, reservation_count as count, time from Reservation natural join(Shop) natural join(ReservationTable) where client_id=\""+client_id+"\"";
+	let sql = "select r.id as reservation_id, name as shop, number, reservation_count as count, time from Reservation as r inner join(Shop as s) on r.shop_id=s.id inner join(ReservationTable as rt) on r.id=rt.id where client_id=\""+client_id+"\"";
 	query_function(sql, callback);
 };
 
@@ -159,7 +180,7 @@ let getOwnerReservationMenu = function(shop_id, callback){
 };
 
 let getReservationTable = function(shop_id, time, callback){
-	let sql = "select s.shop_id, s.number, ifnull(count-count(reservation_count), count) as remain_table from ShopTable as s left join(ReservationTable as rt) on rt.number=s.number and rt.shop_id=s.shop_id left join(Reservation as r) on rt.id=r.id where s.shop_id="+shop_id+" and time =\""+time+"\" or time is null group by s.number";
+	let sql = "select s.shop_id, s.number, if(time is null, count, count-count(reservation_count)) as remain_table from ShopTable as s left join(ReservationTable as rt) on rt.number=s.number and rt.shop_id=s.shop_id left join(Reservation as r) on rt.id=r.id and time=\""+time+"\" where s.shop_id="+shop_id+" group by s.shop_id, s.number";
 	query_function(sql, callback);
 };
 
@@ -222,6 +243,8 @@ module.exports = function() {
 		getMenuwithTimeSale: getMenuwithTimeSale,
 		getOwnerShop: getOwnerShop,
 		addOwnerShop: addOwnerShop,
+		addOwnerShopTable: addOwnerShopTable,
+		deleteOwnerShop: deleteOwnerShop,
 		addShopMenu: addShopMenu,
 		deleteShopMenu: deleteShopMenu,
 		getClientUserDetail: getClientUserDetail,
