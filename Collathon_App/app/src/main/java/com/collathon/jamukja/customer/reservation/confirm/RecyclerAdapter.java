@@ -5,12 +5,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.collathon.jamukja.NetworkManager;
 import com.collathon.janolja.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +70,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView count;
         private TextView time;
         private Data data;
+        private Button deleteButton;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -73,6 +80,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
            // count = (TextView) itemView.findViewById(R.id.reservation_ticket_menu_count);
             time = (TextView) itemView.findViewById(R.id.reservation_time);
             menu = (TextView) itemView.findViewById(R.id.reservation_menu);
+            deleteButton = (Button) itemView.findViewById(R.id.reservation_delete_button);
         }
 
         void onBind(Data data) {
@@ -83,6 +91,51 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             //count.setText(data.getCount());
             time.setText(data.getTime());
             menu.setText(data.getMenu());
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteReservationAll();
+                }
+            });
+        }
+
+        public void deleteReservationAll(){
+            try {
+                NetworkManager nm = new NetworkManager();
+                String client_site = "/reservation/delete?reservation="+data.getId();
+                Log.i("DELETE RESERVATION", "SITE= "+client_site);
+                nm.postInfo(client_site, "POST");
+
+                while(true){ // thread 작업이 끝날 때까지 대기
+                    if(nm.isEnd){
+                        break;
+                    }
+                    Log.i("DELETE RESERVATION", "아직 작업 안끝남.");
+                }
+                JSONObject jsonObject = nm.getResult();
+                String success = jsonObject.getString("result");
+                Log.i("DELETE RESERVATION", "서버에서 받아온 result = " + success);
+
+                if (success.equals("ERROR")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("예약 취소 실패")
+                            .setNegativeButton("다시 시도", null)
+                            .create()
+                            .show();
+                }
+
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("예약 취소 성공")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
     }

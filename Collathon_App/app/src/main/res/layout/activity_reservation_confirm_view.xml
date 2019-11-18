@@ -108,8 +108,18 @@
                                 android:textColor="#45555f"
                                 android:textSize="17dp"
                                 android:textStyle="bold"/>
-
                         </LinearLayout>
+
+                        <Button
+                            android:id="@+id/reservation_delete_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="300dp"
+                            android:background="#EE7764"
+                            android:fontFamily="@font/nanumsquare"
+                            android:text="삭제"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16dp" />
 
                         <View
                             android:layout_width="match_parent"
