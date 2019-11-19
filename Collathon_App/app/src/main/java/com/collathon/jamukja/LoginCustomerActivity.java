@@ -74,7 +74,7 @@ public class LoginCustomerActivity extends AppCompatActivity {
 
                 //아이디, 비번 입력 안 한 경우 확인 메세지 나오게 함
                 if(idText.getText().toString().equals("") || passwordText.getText().toString().equals("")){
-                    Log.i("LOGIN", "아이디 비번 빈칸");
+                    Log.i("LOGIN", "아이디 or 비밀번호 빈칸");
                     builder.setMessage(" 아이디 및 비밀번호를 확인해주세요. ")
                             .setNegativeButton("확인", null)
                             .create()
