@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.owner.SecondAdapter;
 import com.collathon.jamukja.owner.TimeSale.TimeSaleAdd.TimeSaleActivity;
 import com.collathon.janolja.R;
 
