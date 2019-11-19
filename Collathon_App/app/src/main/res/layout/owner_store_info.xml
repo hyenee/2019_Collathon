@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/typo"
-        android:text="가게 이름"
         android:textAlignment="center"
         android:textColor="#EE7764"
+        android:text="가게 이름"
+
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/layout_recycler_menu"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,8 +60,9 @@
             android:layout_marginRight="10dp"
             android:background="#EE7764"
             android:fontFamily="@font/nanumsquare"
-            android:text="타임세일 등록"
             android:textColor="@android:color/white"
+            android:text="타임세일 등록"
+
             android:textSize="14sp" />
 
         <Button

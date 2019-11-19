@@ -15,6 +15,7 @@
         android:text="블랙리스트"
         android:gravity="center"
         android:textSize="30dp"
+        android:fontFamily="@font/typo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

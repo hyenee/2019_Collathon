@@ -34,6 +34,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="님, 환영합니다!"
+            android:fontFamily="@font/typo"
+            android:textAlignment="center"
+            android:textColor="#EE7764"
             android:textSize="25dp"
             app:layout_constraintStart_toEndOf="@+id/user_name"
             app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +99,7 @@
             android:layout_weight="0.1"
             android:background="#ffffff"
             android:fontFamily="@font/nanumsquare"
-            android:text="예약관리"
+            android:text="MY"
             android:textAlignment="center" />
 
         <Button
@@ -127,6 +130,9 @@
         android:text="삭제"
         app:layout_constraintEnd_toStartOf="@+id/btn_regi_store"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
 
     <Button
@@ -137,6 +143,9 @@
         android:layout_marginEnd="70dp"
         android:text="추가"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
