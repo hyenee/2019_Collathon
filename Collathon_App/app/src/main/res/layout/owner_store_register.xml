@@ -60,7 +60,11 @@
         android:layout_width="218dp"
         android:layout_height="51dp"
         android:layout_marginTop="184dp"
-        android:text="Button"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+
+        android:textColor="@android:color/white"
+        android:text="가게 추가"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +116,12 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="16dp"
         android:text="Y"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/btn_no"
+
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -123,16 +132,20 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:text="N"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="219dp"
-        android:layout_height="15dp"
+        android:layout_width="218dp"
+        android:layout_height="18dp"
         android:layout_marginTop="16dp"
-        android:text="테이블이 있습니까?"
         android:gravity="center"
+        android:text="테이블이 있습니까?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_storeCategory" />
