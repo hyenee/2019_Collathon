@@ -212,7 +212,7 @@ public class ReservationConfirmActivity extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String reservation_id = jsonObject.getString("reservation_id");
-                                   // String shop = jsonObject.getString("shop");
+                                    // String shop = jsonObject.getString("shop");
                                     String number = jsonObject.getString("number");
                                     String count = jsonObject.getString("count");
                                     //String time = jsonObject.getString("time");

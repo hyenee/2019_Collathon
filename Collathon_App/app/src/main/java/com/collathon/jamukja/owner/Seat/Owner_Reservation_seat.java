@@ -7,13 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.Data;
-import com.collathon.jamukja.owner.MenuData;
-import com.collathon.jamukja.owner.SecondAdapter;
+import com.collathon.jamukja.owner.Seat.RecyclerAdapter;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
