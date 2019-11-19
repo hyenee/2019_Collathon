@@ -119,5 +119,24 @@
             android:text="로그아웃"
             android:textAlignment="center" />
     </LinearLayout>
+    <Button
+        android:id="@+id/btn_delete_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="삭제"
+        app:layout_constraintEnd_toStartOf="@+id/btn_regi_store"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
+
+    <Button
+        android:id="@+id/btn_regi_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="70dp"
+        android:text="추가"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

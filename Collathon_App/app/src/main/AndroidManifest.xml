@@ -31,6 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_Store_Register"></activity>
+        <activity android:name="com.collathon.jamukja.Owner_reservation_Popup" />
+        <activity android:name="com.collathon.jamukja.Owner_list_menu" />
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_Seat_Info" />
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_list_seat" />
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_list_seat_list" />
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_Reservation_seat" />
+        <activity android:name="com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager" />
         <activity
             android:name="com.collathon.jamukja.SelectUserActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
