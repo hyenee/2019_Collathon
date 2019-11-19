@@ -1,9 +1,6 @@
-package com.collathon.jamukja.customer.reservation.confirm;
+package com.collathon.jamukja.owner.confirm;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,47 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.MainActivity;
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.owner.confirm.Data;
 import com.collathon.janolja.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
-    String current; //현재 시간 받아오는 변수
+
     private Context context;
-    public String userID;
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_reservation_confirm_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_list_seat, parent, false);
         this.context = parent.getContext();
-        return new ItemViewHolder(view);
+        return new RecyclerAdapter.ItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerAdapter.ItemViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
         holder.onBind(listData.get(position));
     }
-
-    public Object getItem(int position) {
-        return listData.get(position) ;
-    }
-
 
     @Override
     public int getItemCount() {
@@ -67,23 +54,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for (int i = 0; i < listData.size(); i++) {
-            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenuCount() + ", " + listData.get(i).getTime());
+            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getTime());
         }
     }
 
-    public String currentTime(){
-        //현재 시간 가져오기
-        TimeZone time;
-        Date date = new Date();
-        DateFormat df = new SimpleDateFormat("HH");
-        time = TimeZone.getTimeZone("Asia/Seoul");
-        df.setTimeZone(time);
-        Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
-        String current = df.format(date);
+    public void check(List<Data> listData){
 
-        return current;
     }
-
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
@@ -91,48 +68,38 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         private TextView shop;
         private TextView menu;
+        private TextView count;
         private TextView time;
         private Data data;
-        private Button deleteButton, cant_reservation_delete_button;
+        private Button deleteButton;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            shop = (TextView) itemView.findViewById(R.id.reservation_store_name);
-            time = (TextView) itemView.findViewById(R.id.reservation_time);
-            menu = (TextView) itemView.findViewById(R.id.reservation_menu);
-            deleteButton = (Button) itemView.findViewById(R.id.reservation_delete_button);
-            cant_reservation_delete_button = (Button) itemView.findViewById(R.id.cant_reservation_delete_button);
+            shop = (TextView) itemView.findViewById(R.id.owner_reservation_id);
+            // menu = (TextView) itemView.findViewById(R.id.reservation_ticket_menu);
+            // count = (TextView) itemView.findViewById(R.id.reservation_ticket_menu_count);
+            time = (TextView) itemView.findViewById(R.id.owner_reservation_time);
+            menu = (TextView) itemView.findViewById(R.id.owner_reservation_menu);
+            deleteButton = (Button) itemView.findViewById(R.id.btn_owner_reservation_delete);
         }
 
         void onBind(Data data) {
             this.data = data;
 
             shop.setText(data.getShop());
+            //menu.setText(data.getMenu());
+            //count.setText(data.getCount());
             time.setText(data.getTime());
-            menu.setText(data.getMenuCount());
-
-            current = currentTime(); //현재 시각 받아옴
-            String temp = data.getTime().substring(0, 2); //예약 시간 중 앞 시간만 받아옴
-
-            Log.i("CONFIRM RECYCLER", "temp"+ temp);
-            if(Integer.parseInt(current) > Integer.parseInt(temp)){
-                deleteButton.setVisibility(View.GONE);
-                cant_reservation_delete_button.setVisibility(View.VISIBLE);
-            }
-            else
-                cant_reservation_delete_button.setVisibility(View.GONE);
-
+            menu.setText(data.getMenu());
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     deleteReservationAll();
-
                 }
             });
         }
-
 
         public void deleteReservationAll(){
             try {
@@ -162,19 +129,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("예약 취소 성공")
+                            .setPositiveButton("확인", null)
                             .create()
                             .show();
-                    Intent intent = new Intent(context, ReservationConfirmActivity.class);
-                    intent.putExtra("userID", userID);
-                    itemView.getContext().startActivity(intent);
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
-            }catch (NullPointerException e) {
-                e.printStackTrace();
             }
-
         }
 
     }

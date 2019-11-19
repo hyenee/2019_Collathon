@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.BlackList.Owner_BlackList;
-import com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager;
+import com.collathon.jamukja.owner.confirm.Owner_Reservation_Manager;
 import com.collathon.jamukja.owner.Seat.Owner_Store_Register;
 import com.collathon.janolja.R;
 
@@ -47,6 +47,7 @@ public class MainOwnerActivity extends AppCompatActivity {
     String shop_id;
     String delete_shop_id;
     String index_delete[];
+
 
     Button btn_store_register, btn_store_remove;
 
@@ -89,10 +90,12 @@ public class MainOwnerActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainOwnerActivity.this);
                 final String temp[] = new String[adapter.getItemCount()];
+                index_delete = new String[adapter.getItemCount()];
                 final int[] index = {0};
                 for (int i = 0; i < temp.length; i++) {
                     temp[i] = adapter.getData(i).getTitle();
-                    delete_shop_id= adapter.getData(i).getId();
+                    index_delete[i]= adapter.getData(i).getId();
+                    Log.i("STORE",index_delete[i]);
                 }
                 len = temp.length;
                 builder.setTitle("삭제할 항목을 고르시오.").setSingleChoiceItems(temp, 0, new DialogInterface.OnClickListener() {
@@ -103,7 +106,8 @@ public class MainOwnerActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "어디냐 " + index[0], Toast.LENGTH_SHORT).show();
 
                         deleteMenu = temp[item];
-                        delete_shop_id = index_delete[index[0]];
+                        delete_shop_id = index_delete[item];
+                        startToast(delete_shop_id);
 
                     }
                 });
@@ -113,8 +117,8 @@ public class MainOwnerActivity extends AppCompatActivity {
                         Log.v("가져옴", String.valueOf(index[0]));
                         Toast.makeText(getApplicationContext(), "Phone Model = " + index[0], Toast.LENGTH_SHORT).show();
 
-
                         try {
+
                             NetworkManager nm = new NetworkManager();
 
                             String client_site = "/ownShop/delete?shop=" + delete_shop_id ;
@@ -134,8 +138,8 @@ public class MainOwnerActivity extends AppCompatActivity {
 
                             if (success.equals("ERROR")) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainOwnerActivity.this);
-                                builder.setMessage("삭제에 실패하셨습니다.푸하하")
-                                        .setNegativeButton("다시 시도", null)
+                                builder.setMessage("삭제에 실패하셨습니다. 등록된 예약이나 타임세일이 있는지 확인하세요")
+                                        .setNegativeButton("확인", null)
                                         .create()
                                         .show();
                             } else {
@@ -177,7 +181,6 @@ public class MainOwnerActivity extends AppCompatActivity {
                 case R.id.bookButton:
                     Intent intent1 = new Intent(MainOwnerActivity.this, Owner_Reservation_Manager.class);
                     intent1.putExtra("owner_id", ownerID);
-                    //Log.i("STORE",ownerID);
                     startActivity(intent1);
                     break;
 
@@ -204,7 +207,9 @@ public class MainOwnerActivity extends AppCompatActivity {
             }
         }
     };
-
+    private void startToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_store);

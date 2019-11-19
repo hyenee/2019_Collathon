@@ -1,4 +1,4 @@
-package com.collathon.jamukja.owner.Seat;
+package com.collathon.jamukja.owner.confirm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.collathon.jamukja.owner.Seat.Owner_Reservation_seat;
 import com.collathon.janolja.R;
 
 public class Owner_Reservation_Manager extends AppCompatActivity {
@@ -25,7 +26,6 @@ public class Owner_Reservation_Manager extends AppCompatActivity {
 
         textView_information = findViewById(R.id.et_info);
         textView_seat = findViewById(R.id.et_numberOfseat);
-        textView_ticket = findViewById(R.id.et_numberOfticket);
 
         textView_information.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +36,7 @@ public class Owner_Reservation_Manager extends AppCompatActivity {
         textView_seat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Owner_Reservation_Manager.this,Owner_Reservation_seat.class);
+                Intent intent = new Intent(Owner_Reservation_Manager.this, Owner_Reservation_seat.class);
                 intent.putExtra("owner_id", ownerID);
                 startActivity(intent);
             }
