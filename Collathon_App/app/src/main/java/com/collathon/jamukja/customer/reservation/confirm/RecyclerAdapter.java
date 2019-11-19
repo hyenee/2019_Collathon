@@ -18,13 +18,17 @@ import com.collathon.janolja.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list
     private ArrayList<Data> listData = new ArrayList<>();
-
+    String current; //현재 시간 받아오는 변수
     private Context context;
 
     @NonNull
@@ -57,8 +61,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         }
     }
 
-    public void check(List<Data> listData){
+    public String currentTime(){
+        //현재 시간 가져오기
+        TimeZone time;
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("HH");
+        time = TimeZone.getTimeZone("Asia/Seoul");
+        df.setTimeZone(time);
+        Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
+        String current = df.format(date);
 
+        return current;
     }
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
@@ -70,27 +83,36 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView count;
         private TextView time;
         private Data data;
-        private Button deleteButton;
+        private Button deleteButton, cant_reservation_delete_button;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
             shop = (TextView) itemView.findViewById(R.id.reservation_store_name);
-           // menu = (TextView) itemView.findViewById(R.id.reservation_ticket_menu);
-           // count = (TextView) itemView.findViewById(R.id.reservation_ticket_menu_count);
             time = (TextView) itemView.findViewById(R.id.reservation_time);
             menu = (TextView) itemView.findViewById(R.id.reservation_menu);
             deleteButton = (Button) itemView.findViewById(R.id.reservation_delete_button);
+            cant_reservation_delete_button = (Button) itemView.findViewById(R.id.cant_reservation_delete_button);
         }
 
         void onBind(Data data) {
             this.data = data;
 
             shop.setText(data.getShop());
-            //menu.setText(data.getMenu());
-            //count.setText(data.getCount());
             time.setText(data.getTime());
             menu.setText(data.getMenu());
+
+            current = currentTime(); //현재 시각 받아옴
+            String temp = data.getTime().substring(0, 2); //예약 시간 중 앞 시간만 받아옴
+
+            Log.i("CONFIRM RECYCLER", "temp"+ temp);
+            if(Integer.parseInt(current) > Integer.parseInt(temp)){
+                deleteButton.setVisibility(View.GONE);
+                cant_reservation_delete_button.setVisibility(View.VISIBLE);
+            }
+            else
+                cant_reservation_delete_button.setVisibility(View.GONE);
+
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,6 +158,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         }
 
     }
