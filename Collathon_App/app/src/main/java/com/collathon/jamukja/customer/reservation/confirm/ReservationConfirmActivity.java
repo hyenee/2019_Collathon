@@ -173,12 +173,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    public void onBackPressed() {
-        Intent intent = new Intent(this, CustomerMyMenuActivity.class);
-        intent.putExtra("userID",userID);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-    }
 
     public void getUserReservationTable(){
         tableList = new ArrayList<>();
@@ -251,6 +245,13 @@ public class ReservationConfirmActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, CustomerMyMenuActivity.class);
+        intent.putExtra("userID",userID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
 }

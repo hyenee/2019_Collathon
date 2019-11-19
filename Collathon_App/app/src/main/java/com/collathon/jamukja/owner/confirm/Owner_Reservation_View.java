@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
+import com.collathon.jamukja.owner.Seat.Owner_Reservation_seat;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -42,6 +44,7 @@ public class Owner_Reservation_View extends AppCompatActivity {
         Intent intent = getIntent();
         //ownerID = intent.getExtras().getString("owner_id");
         shopID = intent.getExtras().getString("shopID");
+        ownerID = intent.getExtras().getString("ownerID");
 
         handler = new Handler();
 
@@ -118,13 +121,13 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String reservation_id = jsonObject.getString("reservation_id");
-                                    String shop = jsonObject.getString("user");
+                                    String user = jsonObject.getString("user");
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
                                     String temp = "";
                                     temp += "  "+ menu  + "  x " + count + "개";
-                                    list.add(new Data(reservation_id, shop, temp, time));
+                                    list.add(new Data(reservation_id, user, temp, time));
 
                                 }
 
@@ -153,6 +156,7 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+                                adapter.shopID = shopID;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -177,5 +181,12 @@ public class Owner_Reservation_View extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Owner_Reservation_seat.class);
+        intent.putExtra("ownerID",ownerID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }

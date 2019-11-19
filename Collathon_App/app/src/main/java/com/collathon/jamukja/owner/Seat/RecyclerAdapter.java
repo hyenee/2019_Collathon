@@ -27,6 +27,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private ImageView imageView;
     private BookData data;
     private Context context;
+    public String ownerID;
 
 
     @NonNull
@@ -95,6 +96,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                     Intent intent2 = new Intent(v.getContext(), Owner_Reservation_View.class);
                     Log.i("STORE", "ownerID가 잘 들어오냐" + data.getId());
                     intent2.putExtra("shopID", data.getId());
+                    intent2.putExtra("ownerID", ownerID);
                     v.getContext().startActivity(intent2);
                     break;
 
