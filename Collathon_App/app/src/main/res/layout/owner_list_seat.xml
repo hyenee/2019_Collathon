@@ -1,79 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="101dp"
-    tools:context="com.collathon.jamukja.owner.My.Seat.Owner_list_seat">
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
 
     <LinearLayout
-        android:layout_width="416dp"
-        android:layout_height="101dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="10dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linear_userID"
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text="가게이름>"
+                    android:textColor="#45555f"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/owner_reservation_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text=""
+                    android:textColor="#58585a"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text="예약시간>"
+                    android:textColor="#45555f"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/owner_reservation_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:textColor="#58585a"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text="예약메뉴>"
+                    android:textColor="#45555f"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/owner_reservation_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text="메뉴"
+                    android:textColor="#45555f"
+                    android:textSize="17dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_owner_reservation_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="300dp"
+                android:background="#EE7764"
                 android:fontFamily="@font/nanumsquare"
-                android:text="  고객 ID"
-                android:textColor="#45555f"
-                android:textSize="17dp"
-                android:textStyle="bold" />
+                android:text="삭제"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/et_book_id"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/nanumsquare"
-                android:text="10:00-11:00"
-                android:textColor="#58585a"
-                android:textSize="17dp"
-                android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@+id/reservation_ticket_menu_count"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_Time"
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/nanumsquare"
-                android:text="예약시간"
-                android:textColor="#45555f"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/et_book_time"
-                android:layout_width="310dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/nanumsquare"
-                android:text="10:00-11:00"
-                android:textColor="#58585a"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

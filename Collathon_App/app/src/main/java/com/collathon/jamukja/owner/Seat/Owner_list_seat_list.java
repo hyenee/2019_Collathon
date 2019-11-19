@@ -11,6 +11,6 @@ public class Owner_list_seat_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.owner_list_seat_list);
+        setContentView(R.layout.owner_list_seat);
     }
 }

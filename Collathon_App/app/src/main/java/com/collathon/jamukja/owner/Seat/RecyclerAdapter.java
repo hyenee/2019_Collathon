@@ -3,24 +3,18 @@ package com.collathon.jamukja.owner.Seat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.TestLooperManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.owner.Data;
-import com.collathon.jamukja.owner.MenuData;
-import com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager;
-import com.collathon.jamukja.owner.Seat.Owner_Reservation_seat;
-import com.collathon.jamukja.owner.Store_info;
+import com.collathon.jamukja.owner.confirm.Owner_Reservation_View;
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;
@@ -98,9 +92,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             switch (v.getId()) {
 
                 case R.id.store_title:
-                    Intent intent2 = new Intent(v.getContext(), Owner_Seat_Info.class);
-                    Log.i("STORE", "ownerID가 잘 들어오냐" + data.getOwner());
-                    intent2.putExtra("shop_id", data.getId());
+                    Intent intent2 = new Intent(v.getContext(), Owner_Reservation_View.class);
+                    Log.i("STORE", "ownerID가 잘 들어오냐" + data.getId());
+                    intent2.putExtra("shopID", data.getId());
                     v.getContext().startActivity(intent2);
                     break;
 

@@ -1,6 +1,9 @@
 package com.collathon.jamukja.customer.reservation.confirm;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.collathon.jamukja.MainActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.janolja.R;
 
@@ -30,6 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private ArrayList<Data> listData = new ArrayList<>();
     String current; //현재 시간 받아오는 변수
     private Context context;
+    public String userID;
 
     @NonNull
     @Override
@@ -46,6 +51,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
         holder.onBind(listData.get(position));
     }
+
+    public Object getItem(int position) {
+        return listData.get(position) ;
+    }
+
 
     @Override
     public int getItemCount() {
@@ -72,6 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         String current = df.format(date);
         return current;
     }
+
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
@@ -121,9 +132,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 @Override
                 public void onClick(View view) {
                     deleteReservationAll();
+
                 }
             });
         }
+
 
         public void deleteReservationAll(){
             try {
@@ -153,9 +166,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("예약 취소 성공")
-                            .setPositiveButton("확인", null)
                             .create()
                             .show();
+                    Intent intent = new Intent(context, ReservationConfirmActivity.class);
+                    intent.putExtra("userID", userID);
+                    itemView.getContext().startActivity(intent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
