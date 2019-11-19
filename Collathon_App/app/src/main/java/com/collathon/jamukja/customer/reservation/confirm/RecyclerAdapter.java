@@ -70,7 +70,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         df.setTimeZone(time);
         Log.i("RESERVATION", "CURRENT TIME : "+ df.format(date));
         String current = df.format(date);
-
         return current;
     }
 
@@ -78,9 +77,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // 여기서 subView를 setting 해줍니다.
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView shop;
-        private TextView menu;
-        private TextView time;
+        private TextView shop, menu, time, table, table_textview;
         private Data data;
         private Button deleteButton, cant_reservation_delete_button;
 
@@ -90,6 +87,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             shop = (TextView) itemView.findViewById(R.id.reservation_store_name);
             time = (TextView) itemView.findViewById(R.id.reservation_time);
             menu = (TextView) itemView.findViewById(R.id.reservation_menu);
+            table = (TextView) itemView.findViewById(R.id.reservation_table);
+            table_textview = (TextView) itemView.findViewById(R.id.reservation_table_textview);
             deleteButton = (Button) itemView.findViewById(R.id.reservation_delete_button);
             cant_reservation_delete_button = (Button) itemView.findViewById(R.id.cant_reservation_delete_button);
         }
@@ -100,18 +99,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             shop.setText(data.getShop());
             time.setText(data.getTime());
             menu.setText(data.getMenuCount());
+            table.setText(data.getTable());
 
             current = currentTime(); //현재 시각 받아옴
             String temp = data.getTime().substring(0, 2); //예약 시간 중 앞 시간만 받아옴
 
             Log.i("CONFIRM RECYCLER", "temp"+ temp);
-            if(Integer.parseInt(current) > Integer.parseInt(temp)){
+            if(Integer.parseInt(current) > Integer.parseInt(temp)-2){ // 예약 시간 1시간 전부터는 예약 취소 불가
                 deleteButton.setVisibility(View.GONE);
                 cant_reservation_delete_button.setVisibility(View.VISIBLE);
             }
             else
                 cant_reservation_delete_button.setVisibility(View.GONE);
 
+            if(data.getTable() == null || data.getTable().equals("")){
+                table_textview.setVisibility(View.GONE);
+                table.setVisibility(View.GONE);
+            }
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,14 +157,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                             .create()
                             .show();
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }catch (NullPointerException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 }
