@@ -57,7 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         // 외부에서 item을 추가시킬 함수입니다.
         listData.add(data);
         for (int i = 0; i < listData.size(); i++) {
-            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenu() + ", " + listData.get(i).getTime());
+            Log.i("TICKET CONFIRM", "addItem :" + listData.get(i).getId() + ", " + listData.get(i).getShop() + ", " + listData.get(i).getMenuCount() + ", " + listData.get(i).getTime());
         }
     }
 
@@ -80,7 +80,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         private TextView shop;
         private TextView menu;
-        private TextView count;
         private TextView time;
         private Data data;
         private Button deleteButton, cant_reservation_delete_button;
@@ -100,7 +99,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
             shop.setText(data.getShop());
             time.setText(data.getTime());
-            menu.setText(data.getMenu());
+            menu.setText(data.getMenuCount());
 
             current = currentTime(); //현재 시각 받아옴
             String temp = data.getTime().substring(0, 2); //예약 시간 중 앞 시간만 받아옴

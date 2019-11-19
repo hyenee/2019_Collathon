@@ -44,7 +44,7 @@ public class ReservationActivity extends AppCompatActivity {
     Handler handler;
     Button decisionMenuButton, timeButton, reserveButton; //메뉴 확정, 시간, 예약하기 버튼
     EditText number_table_1, number_table_2, number_table_4; //메뉴 수량, 각 테이블 별 수량 체크
-    TextView time_id; //예약 선택한 시간 표시할 TextView,
+    TextView time_id, handout_textview; //예약 선택한 시간 표시할 TextView,
     String reservation_time="0"; //예약시간 초기 0으로 설정
     int selected = 0; //예약 시간 선택 다이얼로그에 쓸 변수
     private String userID, shopID, check_table; //사용자 id, 가게 id, check_table intent로 받아옴
@@ -70,6 +70,7 @@ public class ReservationActivity extends AppCompatActivity {
         number_table_2 = (EditText) findViewById(R.id.number_table_2);
         number_table_4 = (EditText) findViewById(R.id.number_table_4);
         time_id = (TextView)findViewById(R.id.time_id); //예약 선택한 시간 text로 보여줌
+        handout_textview = (TextView)findViewById(R.id.handout_textview);
 
         timeButton = (Button)findViewById(R.id.timeButton);
         reserveButton = (Button)findViewById(R.id.reserveButton);
@@ -89,13 +90,16 @@ public class ReservationActivity extends AppCompatActivity {
 
         if(check_table.equals("N")){ //가게에 테이블 없는 경우 핸디오더만 가능
             tableLayout.setVisibility(View.GONE);
+            handout_textview.setVisibility(View.GONE);
             //예약하기 버튼 누르면 예약 정보 전송
             reserveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     current = currentTime();
-                    addReservation();
-                    addReservationMenu();
+                    String check = addReservation();
+                    if(check.equals("OK")){
+                        addReservationMenu();
+                    }
                 }
             });
         }
@@ -105,9 +109,11 @@ public class ReservationActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     current = currentTime();
-                    addReservation();
-                    addReservationMenu();
-                    addReservationTable();
+                    String check = addReservation();
+                    if(check.equals("OK")){
+                        addReservationMenu();
+                        addReservationTable();
+                    }
                 }
             });
         }
@@ -284,7 +290,7 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     //현재 시간, 사용자id, 예약 시간, 가게 id 서버로 전송
-    private void addReservation(){
+    private String addReservation(){
         try {
             NetworkManager nm = new NetworkManager();
                 String client_site = "/reservation/add?current="+current+"&user="+userID
@@ -308,6 +314,7 @@ public class ReservationActivity extends AppCompatActivity {
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();
+                    return "ERROR";
                 }
                 /*
                 else {
@@ -322,6 +329,7 @@ public class ReservationActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return "OK";
     }
 
     //메뉴, 수량 서버로 전송
@@ -356,7 +364,7 @@ public class ReservationActivity extends AppCompatActivity {
 
             if (success.equals("ERROR")){
                 AlertDialog.Builder builder = new AlertDialog.Builder(ReservationActivity.this);
-                builder.setMessage("예약 실패")
+                builder.setMessage("시간을 선택해주세요.")
                         .setNegativeButton("다시 시도", null)
                         .create()
                         .show();
