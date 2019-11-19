@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.BlackList.Owner_BlackList;
+import com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager;
+import com.collathon.jamukja.owner.Seat.Owner_Store_Register;
 import com.collathon.janolja.R;
 
 import java.io.BufferedReader;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +42,13 @@ public class MainOwnerActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     private TextView textView_ownerName;
     private Toast toast;
-    private String ownerID, ownerName;
+    private String ownerID, ownerName,deleteMenu;
+    String shop_name;
+    String shop_id;
+    String delete_shop_id;
+    String index_delete[];
+
+    Button btn_store_register, btn_store_remove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,100 @@ public class MainOwnerActivity extends AppCompatActivity {
         findViewById(R.id.blackButton).setOnClickListener(onClickListener);
         findViewById(R.id.bookButton).setOnClickListener(onClickListener);
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
+
+        btn_store_register = findViewById(R.id.btn_regi_store);
+        btn_store_remove = findViewById(R.id.btn_delete_store);
+
+        btn_store_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(MainOwnerActivity.this, Owner_Store_Register.class);
+                intent1.putExtra("ownerID", ownerID);
+                startActivity(intent1);
+            }
+        });
+        btn_store_remove.setOnClickListener(new View.OnClickListener() {
+            int len ;
+
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainOwnerActivity.this);
+                final String temp[] = new String[adapter.getItemCount()];
+                final int[] index = {0};
+                for (int i = 0; i < temp.length; i++) {
+                    temp[i] = adapter.getData(i).getTitle();
+                    delete_shop_id= adapter.getData(i).getId();
+                }
+                len = temp.length;
+                builder.setTitle("삭제할 항목을 고르시오.").setSingleChoiceItems(temp, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        index[0] = item;
+                        Toast.makeText(getApplicationContext(), "어디냐 " + index[0], Toast.LENGTH_SHORT).show();
+
+                        deleteMenu = temp[item];
+                        delete_shop_id = index_delete[index[0]];
+
+                    }
+                });
+                builder.setNegativeButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.v("가져옴", String.valueOf(index[0]));
+                        Toast.makeText(getApplicationContext(), "Phone Model = " + index[0], Toast.LENGTH_SHORT).show();
+
+
+                        try {
+                            NetworkManager nm = new NetworkManager();
+
+                            String client_site = "/ownShop/delete?shop=" + delete_shop_id ;
+                            Log.i("STORE", client_site);
+                            nm.postInfo(client_site, "POST"); //받은 placeId에 따른 장소 세부 정보
+
+                            while (true) { // thread 작업이 끝날 때까지 대기
+                                if (nm.isEnd) {
+                                    break;
+                                }
+                                Log.i("STORE", "아직 작업 안끝남.");
+                            }
+
+                            JSONObject jsonObject = nm.getResult();
+                            String success = jsonObject.getString("result");
+                            Log.i("STORE", "서버에서 받아온 result = " + success);
+
+                            if (success.equals("ERROR")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainOwnerActivity.this);
+                                builder.setMessage("삭제에 실패하셨습니다.푸하하")
+                                        .setNegativeButton("다시 시도", null)
+                                        .create()
+                                        .show();
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainOwnerActivity.this);
+                                builder.setMessage("삭제에 성공하셨습니다.")
+                                        .setPositiveButton("확인", null)
+                                        .create()
+                                        .show();
+                                adapter.deldete(index[0]);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // adapter의 값이 변경되었다는 것을 알려줍니다.
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -72,6 +175,10 @@ public class MainOwnerActivity extends AppCompatActivity {
                     break;
 
                 case R.id.bookButton:
+                    Intent intent1 = new Intent(MainOwnerActivity.this, Owner_Reservation_Manager.class);
+                    intent1.putExtra("owner_id", ownerID);
+                    //Log.i("STORE",ownerID);
+                    startActivity(intent1);
                     break;
 
 
@@ -125,7 +232,7 @@ public class MainOwnerActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String site = NetworkManager.url + "/ownShop";
-                        site += "?id="+ownerID;
+                        site += "?id=" + ownerID;
                         Log.i(TAG, site);
 
                         URL url = new URL(site);
@@ -155,12 +262,13 @@ public class MainOwnerActivity extends AppCompatActivity {
                                 String rec_data = buf.toString();
                                 Log.i(TAG, "서버: " + rec_data);
                                 JSONArray jsonArray = new JSONArray(rec_data);
+                                index_delete = new String[jsonArray.length()];
 
-                                for(int i=0; i<jsonArray.length(); i++){
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String shop_id = jsonObject.getString("id");
-                                    String shop_name = jsonObject.getString("name");
-
+                                    shop_id = jsonObject.getString("id");
+                                    shop_name = jsonObject.getString("name");
+                                    index_delete[i] = shop_id;
                                     shop_name_list.add(shop_name);
                                     shop_id_list.add(shop_id);
                                 }
@@ -187,7 +295,7 @@ public class MainOwnerActivity extends AppCompatActivity {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }catch(JSONException e){
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }

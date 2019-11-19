@@ -1,4 +1,4 @@
-package com.collathon.jamukja.customer.reservation.ticket_confirm;
+package com.collathon.jamukja.customer.reservation.confirm;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -26,7 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationTicketConfirmActivity extends AppCompatActivity {
+public class ReservationConfirmActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     private String userID;
@@ -37,7 +38,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation_ticket_confirm_recycler);
+        setContentView(R.layout.activity_reservation_confirm_recycler);
 
         Intent intent = getIntent();
         userID = intent.getExtras().getString("userID");
@@ -151,6 +152,7 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+                                adapter.userID = userID;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -175,6 +177,12 @@ public class ReservationTicketConfirmActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(this, CustomerMyMenuActivity.class);
+        intent.putExtra("userID",userID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
 }

@@ -80,82 +80,83 @@ public class LoginCustomerActivity extends AppCompatActivity {
                             .create()
                             .show();
                 }
+                else{
+                    try {
+                        NetworkManager.add(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    String site = NetworkManager.url + "/user/login";
+                                    site += "?id=" + userID + "&passwd=" + userPasswd;
+                                    Log.i(TAG, site);
 
-                try {
-                    NetworkManager.add(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                String site = NetworkManager.url + "/user/login";
-                                site += "?id=" + userID + "&passwd=" + userPasswd;
-                                Log.i(TAG, site);
+                                    URL url = new URL(site);
+                                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-                                URL url = new URL(site);
-                                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                                    if (connection != null) {
+                                        connection.setConnectTimeout(2000);
+                                        connection.setUseCaches(false);
+                                        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                            Log.i(TAG, "서버 연결됨");
 
-                                if (connection != null) {
-                                    connection.setConnectTimeout(2000);
-                                    connection.setUseCaches(false);
-                                    if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                        Log.i(TAG, "서버 연결됨");
+                                            // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                            InputStream is = connection.getInputStream();
+                                            InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                            BufferedReader br = new BufferedReader(isr);
+                                            String str = null;
+                                            StringBuffer buf = new StringBuffer();
 
-                                        // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
-                                        InputStream is = connection.getInputStream();
-                                        InputStreamReader isr = new InputStreamReader(is, "utf-8");
-                                        BufferedReader br = new BufferedReader(isr);
-                                        String str = null;
-                                        StringBuffer buf = new StringBuffer();
+                                            // 읽어온다.
+                                            do {
+                                                str = br.readLine();
+                                                if (str != null) {
+                                                    buf.append(str);
+                                                }
+                                            } while (str != null);
+                                            br.close(); // 스트림 해제
 
-                                        // 읽어온다.
-                                        do {
-                                            str = br.readLine();
-                                            if (str != null) {
-                                                buf.append(str);
-                                            }
-                                        } while (str != null);
-                                        br.close(); // 스트림 해제
+                                            String rec_data = buf.toString();
+                                            Log.i(TAG, " 서버: " + rec_data);
 
-                                        String rec_data = buf.toString();
-                                        Log.i(TAG, " 서버: " + rec_data);
-
-                                        if (rec_data.equals("")) {
-                                            Log.i(TAG,"아이디가 틀렸습니다.");
-                                        } else {
-                                            // 객체를 추출한다.(장소하나의 정보)
-                                            JSONArray root = new JSONArray(rec_data);
-                                            JSONObject obj1 = root.getJSONObject(0);
-                                            getUserPasswd = obj1.getString("passwd");
-
-                                            if (getUserPasswd.equals(userPasswd)) {
-                                                Log.i(TAG, "로그인에 성공하셨습니다.");
-                                                startActivityWithID(MainActivity.class, userID);
+                                            if (rec_data.equals("")) {
+                                                Log.i(TAG,"아이디가 틀렸습니다.");
                                             } else {
-                                                Log.i(TAG, "비밀번호가 틀렸습니다.");
-                                                Handler mHandler = new Handler(Looper.getMainLooper());
-                                                mHandler.postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        builder.setMessage("아이디나 비밀번호가 틀렸습니다.")
-                                                                .setNegativeButton("확인", null)
-                                                                .create()
-                                                                .show();
-                                                    }
-                                                }, 0);
+                                                // 객체를 추출한다.(장소하나의 정보)
+                                                JSONArray root = new JSONArray(rec_data);
+                                                JSONObject obj1 = root.getJSONObject(0);
+                                                getUserPasswd = obj1.getString("passwd");
+
+                                                if (getUserPasswd.equals(userPasswd)) {
+                                                    Log.i(TAG, "로그인에 성공하셨습니다.");
+                                                    startActivityWithID(MainActivity.class, userID);
+                                                } else {
+                                                    Log.i(TAG, "비밀번호가 틀렸습니다.");
+                                                    Handler mHandler = new Handler(Looper.getMainLooper());
+                                                    mHandler.postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            builder.setMessage("아이디나 비밀번호가 틀렸습니다.")
+                                                                    .setNegativeButton("확인", null)
+                                                                    .create()
+                                                                    .show();
+                                                        }
+                                                    }, 0);
+                                                }
                                             }
                                         }
                                     }
+                                } catch (MalformedURLException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (JSONException e) {// for mapToJson()
+                                    e.printStackTrace();
                                 }
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (JSONException e) {// for mapToJson()
-                                e.printStackTrace();
                             }
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
