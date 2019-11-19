@@ -3,9 +3,9 @@ package com.collathon.jamukja.customer.reservation.confirm;
 public class Data {
     private String id;
     private String shop;
-    private String menu;
-    private String count;
+    private String menuCount;
     private String time;
+    private String table;
 
     public String getId(){ return id; }
 
@@ -19,37 +19,30 @@ public class Data {
         this.shop = shop;
     }
 
-    public String getMenu(){ return menu; }
+    public String getMenuCount(){ return menuCount; }
 
-    public void setMenu(String menu) { this.menu = menu; }
-
-    public String getCount() { return count; }
-
-    public void setCount(String count) { this.count = count; }
+    public void setMenuCount(String menuCount) { this.menuCount = menuCount; }
 
     public String getTime(){ return time; }
 
     public void setTime(String time) {this.time = time; }
 
-    public Data(String id, String menu, String count){
-        this.id = id;
-        this.menu = menu;
-        this.count = count;
-    }
+    public String getTable(){ return table; }
 
-    public Data(String id, String shop, String menu, String count, String time){
+    public void setTable(String table) { this.table = table; }
+
+    public Data(String id, String shop, String menuCount, String time){
         this.id = id;
         this.shop = shop;
-        this.menu = menu;
-        this.count = count;
+        this.menuCount = menuCount;
         this.time = time;
     }
 
-    public Data(String id, String shop, String menu, String time){
+    public Data(String id, String shop, String menuCount, String time, String table){
         this.id = id;
         this.shop = shop;
-        this.menu = menu;
-        this.count = count;
+        this.menuCount = menuCount;
         this.time = time;
+        this.table = table;
     }
 }

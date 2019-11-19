@@ -49,7 +49,7 @@
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ticket_confirm_recycler"
+            android:id="@+id/confirm_recycler"
             android:layout_width="409dp"
             android:layout_height="653dp"
             android:layout_marginTop="20dp"

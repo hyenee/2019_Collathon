@@ -56,9 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,6 +73,17 @@
                 android:fontFamily="@font/nanumsquare"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
+
+                <TextView
+                    android:id="@+id/handout_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/nanumsquare"
+                    android:text="핸디오더를 원할 경우 테이블 개수를 0으로 설정해주세요."
+                    android:textColor="#3F3939"
+                    android:textSize="17dp" />
 
             <!-- 테이블 선택 -->
             <TableLayout
@@ -114,7 +122,6 @@
                         android:padding="20sp"
                         android:text="개수"
                         android:textSize="17dp" />
-
                 </TableRow>
 
                 <TableRow
@@ -147,7 +154,6 @@
                         android:inputType="number"
                         android:text="0"
                         android:textSize="17dp" />
-
                 </TableRow>
 
                 <TableRow
@@ -180,7 +186,6 @@
                         android:inputType="number"
                         android:text="0"
                         android:textSize="17dp" />
-
                 </TableRow>
 
                 <TableRow
@@ -213,9 +218,7 @@
                         android:inputType="number"
                         android:text="0"
                         android:textSize="17dp" />
-
                 </TableRow>
-
             </TableLayout>
 
             <!-- 예약하기 버튼 -->

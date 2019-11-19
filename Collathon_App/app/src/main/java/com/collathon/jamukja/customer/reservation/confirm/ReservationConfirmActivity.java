@@ -31,8 +31,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     private String userID;
-
-    List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
     List<Data> list;
 
     @Override
@@ -45,12 +43,12 @@ public class ReservationConfirmActivity extends AppCompatActivity {
         handler = new Handler();
 
         init();
-        getData();
+        getReservationMenu();
 
     }
 
     private void init() {
-        final RecyclerView recyclerView = findViewById(R.id.ticket_confirm_recycler);
+        final RecyclerView recyclerView = findViewById(R.id.confirm_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -65,15 +63,8 @@ public class ReservationConfirmActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void getData() {
-        //예약 id, 예약한 가게, 메뉴, 수량, 시간 출력
-        reservation_id_list = new ArrayList<>();
-        shop_list = new ArrayList<>();
-        menu_list = new ArrayList<>();
-        count_list = new ArrayList<>();
-        time_list = new ArrayList<>();
+    private void getReservationMenu() {
         list = new ArrayList<>();
-
         //서버 디비 값 파싱
         try {
             NetworkManager.add(new Runnable() {
@@ -111,8 +102,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
                                 String rec_data = buf.toString();
                                 Log.i("TICKET CONFIRM, ", "서버: " + rec_data);
 
-                                //list.add(new Data("0", "0", "0", "0"));
-
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -124,17 +113,14 @@ public class ReservationConfirmActivity extends AppCompatActivity {
                                     String temp = "";
                                     temp += "  "+ menu  + "  x " + count + "개";
                                     list.add(new Data(reservation_id, shop, temp, time));
-
                                 }
 
                                 for (int index = 0; index < list.size(); index++) {
                                     for(int j = 0; j < index; j++){
                                         if (list.get(index).getId()== list.get(j).getId()){
-                                            String tt = list.get(index).getMenu();
-                                            tt += "\n"+ list.get(j).getMenu();
-                                            list.get(index).setMenu(tt);
-//                                            list.set(index, new Data(list.get(index).getId(),
-//                                                    list.get(index).getShop(), , list.get(index).getTime()));
+                                            String tt = list.get(index).getMenuCount();
+                                            tt += "\n"+ list.get(j).getMenuCount();
+                                            list.get(index).setMenuCount(tt);
                                             list.set(j, new Data("-1", "-1", "-1", "-1"));
                                         }
                                     }
@@ -142,7 +128,7 @@ public class ReservationConfirmActivity extends AppCompatActivity {
 
                                 for (int index = list.size()-1; index >= 0; index--) {
                                     if(list.get(index).getId().equals("-1")
-                                            || list.get(index).getMenu().equals(null))
+                                            || list.get(index).getMenuCount().equals(null))
                                         list.remove(index);
                                 }
 
@@ -185,4 +171,102 @@ public class ReservationConfirmActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void getUserReservationTable(){
+        try {
+            NetworkManager.add(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String site = NetworkManager.url + "/reservation/table/user";
+                        site += "?id="+userID;
+                        Log.i("TICKET CONFIRM", site);
+
+                        URL url = new URL(site);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                        if (connection != null) {
+                            connection.setConnectTimeout(2000);
+                            connection.setUseCaches(false);
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                Log.i("TICKET CONFIRM", "서버 연결됨");
+                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                InputStream is = connection.getInputStream();
+                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                BufferedReader br = new BufferedReader(isr);
+                                String str = null;
+                                StringBuffer buf = new StringBuffer();
+
+                                // 읽어온다.
+                                do {
+                                    str = br.readLine();
+                                    if (str != null) {
+                                        buf.append(str);
+                                    }
+                                } while (str != null);
+                                br.close(); // 스트림 해제
+
+                                String rec_data = buf.toString();
+                                Log.i("TICKET CONFIRM, ", "서버: " + rec_data);
+
+                                JSONArray jsonArray = new JSONArray(rec_data);
+                                for(int i=0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String reservation_id = jsonObject.getString("reservation_id");
+                                   // String shop = jsonObject.getString("shop");
+                                    String number = jsonObject.getString("number");
+                                    String count = jsonObject.getString("count");
+                                    //String time = jsonObject.getString("time");
+                                    String temp = "";
+                                    temp += "  "+ number  + "인 테이블  x " + count + "개";
+                                    //list.add(new Data(reservation_id, temp));
+                                }
+
+                                for (int index = 0; index < list.size(); index++) {
+                                    for(int j = 0; j < index; j++){
+                                        if (list.get(index).getId()== list.get(j).getId()){
+                                            String tt = list.get(index).getMenuCount();
+                                            tt += "\n"+ list.get(j).getMenuCount();
+                                            list.get(index).setMenuCount(tt);
+                                            list.set(j, new Data("-1", "-1", "-1", "-1"));
+                                        }
+                                    }
+                                }
+
+                                for (int index = list.size()-1; index >= 0; index--) {
+                                    if(list.get(index).getId().equals("-1")
+                                            || list.get(index).getMenuCount().equals(null))
+                                        list.remove(index);
+                                }
+
+                                for (int i = 0; i < list.size(); i++) {
+                                    // 각 List의 값들을 data 객체에 set 해줍니다.
+                                    Data data = list.get(i);
+                                    // 각 값이 들어간 data를 adapter에 추가합니다.
+                                    adapter.addItem(data);
+                                }
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // adapter의 값이 변경되었다는 것을 알려줍니다.
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                            }
+                            connection.disconnect(); // 연결 끊기
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
