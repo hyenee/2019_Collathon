@@ -91,6 +91,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                     intent.putExtra("userID", userID);
                     intent.putExtra("shopName", data.getShop_name());
                     intent.putExtra("shopID", data.getShop_id());
+                    v.getContext().startActivity(intent);
                     break;
 
                 case R.id.store_item_view_content:
