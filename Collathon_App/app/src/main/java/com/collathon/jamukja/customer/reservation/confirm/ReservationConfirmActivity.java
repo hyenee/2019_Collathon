@@ -30,8 +30,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     private String userID;
-
-    List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
     List<Data> list;
 
     @Override
@@ -49,7 +47,7 @@ public class ReservationConfirmActivity extends AppCompatActivity {
     }
 
     private void init() {
-        final RecyclerView recyclerView = findViewById(R.id.ticket_confirm_recycler);
+        final RecyclerView recyclerView = findViewById(R.id.confirm_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -65,14 +63,7 @@ public class ReservationConfirmActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        //예약 id, 예약한 가게, 메뉴, 수량, 시간 출력
-        reservation_id_list = new ArrayList<>();
-        shop_list = new ArrayList<>();
-        menu_list = new ArrayList<>();
-        count_list = new ArrayList<>();
-        time_list = new ArrayList<>();
         list = new ArrayList<>();
-
         //서버 디비 값 파싱
         try {
             NetworkManager.add(new Runnable() {
@@ -123,7 +114,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
                                     String temp = "";
                                     temp += "  "+ menu  + "  x " + count + "개";
                                     list.add(new Data(reservation_id, shop, temp, time));
-
                                 }
 
                                 for (int index = 0; index < list.size(); index++) {
@@ -132,8 +122,6 @@ public class ReservationConfirmActivity extends AppCompatActivity {
                                             String tt = list.get(index).getMenu();
                                             tt += "\n"+ list.get(j).getMenu();
                                             list.get(index).setMenu(tt);
-//                                            list.set(index, new Data(list.get(index).getId(),
-//                                                    list.get(index).getShop(), , list.get(index).getTime()));
                                             list.set(j, new Data("-1", "-1", "-1", "-1"));
                                         }
                                     }
@@ -176,5 +164,4 @@ public class ReservationConfirmActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
