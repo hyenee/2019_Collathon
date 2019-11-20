@@ -46,11 +46,17 @@
 #### 15. 가게별 번호표 예약 정보 출력(GET): getOwnerReservationMenu(shop_id)
 > /reservation/owner?shop={shop_id}
 
-#### 16. 타임세일 내역 출력(GET): getTimeSale(shop_id)
+#### 16. 예약 정보 삭제(POST/GET): 
+##### 16.1) deleteReservationAll(reservation_id, shop_id)
+> /reservation/delete?reservation={reservation_id}&shop={shop_id}
+##### 16.2) 삭제된 예약 정보 notification:
+> /reservation/getDelete
+
+#### 17. 타임세일 내역 출력(GET): getTimeSale(shop_id)
 > /timesale?shop={shop_id}
 
-#### 17. 타임세일 등록(POST): addTimeSale(shop_id, name, sale_price, time)
+#### 18. 타임세일 등록(POST): addTimeSale(shop_id, name, sale_price, time)
 > /timesale/add?shop={shop_id}&menu={menu_name}&price={menu_salePrice}&saletime={menu_saleTime}
 
-#### 18. 타임세일 삭제(POST): deleteTimeSale(id)
+#### 19. 타임세일 삭제(POST): deleteTimeSale(id)
 > /timesale/delete?register={timesale_id}
