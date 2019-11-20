@@ -201,15 +201,19 @@ let addReservationTable = function(classification, client_id, shop_id, number, c
 	query_function(sql, callback);
 };
 
-let deleteReservationAll = function(reservation_id, shop_id, callback){
+let deleteReservationAll = function(reservation_id, callback){
 	let sql = "update Menu as m, ReservationMenu as r set m.count=m.count+r.count where m.shop_id=r.shop_id and m.name=r.name and id="+reservation_id; //menu count 되돌리기
 	query_function_no_callback(sql);	
 	sql = "delete from ReservationTable where id="+reservation_id;
 	query_function_no_callback(sql);
 	sql = "delete from ReservationMenu where id="+reservation_id;
 	query_function_no_callback(sql);
-	sql = "delete from Reservation where id="+reservation_id;
+	//sql = "delete from Reservation where id="+reservation_id;
+	//query_function_no_callback(sql);
+	sql = "select r.id, client_id as user, shop_id, m.id as owner from Reservation as r inner join(Shop as s) on r.shop_id = s.id inner join(Supplier as m) on s.master=m.id where r.id="+reservation_id;
 	query_function(sql, callback);
+	sql = "delete from Reservation where id="+reservation_id;
+	query_function_no_callback(sql);
 };
 
 let getTimeSale = function(shop_id, callback){
