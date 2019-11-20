@@ -117,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
                                     logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     logoutIntent.putExtra( "KILL", true );
                                     startActivity(logoutIntent);
+                                    SharedPreferences re = getSharedPreferences("userID",Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor reset = re.edit();
+                                    reset.clear();
+                                    reset.commit();
+
+                                    SharedPreferences re2 = getSharedPreferences("check",Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor reset2 = re2.edit();
+                                    reset2.clear();
+                                    reset2.commit();
                                 }
                             })
                             .setNegativeButton("취소", new DialogInterface.OnClickListener() {

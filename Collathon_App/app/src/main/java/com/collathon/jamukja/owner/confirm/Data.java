@@ -49,7 +49,6 @@ public class Data {
         this.id = id;
         this.shop = shop;
         this.menu = menu;
-        this.count = count;
         this.time = time;
     }
 }

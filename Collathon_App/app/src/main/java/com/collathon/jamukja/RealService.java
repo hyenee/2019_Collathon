@@ -40,6 +40,7 @@ public class RealService extends Service {
     public String get_client = null;
     public String get_owner = null;
     public String check_user = "Y";
+    public String prevID = "0";
 
     public RealService() {
     }
@@ -49,20 +50,18 @@ public class RealService extends Service {
         super.onCreate();
         Log.i(TAG, "Start Service");
 
-        SharedPreferences check = getSharedPreferences("checkUser", Activity.MODE_PRIVATE);
-        check_user = check.getString("check","Y");
-        if(check_user.equals("Y")){
-            SharedPreferences user = getSharedPreferences("user", Activity.MODE_PRIVATE);
-            get_client = user.getString("userID", "null");
-        }else if(check_user.equals("N")){
-            SharedPreferences owner = getSharedPreferences("owner", Activity.MODE_PRIVATE);
-            get_owner = owner.getString("ownerID", "null");
-        }
+        SharedPreferences user = getSharedPreferences("user", Activity.MODE_PRIVATE);
+        get_client = user.getString("userID", "null");
+        SharedPreferences owner = getSharedPreferences("owner", Activity.MODE_PRIVATE);
+        get_owner = owner.getString("ownerID", "null");
+        SharedPreferences check = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        check_user = check.getString("check", "Y");
 
         mainThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean run = true;
+
                 while (run) {
                     try {
                         Thread.sleep(1000 * 60 * 1); // 1 minute
@@ -104,20 +103,19 @@ public class RealService extends Service {
                                         owner_id = jsonObject.getString("owner");
                                         Log.i(TAG, "추출 결과 :  "+  reservation_id +", "+ shop_id+", "+ client_id+", "+owner_id);
                                     }
-                                    if(check_user.equals("Y")) {
-                                        if (client_id.equals(get_client)) {
-                                            String send = "[고객 알림]: ID " + client_id + "님의 [예약번호 " + reservation_id + "] 예약이 취소되었습니다.";
-                                            sendNotification(send);
-//                                        SharedPreferences re = getSharedPreferences("auto",Activity.MODE_PRIVATE);
-//                                        SharedPreferences.Editor reset = re.edit();
-//                                        reset.clear();
-//                                        reset.commit();
+                                    if(!prevID.equals(reservation_id)) {
+                                        if (check_user.equals("Y")) {
+                                            if (client_id.equals(get_client)) {
+                                                String send = "[고객 알림]: ID " + client_id + "님의 [SHOP ID " + shop_id + "에 대한 예약번호 " + reservation_id + "] 예약이 취소되었습니다.";
+                                                sendNotification(send);
+                                            }
+                                        } else if (check_user.equals("N")) {
+                                            if (owner_id.equals(get_owner)) {
+                                                String send = "[자영업자 알림]: SHOP ID " + shop_id + "의 [예약번호 " + reservation_id + "] 예약이 취소되었습니다.";
+                                                sendNotification(send);
+                                            }
                                         }
-                                    }else if(check_user.equals("N")){
-                                        if (owner_id.equals(get_owner)){
-                                            String send = "[자영업자 알림]: ID " + client_id + "님의 [예약번호 " + reservation_id + "] 예약이 취소되었습니다.";
-                                            sendNotification(send);
-                                        }
+                                        prevID = reservation_id;
                                     }
                                 }
                             }
@@ -162,7 +160,7 @@ public class RealService extends Service {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.mipmap.ic_launcher)//drawable.splash)
+                        .setSmallIcon(R.drawable.icon)//drawable.splash)
                         .setContentTitle("예약취소")
                         .setContentText(messageBody)
                         .setAutoCancel(true)

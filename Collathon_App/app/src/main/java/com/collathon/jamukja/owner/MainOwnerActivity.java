@@ -69,7 +69,7 @@ public class MainOwnerActivity extends AppCompatActivity {
         setRecyclerView();
         getData();
 
-        SharedPreferences check = this.getSharedPreferences("checkUser", Activity.MODE_PRIVATE);
+        SharedPreferences check = this.getSharedPreferences("check", Activity.MODE_PRIVATE);
         SharedPreferences.Editor checkTemp = check.edit();
         checkTemp.putString("check", "N");
         checkTemp.commit();
@@ -207,6 +207,16 @@ public class MainOwnerActivity extends AppCompatActivity {
                             .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
                             .setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                    SharedPreferences re = getSharedPreferences("ownerID",Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor reset = re.edit();
+                                    reset.clear();
+                                    reset.commit();
+
+                                    SharedPreferences re2 = getSharedPreferences("check",Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor reset2 = re2.edit();
+                                    reset2.clear();
+                                    reset2.commit();
+
                                     Intent logoutIntent = new Intent(MainOwnerActivity.this, LoginOwnerActivity.class);
                                     logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     logoutIntent.putExtra( "KILL", true );

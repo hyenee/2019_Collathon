@@ -35,6 +35,7 @@ public class Owner_Reservation_View extends AppCompatActivity {
 
     List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
     List<Data> list;
+    List<String> tableList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,22 +122,31 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String reservation_id = jsonObject.getString("reservation_id");
-                                    String user = jsonObject.getString("user");
+                                    String shop = jsonObject.getString("user");
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
                                     String temp = "";
+                                    String tabletemp = "";
                                     temp += "  "+ menu  + "  x " + count + "개";
-                                    list.add(new Data(reservation_id, user, temp, time));
+                                    for(int j=0; j<tableList.size(); j++){
+                                        if(tableList.get(j).equals(reservation_id)){
+                                            tabletemp += tableList.get(j+1);
+                                            Log.i("CONFIRM", "table temp : "+ tabletemp);
+                                        }
+                                    }
+                                    list.add(new Data(reservation_id, shop, temp, tabletemp));
 
                                 }
 
                                 for (int index = 0; index < list.size(); index++) {
+                                    Log.i("예약번호", list.get(index).getId());
                                     for(int j = 0; j < index; j++){
-                                        if (list.get(index).getId()== list.get(j).getId()){
+                                        if (list.get(index).getId().equals(list.get(j).getId())){
                                             String tt = list.get(index).getMenu();
                                             tt += "\n"+ list.get(j).getMenu();
                                             list.get(index).setMenu(tt);
+                                            Log.i("예약메뉴", tt);
 //                                            list.set(index, new Data(list.get(index).getId(),
 //                                                    list.get(index).getShop(), , list.get(index).getTime()));
                                             list.set(j, new Data("-1", "-1", "-1", "-1"));
@@ -189,4 +199,6 @@ public class Owner_Reservation_View extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
+
+
 }
