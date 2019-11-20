@@ -1,13 +1,17 @@
 package com.collathon.jamukja;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.collathon.jamukja.customer.reservation.confirm.ReservationConfirmActivity;
 import com.collathon.jamukja.customer.store.category.list.StoreListActivity;
 import com.collathon.jamukja.customer.store.pick.PickStoreActivity;
 import com.collathon.jamukja.customer.user_info.customer.CustomerMyMenuActivity;
@@ -28,6 +32,20 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); /*데이터 수신*/
         userID = intent.getExtras().getString("userID"); /*String형*/
+
+        SharedPreferences check = this.getSharedPreferences("checkUser", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor checkTemp = check.edit();
+        checkTemp.putString("check", "Y");
+        checkTemp.commit();
+
+        SharedPreferences user = this.getSharedPreferences("user", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor userTemp = user.edit();
+        userTemp.putString("userID", userID);
+        userTemp.commit();
+
+        // 서비스(백그라운드) 시작
+        this.startService(new Intent(this, RealService.class));
+        Log.i(TAG, "startService");
 
         //카테고리 버튼 클릭하면 이동, 순서대로 버튼 1~6
         findViewById(R.id.category_button_rice).setOnClickListener(onClickListener); //한식

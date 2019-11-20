@@ -1,6 +1,8 @@
 package com.collathon.jamukja.owner;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.collathon.jamukja.LoginOwnerActivity;
 import com.collathon.jamukja.NetworkManager;
+import com.collathon.jamukja.RealService;
 import com.collathon.jamukja.owner.BlackList.Owner_BlackList;
 import com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager;
 import com.collathon.jamukja.owner.Seat.Owner_Store_Register;
@@ -64,6 +67,20 @@ public class MainOwnerActivity extends AppCompatActivity {
 
         setRecyclerView();
         getData();
+
+        SharedPreferences check = this.getSharedPreferences("checkUser", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor checkTemp = check.edit();
+        checkTemp.putString("check", "N");
+        checkTemp.commit();
+
+        SharedPreferences owner = this.getSharedPreferences("owner", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor ownerTemp = owner.edit();
+        ownerTemp.putString("ownerID", ownerID);
+        ownerTemp.commit();
+
+        // 서비스(백그라운드) 시작
+        this.startService(new Intent(this, RealService.class));
+        Log.i(TAG, "startService");
 
         //각 버튼 클릭시 해당하는 페이지로 넘어가게 하는 코드
         findViewById(R.id.blackButton).setOnClickListener(onClickListener);

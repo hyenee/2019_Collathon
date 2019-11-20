@@ -88,6 +88,16 @@
             android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailInfoActivity"
             android:theme="@style/AppTheme.NoActionBar2" />
 
+        <!-- 백그라운드 작업을 처리 -->
+        <service
+            android:name="com.collathon.jamukja.RealService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BACKGROUND" />
+            </intent-filter>
+        </service>
+
         <!-- 예약 -->
         <activity
             android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
