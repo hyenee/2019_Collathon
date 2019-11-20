@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/pick_store_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nanumsquare"
+        android:textSize="17dp"
+        android:textColor="#000000"
+        android:text=""
+        android:hint="가게 이름"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:id="@+id/pick_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/nanumsquare"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:text=""
+        android:hint="카테고리"/>
+
+    <TextView
+        android:id="@+id/pick_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:gravity="center"
+        android:fontFamily="@font/nanumsquare"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:text=""
+        android:layout_below="@+id/pick_store_name"
+        android:hint="위치"/>
+
+
+    <TextView
+    android:id="@+id/pick_tel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="240dp"
+    android:gravity="center"
+    android:fontFamily="@font/nanumsquare"
+    android:textSize="15dp"
+    android:textColor="#000000"
+    android:text=""
+    android:layout_below="@+id/pick_store_name"
+    android:hint="전화번호"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/pick_tel"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.collathon.jamukja.owner.MainOwnerActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_owner_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recycler_layout">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="님, 환영합니다!"
+            android:fontFamily="@font/typo"
+            android:textAlignment="center"
+            android:textColor="#EE7764"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/user_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/recycler_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fillViewport="true"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_owner_name">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_border_layout"
+            android:padding="3dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_store"
+                android:layout_width="380dp"
+                android:layout_height="510dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="1dp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/layout_owner_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff "
+            android:fontFamily="@font/nanumsquare"
+            android:text="홈"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/bookButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="MY"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/blackButton"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="블랙리스트"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#ffffff"
+            android:fontFamily="@font/nanumsquare"
+            android:text="로그아웃"
+            android:textAlignment="center" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_delete_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="삭제"
+        app:layout_constraintEnd_toStartOf="@+id/btn_regi_store"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
+
+    <Button
+        android:id="@+id/btn_regi_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="70dp"
+        android:text="추가"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#EE7764"
+        android:fontFamily="@font/nanumsquare"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
