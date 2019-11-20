@@ -3,6 +3,23 @@ let express = require('express');
 let router = express.Router();
 let sql = require('../../mysql/db_sql')();
 
+var delete_info = null;
+
+/* GET user's reservation id that client_id */
+router.get('/getDelete/', function(req, res, next){
+	console.log("---log start(RESERVATION:GET)---");
+ 	console.log("DELETE INFO:GET -> delete_info: ",delete_info);
+	if(delete_info == null){
+		res.send("null");
+	}else{
+	res.send(delete_info);
+	}
+	console.log("sending --->---");
+	delete_info = null;
+	console.log("DELETE INFO:CHANGE -> delete_info: ", delete_info);
+	console.log("---log end---");
+}); // http://oreh.onyah.net:7080/reservation/getDelete
+
 /* GET user's seat reservation information */
 router.get('/table/user/', function(req, res, next){
 	console.log("---log start(RESERVATION:GET)---");
@@ -61,6 +78,11 @@ router.post('/add/', function(req, res, next){
 	console.log("NEW RESERVATION:POST -> client_id : ", req.query.user);
 	console.log("NEW RESERVATION:POST -> time : ", req.query.time);
 	console.log("NEW RESERVATION:POST -> shop_id : ", req.query.shop);
+	if(req.query.time==="0"){
+		console.error("ADD BASIC:GET FAILED: WRONG INPUTDATA OF TIME");
+		res.send([{"result":"ERROR"}]);
+	}
+	else{
 	sql.addReservation(req.query.current, req.query.user, req.query.time, req.query.shop, function(err){
 		if(err){
 			console.error("ADD BASIC:GET FAILED: ",err);
@@ -70,6 +92,7 @@ router.post('/add/', function(req, res, next){
 			res.send([{"result":"OK"}]);
 		}
 	});
+	}
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/add?current={current_time}&user={client_id}&time={reservation_time}&shop={shop_id}
 
@@ -117,17 +140,17 @@ router.post('/add/table/', function(req, res, next){
 router.post('/delete/', function(req, res, next){
 	console.log("---log start(RESERVATION:POST)---");
 	console.log("DELETE:POST -> reservation id : ", req.query.reservation);
-	console.log("DELETE:POST -> shop id : ", req.query.shop);
-	sql.deleteReservationAll(req.query.reservation, req.query.shop, function(err){
+	sql.deleteReservationAll(req.query.reservation, function(err, result){
 		if(err){
 			console.error("DELETE:GET FAILED: ",err);
 			res.send([{"result":"ERROR"}]);
 		}
 		else{
+			delete_info = result;
 			res.send([{"result":"OK"}]);
 		}
 	});
 	console.log("---log end---");
-}); // http://oreh.onyah.net:7080/reservation/delete?reservation={reservation_id}&shop={shop_id}
+}); // http://oreh.onyah.net:7080/reservation/delete?reservation={reservation_id}
 
 module.exports = router;
