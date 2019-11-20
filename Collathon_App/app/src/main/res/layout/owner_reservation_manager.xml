@@ -54,17 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/nanumsquare"
-                android:text="자리 예약 확인>"
-                android:textColor="#49575f"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/et_numberOfticket"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/nanumsquare"
-                android:text="번호표 예약 확인>"
+                android:text="예약 확인 >"
                 android:textColor="#49575f"
                 android:textSize="20dp" />
 

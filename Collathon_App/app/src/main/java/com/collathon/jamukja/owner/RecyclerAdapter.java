@@ -2,7 +2,6 @@ package com.collathon.jamukja.owner;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.TestLooperManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.collathon.jamukja.owner.Seat.Owner_Reservation_Manager;
-import com.collathon.jamukja.owner.Seat.Owner_Reservation_seat;
 import com.collathon.janolja.R;
 
 import java.util.ArrayList;

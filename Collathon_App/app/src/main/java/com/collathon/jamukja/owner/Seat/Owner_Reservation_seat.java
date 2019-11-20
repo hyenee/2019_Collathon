@@ -7,13 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.collathon.jamukja.NetworkManager;
 import com.collathon.jamukja.owner.Data;
-import com.collathon.jamukja.owner.MenuData;
-import com.collathon.jamukja.owner.SecondAdapter;
+import com.collathon.jamukja.owner.Seat.RecyclerAdapter;
 import com.collathon.janolja.R;
 
 import org.json.JSONArray;
@@ -40,6 +38,7 @@ public class Owner_Reservation_seat extends AppCompatActivity {
         setContentView(R.layout.owner_reservation_seat);
         final Intent intent = getIntent();
         ownerID = intent.getExtras().getString("owner_id");
+
         shopList = findViewById(R.id.et_shopID);
         shopList.setText(ownerID);
 
@@ -107,6 +106,7 @@ public class Owner_Reservation_seat extends AppCompatActivity {
                                     // 각 값이 들어간 data를 adapter에 추가합니다.
                                     adapter.addItem(data);
                                 }
+                                adapter.ownerID = ownerID;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

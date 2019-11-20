@@ -74,12 +74,9 @@ public class LoginOwnerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ownerID = idText.getText().toString();
                 userPasswd = passwordText.getText().toString();
-                Log.i("LOGIN:USERID", ownerID);
-                Log.i("LOGIN:PASSWORD", userPasswd);
 
                 //아이디, 비번 입력 안 한 경우 확인 메세지 나오게 함
                 if(idText.getText().toString().equals("") || passwordText.getText().toString().equals("")){
-                    Log.i("LOGIN", "아이디 비번 빈칸");
                     builder.setMessage(" 아이디 및 비밀번호를 확인해주세요. ")
                             .setNegativeButton("확인", null)
                             .create()
@@ -93,7 +90,6 @@ public class LoginOwnerActivity extends AppCompatActivity {
                             try {
                                 String site = NetworkManager.url + "/owner/login";
                                 site += "?id=" + ownerID + "&passwd=" + userPasswd;
-                                Log.i("LOGIN", site);
 
                                 URL url = new URL(site);
                                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -103,7 +99,6 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                     connection.setUseCaches(false);
 
                                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                        Log.i("LOGIN", "서버 연결됨");
 
                                         // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                         InputStream is = connection.getInputStream();
@@ -132,7 +127,6 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                             JSONObject obj1 = root.getJSONObject(0);
                                             getUserPasswd = obj1.getString("passwd");
                                             String ownerName = obj1.getString("name");
-                                            Log.i(TAG, "추출 결과 place_type: " + getUserPasswd);
 
                                             if (getUserPasswd.equals(userPasswd)) {
                                                 Log.i(TAG, "로그인에 성공하셨습니다.");
