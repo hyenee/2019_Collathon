@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.collathon.jamukja.owner.Owner_info_change;
 import com.collathon.jamukja.owner.Seat.Owner_Reservation_seat;
 import com.collathon.janolja.R;
 
@@ -30,7 +31,9 @@ public class Owner_Reservation_Manager extends AppCompatActivity {
         textView_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //////////////////////////////혜이니꺼 처럼 수정하기/////////////////////////////////
+                Intent intent = new Intent(Owner_Reservation_Manager.this, Owner_info_change.class);
+                intent.putExtra("owner_id", ownerID);
+                startActivity(intent);
             }
         });
         textView_seat.setOnClickListener(new View.OnClickListener() {

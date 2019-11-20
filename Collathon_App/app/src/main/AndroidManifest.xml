@@ -18,8 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.collathon.jamukja.owner.confirm.Owner_Reservation_View"></activity>
-        <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
+        <activity android:name="com.collathon.jamukja.owner.Owner_info_change" />
+        <activity android:name="com.collathon.jamukja.owner.confirm.Owner_Reservation_View" /> <!-- 고객/자영업자 구분하는 것이 시작페이지 -->
         <activity
             android:name="com.collathon.jamukja.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,7 +30,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.collathon.jamukja.owner.Seat.Owner_Store_Register" />
-        <activity android:name="com.collathon.jamukja.Owner_reservation_Popup" />
         <activity android:name="com.collathon.jamukja.Owner_list_menu" />
         <activity android:name="com.collathon.jamukja.owner.Seat.Owner_list_seat" />
         <activity android:name="com.collathon.jamukja.owner.Seat.Owner_list_seat_list" />
@@ -71,7 +70,18 @@
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 가게 상세정보 -> 정보 -->
         <activity
             android:name="com.collathon.jamukja.customer.store.category.detail.StoreDetailInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 예약 -->
+            android:theme="@style/AppTheme.NoActionBar2" />
+
+        <!-- 백그라운드 작업을 처리 -->
+        <service
+            android:name="com.collathon.jamukja.RealService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BACKGROUND" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name="com.collathon.jamukja.customer.reservation.ReservationActivity"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 예약 확인 -->
@@ -96,18 +106,16 @@
         <activity
             android:name="com.collathon.jamukja.owner.Menu_Register"
             android:theme="@style/AppTheme.NoActionBar2" />
-        <activity
-            android:name="com.collathon.jamukja.owner.Menu_remove"
-            android:theme="@style/AppTheme.NoActionBar2" /> <!-- 블랙리스트 -->
+        <!-- 블랙리스트 -->
         <activity
             android:name="com.collathon.jamukja.owner.BlackList.Owner_BlackList"
             android:theme="@style/AppTheme.NoActionBar2" /> <!-- 자영업자 타임세일 -->
         <activity
             android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleAdd.TimeSaleActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.collathon.jamukja.owner.TimeSale.TimeSaleDelete.TimeSaleActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

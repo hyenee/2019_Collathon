@@ -76,7 +76,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
 
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterCustomerActivity.this);
-                    builder.setMessage("회원 가입에 실패하셨습니다.푸하하")
+                    builder.setMessage("회원 가입에 실패하셨습니다.")
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();

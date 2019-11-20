@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.collathon.jamukja.owner.My.Seat.Owner_Seat_Info">
+    tools:context="com.collathon.jamukja.owner.Owner_info_change">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="40dp"
+
         android:text="예약된 자리 확인"
+        android:fontFamily="@font/typo"
+        android:textAlignment="center"
+        android:textColor="#EE7764"
         android:textSize="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/et_shopID"
@@ -31,9 +35,11 @@
         android:id="@+id/et_shopID"
         android:layout_width="69dp"
         android:layout_height="30dp"
-        android:layout_marginStart="70dp"
-        android:textSize="24dp"
+        android:layout_marginStart="90dp"
         android:text="TextView"
+        android:textSize="24dp"
+        android:fontFamily="@font/typo"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/recycler_table"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

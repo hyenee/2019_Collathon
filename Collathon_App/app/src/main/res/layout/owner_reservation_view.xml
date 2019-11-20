@@ -30,9 +30,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/nanumsquare"
                     android:text="예약 확인"
-                    android:layout_marginTop="30dp"
                     android:textColor="#45555f"
                     android:textSize="20sp"
                     android:textStyle="bold" />
