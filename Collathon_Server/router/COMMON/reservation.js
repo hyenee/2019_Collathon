@@ -14,9 +14,6 @@ router.get('/getDelete/', function(req, res, next){
 	}else{
 	res.send(delete_info);
 	}
-	console.log("sending --->---");
-	delete_info = null;
-	console.log("DELETE INFO:CHANGE -> delete_info: ", delete_info);
 	console.log("---log end---");
 }); // http://oreh.onyah.net:7080/reservation/getDelete
 

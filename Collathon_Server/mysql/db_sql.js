@@ -170,7 +170,7 @@ let getUserReservationMenu = function(client_id, callback){
 };
 
 let getOwnerReservationTable = function(shop_id, callback){
-	let sql = "select id as reservation_id, client_id as user, number, reservation_count as count, time from Reservation natural join(Shop) natural join(ReservationTable) where shop_id="+shop_id;
+	let sql = "select r.id as reservation_id, client_id as user, number, reservation_count as count, time from Reservation as r inner join(Shop as s) on r.shop_id=s.id inner join(ReservationTable as rt) on rt.id=r.id where r.shop_id="+shop_id;
 	query_function(sql, callback);
 };
 
