@@ -41,8 +41,11 @@
 ##### 11.3) addReservationTable(classification, client_id, shop_id, number, count)
 > /reservation/add/table?current={YYMMDDHHmmss}&user={client_id}&shop={shop_id}&table={number_of_table}&count={table_count}
 
-#### 12. 예약 정보 삭제(POST): deleteReservationAll(reservation_id, shop_id)
+#### 12. 예약 정보 삭제(POST/GET): 
+##### 12.1) deleteReservationAll(reservation_id, shop_id)
 > /reservation/delete?reservation={reservation_id}&shop={shop_id}
+##### 12.2) 삭제된 예약 정보 notification:
+> /reservation/getDelete
 
 #### 13. 해당 유저가 찜한 가게 리스트 출력(GET): getLikeShop(client_id)
 > /like?id={client_id}
