@@ -26,10 +26,4 @@
     <style name="AppTheme.NoActionBar2">
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="NavDrawerTextStyle">
-        <item name="android:textSize">18dp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#45555f</item>
-    </style>
 </resources>
