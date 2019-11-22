@@ -188,7 +188,7 @@ public class Store_info extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i(TAG, "서버 연결됨");
+
                                 // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -273,16 +273,14 @@ public class Store_info extends AppCompatActivity {
                     if (nm.isEnd) {
                         break;
                     }
-                    Log.i(TAG, "아직 작업 안끝남.");
                 }
 
                 JSONObject jsonObject = nm.getResult();
                 String success = jsonObject.getString("result");
-                Log.i(TAG, "서버에서 받아온 result = " + success);
 
                 if (success.equals("ERROR")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Store_info.this);
-                    builder.setMessage("등록에 실패하셨습니다.푸하하")
+                    builder.setMessage("등록에 실패하셨습니다.")
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();
@@ -321,7 +319,7 @@ public class Store_info extends AppCompatActivity {
 
             if (success.equals("ERROR")) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Store_info.this);
-                builder.setMessage("삭제에 실패하셨습니다.푸하하")
+                builder.setMessage("삭제에 실패하셨습니다.")
                         .setNegativeButton("다시 시도", null)
                         .create()
                         .show();

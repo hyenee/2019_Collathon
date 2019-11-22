@@ -69,6 +69,7 @@ public class MainOwnerActivity extends AppCompatActivity {
         setRecyclerView();
         getData();
 
+
         SharedPreferences check = this.getSharedPreferences("check", Activity.MODE_PRIVATE);
         SharedPreferences.Editor checkTemp = check.edit();
         checkTemp.putString("check", "N");

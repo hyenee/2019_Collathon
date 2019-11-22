@@ -165,7 +165,7 @@ public class Owner_Store_Register extends AppCompatActivity {
                     }else{
                         if(success2.equals("ERROR")){
                             AlertDialog.Builder builder = new AlertDialog.Builder(Owner_Store_Register.this);
-                            builder.setMessage("가게 정보등록에 실패하셨습니다.푸하하")
+                            builder.setMessage("가게 정보등록에 실패하셨습니다.")
                                     .setNegativeButton("다시 시도", null)
                                     .create()
                                     .show();
@@ -215,7 +215,7 @@ public class Owner_Store_Register extends AppCompatActivity {
                 String success3 = jsonObject.getString("result");
                 if(success3.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(Owner_Store_Register.this);
-                    builder.setMessage("가게 등록에 실패하셨습니다.푸하하")
+                    builder.setMessage("가게 등록에 실패하셨습니다.")
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();

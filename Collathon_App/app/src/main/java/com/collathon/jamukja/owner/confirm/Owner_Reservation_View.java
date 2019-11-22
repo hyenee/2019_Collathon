@@ -32,10 +32,10 @@ public class Owner_Reservation_View extends AppCompatActivity {
     private RecyclerAdapter adapter;
     Handler handler;
     private String ownerID,shopID;
+    List<String> tableList;
 
     List<String> reservation_id_list, shop_list, menu_list, count_list, time_list;
     List<Data> list;
-    List<String> tableList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,9 @@ public class Owner_Reservation_View extends AppCompatActivity {
         handler = new Handler();
 
         init();
+        getUserReservationTable();
         getData();
+
 
     }
 
@@ -122,41 +124,47 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String reservation_id = jsonObject.getString("reservation_id");
-                                    String shop = jsonObject.getString("user");
+                                    String user = jsonObject.getString("user");
                                     String menu = jsonObject.getString("menu");
                                     String count = jsonObject.getString("count");
                                     String time = jsonObject.getString("time");
                                     String temp = "";
+                                    //temp += "  "+ menu  + "  x " + count + "개";
                                     String tabletemp = "";
+
                                     temp += "  "+ menu  + "  x " + count + "개";
+
                                     for(int j=0; j<tableList.size(); j++){
                                         if(tableList.get(j).equals(reservation_id)){
                                             tabletemp += tableList.get(j+1);
                                             Log.i("CONFIRM", "table temp : "+ tabletemp);
                                         }
                                     }
-                                    list.add(new Data(reservation_id, shop, temp, tabletemp));
+
+                                    list.add(new Data(user, temp, time, tabletemp, reservation_id, "0"));
+
+//                                    list.add(new Data(reservation_id, user, temp, time));
 
                                 }
 
                                 for (int index = 0; index < list.size(); index++) {
                                     Log.i("예약번호", list.get(index).getId());
                                     for(int j = 0; j < index; j++){
-                                        if (list.get(index).getId().equals(list.get(j).getId())){
-                                            String tt = list.get(index).getMenu();
-                                            tt += "\n"+ list.get(j).getMenu();
-                                            list.get(index).setMenu(tt);
-                                            Log.i("예약메뉴", tt);
+                                        if (list.get(index).getReservation().equals(list.get(j).getReservation()) ){
+                                            String tt = list.get(index).getShop();
+                                            tt += "\n"+ list.get(j).getShop();
+                                            list.get(index).setShop(tt);
+
 //                                            list.set(index, new Data(list.get(index).getId(),
 //                                                    list.get(index).getShop(), , list.get(index).getTime()));
-                                            list.set(j, new Data("-1", "-1", "-1", "-1"));
+                                            list.set(j, new Data("-1", "-1", "-1", "-1","-1","-1"));
                                         }
                                     }
                                 }
 
                                 for (int index = list.size()-1; index >= 0; index--) {
                                     if(list.get(index).getId().equals("-1")
-                                            || list.get(index).getMenu().equals(null))
+                                            || list.get(index).getShop().equals(null))
                                         list.remove(index);
                                 }
 
@@ -174,6 +182,78 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                         adapter.notifyDataSetChanged();
                                     }
                                 });
+                            }
+                            connection.disconnect(); // 연결 끊기
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getUserReservationTable(){
+        tableList = new ArrayList<>();
+        try {
+            NetworkManager.add(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String site = NetworkManager.url + "/reservation/table/owner";
+                        site += "?shop="+shopID;
+                        Log.i("CONFIRM", site);
+
+                        URL url = new URL(site);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                        if (connection != null) {
+                            connection.setConnectTimeout(2000);
+                            connection.setUseCaches(false);
+                            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                Log.i("TICKET CONFIRM", "서버 연결됨");
+                                // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
+                                InputStream is = connection.getInputStream();
+                                InputStreamReader isr = new InputStreamReader(is, "utf-8");
+                                BufferedReader br = new BufferedReader(isr);
+                                String str = null;
+                                StringBuffer buf = new StringBuffer();
+
+                                // 읽어온다.
+                                do {
+                                    str = br.readLine();
+                                    if (str != null) {
+                                        buf.append(str);
+                                    }
+                                } while (str != null);
+                                br.close(); // 스트림 해제
+
+                                String rec_data = buf.toString();
+                                Log.i("CONFIRM, ", "서버: " + rec_data);
+
+                                JSONArray jsonArray = new JSONArray(rec_data);
+                                for(int i=0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String reservation_id = jsonObject.getString("reservation_id");
+                                    // String shop = jsonObject.getString("shop");
+                                    String number = jsonObject.getString("number");
+                                    String count = jsonObject.getString("count");
+                                    String time = jsonObject.getString("time");
+                                    String temp = "";
+                                    temp += " "+ number  + "인 테이블  x " + count + "개  ";
+
+                                    tableList.add(reservation_id);
+                                    tableList.add(temp);
+                                    Log.i("CONFIRM", tableList.toString());
+                                }
+
                             }
                             connection.disconnect(); // 연결 끊기
                         }

@@ -220,7 +220,7 @@ public class TimeSaleActivity extends AppCompatActivity {
 
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(TimeSaleActivity.this);
-                    builder.setMessage("타임세일 삭제에 실패하셨습니다.푸하하")
+                    builder.setMessage("타임세일 삭제에 실패하셨습니다.")
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();

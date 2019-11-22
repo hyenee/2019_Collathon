@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivityWithCategory(StoreListActivity.class, userID,"sushi");
                     break;
 
-                    // 하단 메뉴바 이동
+                // 하단 메뉴바 이동
                 case R.id.homeButton:
                     startActivity(MainActivity.class, userID);
                     break;
