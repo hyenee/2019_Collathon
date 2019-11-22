@@ -6,6 +6,15 @@ public class Data {
     private String menu;
     private String count;
     private String time;
+    private String table;
+
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
 
     public String getId(){ return id; }
 
@@ -44,12 +53,18 @@ public class Data {
         this.count = count;
         this.time = time;
     }
+//    public Data(String id, String menu, String time, String table){
+//        this.id = id;
+//        this.menu = menu;
+//        this.time = time;
+//        this.table = table;
+//    }
+
 
     public Data(String id, String shop, String menu, String time){
         this.id = id;
         this.shop = shop;
         this.menu = menu;
-        this.count = count;
         this.time = time;
     }
 }

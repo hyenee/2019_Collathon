@@ -91,6 +91,7 @@ public class LoginOwnerActivity extends AppCompatActivity {
                                 String site = NetworkManager.url + "/owner/login";
                                 site += "?id=" + ownerID + "&passwd=" + userPasswd;
 
+                                Log.i("url: ",site);
                                 URL url = new URL(site);
                                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 

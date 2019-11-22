@@ -82,7 +82,7 @@ public class Owner_info_change extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i("MY", "서버 연결됨");
+
                                 // 스트림 추출 : 맨 처음 타입을 버퍼로 읽고 그걸 스트링버퍼로 읽음
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -100,7 +100,6 @@ public class Owner_info_change extends AppCompatActivity {
                                 br.close(); // 스트림 해제
 
                                 String rec_data = buf.toString();
-                                Log.i("MY, ", "서버: " + rec_data);
 
                                 JSONArray jsonArray = new JSONArray(rec_data);
                                 JSONObject jsonObject = jsonArray.getJSONObject(0);
@@ -108,7 +107,6 @@ public class Owner_info_change extends AppCompatActivity {
                                 final String id = jsonObject.getString("id");
                                 final String passwd = jsonObject.getString("passwd");
                                 final String phone = jsonObject.getString("phone");
-                                Log.i("MY", "추출 결과 :  " + name+", "+id+", "+passwd+", "+phone);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -145,12 +143,11 @@ public class Owner_info_change extends AppCompatActivity {
 
         //비밀번호 변경 POST
         int passwdlen = owner_passwd.length();
-        Log.i("MY", "PASSWD : "+ passwdlen+", "+newPasswd);
         try {
             NetworkManager nm = new NetworkManager();
             if (passwdlen>0) {
                 String owner_site = "/mypage/owner?id="+userID+ "&new=" + newPasswd;
-                Log.i("MY", "SITE= "+owner_site);
+
                 nm.postInfo(owner_site, "PATCH"); //받은 placeId에 따른 장소 세부 정보
 
                 while(true){ // thread 작업이 끝날 때까지 대기

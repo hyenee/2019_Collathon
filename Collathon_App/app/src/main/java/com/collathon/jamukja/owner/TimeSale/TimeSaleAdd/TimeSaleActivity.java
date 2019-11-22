@@ -103,7 +103,6 @@ public class TimeSaleActivity extends AppCompatActivity {
                         String menu = menu_name_list.get(i);
                         String temp_price = menu_price_list.get(i);
                         int price = Integer.valueOf(temp_price);
-                        Log.i("현재 선택 메뉴는", menu+", 가격 :"+price);
 
                         registerTimeSale(menu, price);
                     }
@@ -143,7 +142,6 @@ public class TimeSaleActivity extends AppCompatActivity {
                     try {
                         String site = NetworkManager.url + "/timesale/stock";
                         site += "?shop="+shopID;
-                        Log.i("TimeSaleActivity SITE", site);
 
                         URL url = new URL(site);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -152,7 +150,6 @@ public class TimeSaleActivity extends AppCompatActivity {
                             connection.setConnectTimeout(2000);
                             connection.setUseCaches(false);
                             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                                Log.i(TAG, "서버 연결됨");
 
                                 InputStream is = connection.getInputStream();
                                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
@@ -174,11 +171,9 @@ public class TimeSaleActivity extends AppCompatActivity {
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String menu_name = jsonObject.getString("name");
-                                    Log.i(TAG, "메뉴 이름: "+menu_name);
 
                                     String temp_price = jsonObject.getString("price");
                                     int menu_price = Integer.parseInt(temp_price);
-                                    Log.i(TAG, "메뉴 가격: "+temp_price);
 
                                     menu_name_list.add(menu_name);
                                     menu_price_list.add(temp_price);
@@ -273,7 +268,6 @@ public class TimeSaleActivity extends AppCompatActivity {
                         Toast.makeText(TimeSaleActivity.this, time[selectedIndex[0]],
                                 Toast.LENGTH_SHORT).show();
                         check_percent = time[selectedIndex[0]];
-                        Log.i(TAG, "할인율 : " + check_percent);
                         selected = selectedIndex[0];
 
                         percentID.setText(check_percent);
@@ -321,7 +315,7 @@ public class TimeSaleActivity extends AppCompatActivity {
 
                 if (success.equals("ERROR")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(TimeSaleActivity.this);
-                    builder.setMessage("타임세일 등록에 실패하셨습니다.푸하하")
+                    builder.setMessage("타임세일 등록에 실패하셨습니다.")
                             .setNegativeButton("다시 시도", null)
                             .create()
                             .show();

@@ -1,151 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="사용자 ID>"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="유저아이디>"
-                    android:textColor="#45555f"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/owner_reservation_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text=""
-                    android:textColor="#58585a"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="예약시간>"
-                    android:textColor="#45555f"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/owner_reservation_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:textColor="#58585a"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="예약메뉴>"
-                    android:textColor="#45555f"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/owner_reservation_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="메뉴"
-                    android:textColor="#45555f"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="end"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_owner_add_blacklist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#EE7764"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="블랙리스트 등록"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16dp" />
-
-                <Button
-                    android:id="@+id/btn_owner_reservation_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="15dp"
-                    android:background="#EE7764"
-                    android:fontFamily="@font/nanumsquare"
-                    android:text="삭제"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="5dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@+id/reservation_ticket_menu_count"/>
+            <TextView
+                android:id="@+id/owner_reservation_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text=""
+                android:textColor="#58585a"
+                android:textSize="17dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="예약시간>"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/owner_reservation_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:textColor="#58585a"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="예약메뉴>"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/owner_reservation_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="메뉴"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/owner_reservation_table_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="예약 테이블>"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/owner_reservation_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nanumsquare"
+                android:text="테이블"
+                android:textColor="#45555f"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_owner_blackList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="#EE7764"
+                android:fontFamily="@font/nanumsquare"
+                android:text="블랙리스트 등록"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                tools:ignore="DuplicateIds" />
+
+            <Button
+                android:id="@+id/btn_owner_reservation_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:background="#EE7764"
+                android:fontFamily="@font/nanumsquare"
+                android:text="삭제"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_owner_blacklist_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="#EE7764"
+                android:fontFamily="@font/nanumsquare"
+                android:text="블랙리스트 등록"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btn_cant_reserve_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:background="#EE7764"
+                android:fontFamily="@font/nanumsquare"
+                android:text="취소 불가"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/reservation_ticket_menu_count"/>
     </LinearLayout>
 </LinearLayout>
+
