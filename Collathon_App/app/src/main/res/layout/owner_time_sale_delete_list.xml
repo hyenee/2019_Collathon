@@ -73,17 +73,24 @@
 
         <Button
             android:id="@+id/selectAll"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="전체 선택" />
+            android:background="#EE7764"
+            android:fontFamily="@font/nanumsquare"
+            android:text="전체 선택"
+            android:textColor="#ffffff" />
 
 
         <Button
             android:id="@+id/timesale_deleteButton"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#EE7764"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/nanumsquare"
             android:text="삭제" />
 
     </LinearLayout>

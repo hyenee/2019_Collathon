@@ -219,7 +219,7 @@ public class TimeSaleActivity extends AppCompatActivity {
         selected = 0;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(TimeSaleActivity.this);
-        builder.setTitle("예약 시간 선택")
+        builder.setTitle("타임세일 시간 선택")
                 .setSingleChoiceItems(time, selected, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {

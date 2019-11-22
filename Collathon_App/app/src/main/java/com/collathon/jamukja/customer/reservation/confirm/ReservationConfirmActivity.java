@@ -126,7 +126,7 @@ public class ReservationConfirmActivity extends AppCompatActivity {
 
                                 for (int index = 0; index < list.size(); index++) {
                                     for(int j = 0; j < index; j++){
-                                        if (list.get(index).getId()== list.get(j).getId()){
+                                        if (list.get(index).getId().equals(list.get(j).getId())){
                                             String tt = list.get(index).getMenuCount();
                                             tt += "\n"+ list.get(j).getMenuCount();
                                             list.get(index).setMenuCount(tt);

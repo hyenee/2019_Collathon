@@ -130,9 +130,8 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                     String time = jsonObject.getString("time");
                                     String temp = "";
                                     //temp += "  "+ menu  + "  x " + count + "개";
-
-
                                     String tabletemp = "";
+
                                     temp += "  "+ menu  + "  x " + count + "개";
 
                                     for(int j=0; j<tableList.size(); j++){
@@ -141,22 +140,24 @@ public class Owner_Reservation_View extends AppCompatActivity {
                                             Log.i("CONFIRM", "table temp : "+ tabletemp);
                                         }
                                     }
-                                    list.add(new Data(user, temp, time, tabletemp));
 
+                                    list.add(new Data(user, temp, time, tabletemp, reservation_id, "0"));
 
 //                                    list.add(new Data(reservation_id, user, temp, time));
 
                                 }
 
                                 for (int index = 0; index < list.size(); index++) {
+                                    Log.i("예약번호", list.get(index).getId());
                                     for(int j = 0; j < index; j++){
-                                        if (list.get(index).getId().equals(list.get(j).getId()) ){
+                                        if (list.get(index).getReservation().equals(list.get(j).getReservation()) ){
                                             String tt = list.get(index).getShop();
                                             tt += "\n"+ list.get(j).getShop();
                                             list.get(index).setShop(tt);
+
 //                                            list.set(index, new Data(list.get(index).getId(),
 //                                                    list.get(index).getShop(), , list.get(index).getTime()));
-                                            list.set(j, new Data("-1", "-1", "-1", "-1"));
+                                            list.set(j, new Data("-1", "-1", "-1", "-1","-1","-1"));
                                         }
                                     }
                                 }
@@ -278,4 +279,6 @@ public class Owner_Reservation_View extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
+
+
 }
